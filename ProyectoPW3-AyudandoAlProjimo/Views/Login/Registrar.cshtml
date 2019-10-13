@@ -1,5 +1,7 @@
-﻿@model Entidades.Usuario
-@{ Layout = null; }
+﻿@model Entidades.Usuarios
+@{ Layout = null;
+    
+    }
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,17 +55,16 @@
 
                                         <div class="form-group">
 
-                                            @Html.TextBoxFor(model => model.Contraseña, new { @class = "form-control form-control-user", placeholder = "Contraseña" })
-                                            <div class="mb-1 mt-1 validacion">@Html.ValidationMessageFor(model => model.Contraseña)</div>
+                                            @Html.TextBoxFor(model => model.Password, new { @class = "form-control form-control-user", placeholder = "Contraseña", name="pass2" })
+                                            <div class="mb-1 mt-1 validacion">@Html.ValidationMessageFor(model => model.Password)</div>
 
-                                            @Html.TextBoxFor(model => model.ConfirmarContraseña, new { @class = "form-control form-control-user", placeholder = "Confirmar Contraseña" })
-                                            <div class="mb-1 mt-1 validacion">@Html.ValidationMessageFor(model => model.ConfirmarContraseña)</div>
-
+                                            <input type="password" name="pass" class = "form-control form-control-user " placeholder = "Repetir Contraseña" />
+                                            <div class="mb-1 mt-1 validacion">@Html.ValidationMessage("pass")</div>
                                         </div>
 
                                         <div class="form-group">
-                                            @Html.TextBoxFor(model => model.FechaDeNacimiento, new { @class = "form-control form-control-user", type = "date", id = "Fecha" })
-                                            <div class="mb-3 mt-1 validacion">@Html.ValidationMessageFor(model => model.FechaDeNacimiento)</div>
+                                            @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "form-control form-control-user", type = "date" })
+                                            <div class="mb-3 mt-1 validacion">@Html.ValidationMessageFor(model => model.FechaNacimiento)</div>
                                         </div>
 
 
@@ -83,6 +84,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
             </div>
 

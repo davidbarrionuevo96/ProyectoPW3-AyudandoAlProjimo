@@ -1,4 +1,4 @@
-﻿@model Entidades.Usuario
+﻿@model Entidades.Usuarios
 @{ Layout = null; }
 
 <!DOCTYPE html>
@@ -49,8 +49,8 @@
                                     <div class="mb-3 mt-1 validacion"> @Html.ValidationMessageFor(model => model.Email)</div>
                                 </div>
                                 <div class="form-group">
-                                    @Html.TextBoxFor(model => model.Contraseña, new { @class = "form-control form-control-user", placeholder = "Contraseña" })
-                                    <div class="mb-1 mt-1 validacion">@Html.ValidationMessageFor(model => model.Contraseña)</div>
+                                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control form-control-user", placeholder = "Contraseña" })
+                                    <div class="mb-1 mt-1 validacion">@Html.ValidationMessageFor(model => model.Password)</div>
                                 </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
