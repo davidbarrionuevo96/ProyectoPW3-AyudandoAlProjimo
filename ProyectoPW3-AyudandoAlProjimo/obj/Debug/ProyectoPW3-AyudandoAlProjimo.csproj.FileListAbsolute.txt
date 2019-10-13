@@ -171,3 +171,6 @@ C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlPro
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.SqlServer.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.SqlServer.xml
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Servicios.dll
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Servicios.pdb
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Servicios.dll.config
