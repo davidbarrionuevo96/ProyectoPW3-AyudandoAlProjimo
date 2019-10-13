@@ -53,6 +53,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             {
                 LoginService l = new LoginService();
                 l.RegistrarUsuario(u);
+                l.enviarCorreo(u);
                 return RedirectToAction("Index", "Home");
             }
             return View("Registrar");
