@@ -9,4 +9,3 @@ C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entid
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csproj.CopyComplete
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.pdb
-C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache

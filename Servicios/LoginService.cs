@@ -11,9 +11,9 @@ namespace Servicios
     public class LoginService
     {
 
+            Entities asd = new Entities();
         public void RegistrarUsuario(Usuarios u)
         {
-            Entities asd = new Entities();
 
             u.Activo = true;
             u.Token = "19E41C31E74A4526";
@@ -22,6 +22,23 @@ namespace Servicios
 
             asd.Usuarios.Add(u);
             asd.SaveChanges();
+        }
+
+        public List<Usuarios> BuscarUsuario(Usuarios u)
+        {
+            var usua=from p in asd.Usuarios
+                        where p.Password==u.Password && p.Email==u.Email
+                        select p;
+
+            return usua.ToList();
+        }
+
+        public List<Usuarios> ExisteCorreo(Usuarios u)
+        {
+            var usua = from p in asd.Usuarios
+                       where p.Email == u.Email
+                       select p;
+            return usua.ToList();
         }
 
         public void enviarCorreo(Usuarios u)

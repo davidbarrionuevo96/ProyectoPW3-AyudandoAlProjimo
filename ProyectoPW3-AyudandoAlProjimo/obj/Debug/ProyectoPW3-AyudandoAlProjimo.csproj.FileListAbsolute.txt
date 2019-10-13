@@ -132,9 +132,12 @@ C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlPro
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Antlr3.Runtime.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Entidades.dll
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.dll
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.SqlServer.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Newtonsoft.Json.dll
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Servicios.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\System.Web.Helpers.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\System.Web.Mvc.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\System.Web.Optimization.dll
@@ -145,6 +148,10 @@ C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlPro
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\WebGrease.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Entidades.pdb
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Entidades.dll.config
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Servicios.pdb
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Servicios.dll.config
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.xml
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.SqlServer.xml
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\System.Web.Helpers.xml
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\System.Web.Mvc.xml
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\System.Web.Optimization.xml
@@ -155,7 +162,6 @@ C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlPro
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Newtonsoft.Json.xml
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Antlr3.Runtime.pdb
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.xml
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\es\System.Web.Helpers.resources.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\es\System.Web.Mvc.resources.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\es\System.Web.Optimization.resources.dll
@@ -168,9 +174,3 @@ C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlPro
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csproj.CopyComplete
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.pdb
-C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.dll
-C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.SqlServer.dll
-C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.SqlServer.xml
-C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Servicios.dll
-C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Servicios.pdb
-C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Servicios.dll.config
