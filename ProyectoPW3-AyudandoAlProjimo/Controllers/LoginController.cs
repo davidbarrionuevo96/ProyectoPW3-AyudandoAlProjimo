@@ -39,10 +39,11 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                 {
                     if (l.BuscarUsuarioActivo(u).Activo == true)
                     { 
-                        Session["usuario"] = usu;
+                        Session["usuario"] = usu.IdUsuario;
                         Session["Email"] = usu.Email;
                         Session["Foto"] = usu.Foto;
                         Session["Nombre"] = usu.UserName;
+                        Session["Tipo"] = usu.TipoUsuario;
 
                         Session.Timeout = 60;
                         return RedirectToAction("Index", "Home");
