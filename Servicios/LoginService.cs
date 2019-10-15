@@ -34,8 +34,6 @@ namespace Servicios
             foreach (var a in usua.ToList()) {
                 usu = a;
             }
-
-
             return usu;
         }
 
