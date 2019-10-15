@@ -10,7 +10,14 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (Session["usuario"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login","Login");
+            }           
         }
     }
 }

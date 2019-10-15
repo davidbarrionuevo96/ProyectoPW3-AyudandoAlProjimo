@@ -24,13 +24,34 @@ namespace Servicios
             asd.SaveChanges();
         }
 
-        public List<Usuarios> BuscarUsuario(Usuarios u)
+        public Usuarios BuscarUsuario(Usuarios u)
         {
             var usua=from p in asd.Usuarios
                         where p.Password==u.Password && p.Email==u.Email
                         select p;
 
-            return usua.ToList();
+            Usuarios usu = new Usuarios();
+            foreach (var a in usua.ToList()) {
+                usu = a;
+            }
+
+
+            return usu;
+        }
+
+        public Usuarios BuscarUsuarioActivo(Usuarios u)
+        {
+            var usua = from p in asd.Usuarios
+                       where p.Password == u.Password && p.Email == u.Email && p.Activo == true
+                       select p;
+
+            Usuarios usu = new Usuarios();
+            foreach (var a in usua.ToList())
+            {
+                usu = a;
+            }
+
+            return usu;
         }
 
         public List<Usuarios> ExisteCorreo(Usuarios u)

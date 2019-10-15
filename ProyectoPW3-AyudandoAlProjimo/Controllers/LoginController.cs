@@ -19,24 +19,47 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         {
             return View();
         }
+
+        public ActionResult CerrarSesion()
+        {
+            Session.Clear();
+            Session.Abandon();
+            return View("Login");
+        }
+
         [HttpPost]
         public ActionResult ValidarUsuario(Usuarios u)
         {
             if (ModelState.IsValid)
             {
-                if (l.BuscarUsuario(u).Count == 1)
+                Usuarios usu = new Usuarios();
+                usu = l.BuscarUsuario(u);
+
+                if (usu.Email != null)
                 {
-                    Session["usuario"] = l.BuscarUsuario(u);
-                    return RedirectToAction("Index", "Home");
+                    if (l.BuscarUsuarioActivo(u).Activo == true)
+                    { 
+                        Session["usuario"] = usu;
+                        Session["Email"] = usu.Email;
+                        Session["Foto"] = usu.Foto;
+                        Session["Nombre"] = usu.UserName;
+
+                        Session.Timeout = 60;
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ViewBag.Error = " Actívelo desde el email recibido";
+                        return View("Login");
+                    }
                 }
                 else
                 {
-                    ViewBag.Error = "Usuario y/o contraseña Invalido";
+                    ViewBag.Error = "Email y/o Contraseña inválidos";
                     return View("Login");
                 }
             }
             return View("Login");
-
         }
 
         [HttpPost]
