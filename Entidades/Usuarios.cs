@@ -11,7 +11,9 @@ namespace Entidades
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Usuarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,20 +26,31 @@ namespace Entidades
             this.Propuestas = new HashSet<Propuestas>();
             this.PropuestasValoraciones = new HashSet<PropuestasValoraciones>();
         }
-    
+
         public int IdUsuario { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
+
+        [Required(ErrorMessage = "La Fecha de Nacimiento es obligatorio")]
+        [DataType(DataType.Date)]
         public System.DateTime FechaNacimiento { get; set; }
         public string UserName { get; set; }
+
+
+        [Required(ErrorMessage = "El Email es obligatorio")]
+        [EmailAddress(ErrorMessage = "Formato valido: ejemplo@ejemplo.com.ar")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "La contraseña es obligatoria")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         public string Foto { get; set; }
         public int TipoUsuario { get; set; }
         public System.DateTime FechaCracion { get; set; }
         public bool Activo { get; set; }
         public string Token { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Denuncias> Denuncias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
