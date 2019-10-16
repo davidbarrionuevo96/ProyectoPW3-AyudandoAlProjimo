@@ -33,6 +33,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             if (ModelState.IsValid)
             {
                 Usuarios usu = new Usuarios();
+
                 usu = l.BuscarUsuario(u);
 
                 if (usu.Email != null)
@@ -42,7 +43,29 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                         Session["usuario"] = usu.IdUsuario;
                         Session["Email"] = usu.Email;
                         Session["Foto"] = usu.Foto;
-                        Session["Nombre"] = usu.UserName;
+              
+
+                        String NombreDeUsuario =usu.Nombre + "." + usu.Apellido;
+                        if (usu.Nombre != null && usu.Apellido != null)
+                        { 
+                            if (usu.UserName == null)
+                            {
+                                if (l.buscarUsernames(NombreDeUsuario).Count >= 1)
+                                {
+                                    Session["Nombre"] = l.GuardarNombreDeUsuario2(usu, NombreDeUsuario).UserName;
+                                }
+                                else
+                                {
+                                    Session["Nombre"] = l.GuardarNombreDeUsuario(usu, NombreDeUsuario).UserName;
+                                }
+                            }
+
+                            else
+                            {
+                                Session["Nombre"] = usu.UserName;
+                            }
+                        }
+
                         Session["Tipo"] = usu.TipoUsuario;
 
                         Session.Timeout = 60;
