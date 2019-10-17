@@ -1,0 +1,94 @@
+﻿<div class="container">
+    <div class="row m-y-2">
+
+        <div class="col-lg-5 pull-lg-8 text-center">
+
+            @if (@HttpContext.Current.Session["Foto"] != null)
+            {
+                <img src="@HttpContext.Current.Session["Foto"]" class="m-0-auto img-fluid rounded-circle " style="width:250px;" alt="avatar">
+            }
+            else
+            {
+                <img src="~/Content/img/avatar.png" class="m-0-auto img-fluid rounded-circle " style="width:250px;" alt="avatar">
+            }
+
+
+            <div class="mt-4 mb-2"><button class="btn btn-primary">Editar Perfil</button></div>
+
+            <div class="mb-2"><button class="btn btn-primary">Cambiar Contraseña</button></div>
+        </div>
+
+        <div class="col-lg-7 ">
+            <div class="tab-content p-b-3">
+                <div class="tab-pane active" id="profile">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <h4 class="m-t-1"><span style="color:black" class="fa fa-clock-o ion-clock pull-xs-right"></span>Mi Perfil</h4>
+                            <table class="table table-striped mt-3">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Usuario</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:black!important">
+                                            @HttpContext.Current.Session["Nombre"]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Email</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:black!important">
+                                            @HttpContext.Current.Session["Email"]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Nombre</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:black!important">
+                                            @HttpContext.Current.Session["Name"]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Apellido</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:black!important">
+                                            @HttpContext.Current.Session["Apellido"]
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <strong>Fecha de nacimiento</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:black!important">
+                                            @HttpContext.Current.Session["fn"]
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--/row-->
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<hr>

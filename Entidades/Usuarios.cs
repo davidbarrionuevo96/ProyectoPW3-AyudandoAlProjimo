@@ -64,7 +64,7 @@ namespace Entidades
         public System.DateTime FechaCracion { get; set; }
         public bool Activo { get; set; }
 
-        [MaxLength(30, ErrorMessage = "30 caracteres como Maximo")]
+        [MaxLength(50, ErrorMessage = "50 caracteres como Maximo")]
         public string Token { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -19,5 +19,10 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                 return RedirectToAction("Login","Login");
             }           
         }
+
+        public ActionResult MiPerfil()
+        {
+                return View();              
+        }
     }
 }

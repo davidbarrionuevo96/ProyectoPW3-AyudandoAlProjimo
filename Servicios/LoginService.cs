@@ -5,25 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Entidades;
 using System.Net.Mail;
+using System.Web;
 
 namespace Servicios
 {
     public class LoginService
     {
-
         Entities asd = new Entities();
         public void RegistrarUsuario(Usuarios u)
         {
-
-            u.Activo = true;
-            u.Token = "19E41C31E74A4526";
+            u.Activo = false;
+            u.Token = Guid.NewGuid().ToString();
             u.FechaCracion = DateTime.Today;
             u.TipoUsuario = 1;
 
             asd.Usuarios.Add(u);
             asd.SaveChanges();
         }
-
         public Usuarios BuscarUsuario(Usuarios u)
         {
             var usua = (from p in asd.Usuarios
@@ -35,18 +33,29 @@ namespace Servicios
 
                 usu2 = a;
             }
+            return usu2;
+        }
+        public Usuarios BuscarUsuarioActivo(Usuarios u)
+        {
+            var usua = (from p in asd.Usuarios
+                             where p.Password == u.Password && p.Email == u.Email && p.Activo == true
+                             select p).ToList();
 
-
+            Usuarios usu2 = new Usuarios();
+            foreach (var a in usua)
+            {
+                usu2 = a;
+            }
             return usu2;
         }
 
-        public Usuarios BuscarUsuarioActivo(Usuarios u)
+        public void ActivarCuenta (String token)
         {
             Usuarios usua = (from p in asd.Usuarios
-                             where p.Password == u.Password && p.Email == u.Email && p.Activo == true
-                             select p).First();
-
-            return usua;
+                                   where p.Token == token
+                                   select p).First();
+            usua.Activo =true;
+            asd.SaveChanges();
         }
 
         public List<Usuarios> ExisteCorreo(Usuarios u)
@@ -56,7 +65,6 @@ namespace Servicios
                        select p;
             return usua.ToList();
         }
-
         public Usuarios GuardarNombreDeUsuario(Usuarios u, String Nombre)
         {
 
@@ -68,16 +76,13 @@ namespace Servicios
             asd.SaveChanges();
             return usua;
         }
-
-
         public List<Usuarios> buscarUsernames(String Nombre)
         {
 
             List<Usuarios> usua = (from p in asd.Usuarios
                                    where p.UserName.Contains(Nombre)
                                    select p).ToList();
-
-       
+            
             return usua;
         }
 
@@ -99,7 +104,6 @@ namespace Servicios
             asd.SaveChanges();
             return usuaAGuardar;
         }
-
         public void enviarCorreo(Usuarios u)
         {
             try
@@ -108,10 +112,9 @@ namespace Servicios
                 correo.From = new MailAddress("ecommerce.mmda@gmail.com");
                 correo.To.Add(u.Email);
                 correo.Subject = "Activacion de Cuenta";
-                correo.Body = "Active su cuenta mediante el siguiente link: WWW.asdasdasd.com";
+                correo.Body = HttpContext.Current.Request.Url.Scheme.ToString() + "://" + HttpContext.Current.Request.Url.Authority.ToString() + "/login/activar?token=" + u.Token;
                 correo.IsBodyHtml = true;
                 correo.Priority = MailPriority.Normal;
-
 
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
