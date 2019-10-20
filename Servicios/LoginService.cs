@@ -17,7 +17,7 @@ namespace Servicios
             u.Activo = false;
             u.Token = Guid.NewGuid().ToString();
             u.FechaCracion = DateTime.Today;
-            u.TipoUsuario = 1;
+            u.TipoUsuario = 2;
 
             asd.Usuarios.Add(u);
             asd.SaveChanges();

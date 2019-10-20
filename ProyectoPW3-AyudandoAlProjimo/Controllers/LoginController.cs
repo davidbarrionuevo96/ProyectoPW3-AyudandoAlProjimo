@@ -82,7 +82,6 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                             }
                         }
                         Session["Tipo"] = usu.TipoUsuario;
-                        Session.Timeout = 60;
                         return RedirectToAction("Index", "Home");
                     }
                     else
