@@ -174,3 +174,13 @@ C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlPro
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csproj.CopyComplete
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.pdb
+D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Entidades.dll
+D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.dll
+D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.SqlServer.dll
+D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Servicios.dll
+D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Entidades.pdb
+D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Entidades.dll.config
+D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Servicios.pdb
+D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\Servicios.dll.config
+D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.xml
+D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\EntityFramework.SqlServer.xml
