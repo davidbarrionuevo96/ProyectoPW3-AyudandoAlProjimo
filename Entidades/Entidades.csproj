@@ -71,6 +71,7 @@
     <Compile Include="Denuncias.cs">
       <DependentUpon>Clases.tt</DependentUpon>
     </Compile>
+    <Compile Include="Donacion.cs" />
     <Compile Include="DonacionesHorasTrabajo.cs">
       <DependentUpon>Clases.tt</DependentUpon>
     </Compile>

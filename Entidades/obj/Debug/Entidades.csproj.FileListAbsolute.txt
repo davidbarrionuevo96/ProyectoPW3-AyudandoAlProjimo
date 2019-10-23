@@ -22,3 +22,15 @@ D:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csproj.Cor
 D:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csproj.CopyComplete
 D:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.dll
 D:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.pdb
+E:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\Entidades.dll.config
+E:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\Entidades.dll
+E:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\Entidades.pdb
+E:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\EntityFramework.dll
+E:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\EntityFramework.SqlServer.dll
+E:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\EntityFramework.xml
+E:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\EntityFramework.SqlServer.xml
+E:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
+E:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+E:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csproj.CopyComplete
+E:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.dll
+E:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.pdb
