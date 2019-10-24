@@ -4,23 +4,69 @@
 }
 
 <h2>MiHistorialDonaciones</h2>
-<div id="mostrarContenido">
-    Datos:
-</div>
 
+<table class="table">
+    <thead>
+        <tr class="text-center">
+
+            <th scope="col">Fecha de Donacion</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo de Donacion</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Total Recaudado</th>
+            <th scope="col">Mi Donacion</th>
+            <th scope="col">Detalle Propuesta</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="mostrarContenido" class="text-center">
+
+        </tr>
+
+    </tbody>
+</table>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
     $(document).ready(
         function () {
+            var cadena;
+            $.getJSON('http://localhost:62985/api/HistorialDonaciones/1', function (data) {
+                data.forEach(function (item) {
 
-                $.getJSON('http://localhost:62985/api/HistorialDonaciones/1', function(data) {
+                    cadena += `<td>${item.FechaDonacion}</td>`
+                    cadena += `<td>${item.Nombre}</td>`
+                    if (item.TipoDonacion==1) {
 
-                var text = `Fecha de la Donacion: ${data[0].Nombre}<br>`
+                        cadena += `<td>Monetaria</td>`
+                    }
+                    else if (item.TipoDonacion==2) {
+
+                        cadena += `<td>Insumos</td>`
+                    }
+                    else if (item.TipoDonacion==3) {
+
+                        cadena += `<td>Horas de Trabajo</td>`
+                    }
+                    if (item.Estado==1) {
+
+                        cadena += `<td>Abierto</td>`
+                    }
+                    if (item.Estado==0) {
+
+                        cadena += `<td>Cerrado</td>`
+                    }
+                    cadena += `<td>${item.TotalRecaudado}</td>`
+                    cadena += `<td>${item.MiDonacion}</td>`
 
 
-            $("#mostrarContenido").html(text);
-        });
+
+                });
+
+
+                $("#mostrarContenido").html(cadena);
+            });
 
         }
     );
 </script>
+
