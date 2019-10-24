@@ -25,10 +25,11 @@ namespace Servicios
                                   Estado = p.Estado,
                                   FechaDonacion = d_mon.FechaCreacion,
                                   IdUsuario = d_mon.IdUsuario,
-                                  MiDonacion = d_mon.Dinero,
+                                  MiDonacion =  d_mon.Dinero,
                                   Nombre = p.Nombre,
-                                  TipoDonacion = 3,
-                                  TotalRecaudado = 9
+                                  TipoDonacion = p.TipoDonacion,
+                              //    TotalRecaudado = CalcularTotalPropuestaMon(p.IdPropuesta),
+                                  IdPropuesta=p.IdPropuesta
                               }
                              ).ToList();
 
@@ -41,12 +42,13 @@ namespace Servicios
                                select new Donacion
                                {
                                    Estado = p.Estado,
-                                   // = d_in.FechaCreacion,
+                                   // FechaDonacion= d_in.FechaCreacion,
                                    IdUsuario = d_in.IdUsuario,
                                    MiDonacion = d_in.Cantidad,
                                    Nombre = p.Nombre,
-                                   TipoDonacion = 2,
-                                   TotalRecaudado = 9
+                                   TipoDonacion = p.TipoDonacion,
+                                   //TotalRecaudado = CalcularTotalPropuestaIns(p.IdPropuesta),
+                                   IdPropuesta=p.IdPropuesta
                                }
                              ).ToList();
             var DonacionesHrs = (from p in ctx.Propuestas
@@ -58,12 +60,13 @@ namespace Servicios
                                  select new Donacion
                                  {
                                      Estado = p.Estado,
-                                     // = d_hrs.FechaCreacion,
+                                     //FechaDonacion = d_hrs.FechaCreacion,
                                      IdUsuario = d_hrs.IdUsuario,
                                      MiDonacion = d_hrs.Cantidad,
                                      Nombre = p.Nombre,
-                                     TipoDonacion = 2,
-                                     TotalRecaudado = 9
+                                     TipoDonacion = p.TipoDonacion,
+                                     //TotalRecaudado = CalcularTotalPropuestaHrs(p.IdPropuesta),
+                                     IdPropuesta=p.IdPropuesta
                                  }
                              ).ToList();
             #endregion
@@ -73,6 +76,66 @@ namespace Servicios
             donacions.AddRange(DonacionesHrs);
 
             return donacions;
+        }
+        public decimal CalcularTotalPropuestaIns(int id)
+        {
+            Entities ctx = new Entities();
+            decimal contTotal=0;
+
+            List<int> ListaCant = (from p in ctx.Propuestas
+                               join p_in in ctx.PropuestasDonacionesInsumos
+                                on p.IdPropuesta equals p_in.IdPropuesta
+                               join d_in in ctx.DonacionesInsumos
+                                on p_in.IdPropuestaDonacionInsumo equals d_in.IdPropuestaDonacionInsumo
+                                where p.IdPropuesta==id
+                               select d_in.Cantidad
+                             ).ToList();
+            foreach (int item in ListaCant)
+            {
+                contTotal += item;
+            }
+
+            return contTotal;
+        }
+        public decimal CalcularTotalPropuestaHrs(int id)
+        {
+            Entities ctx = new Entities();
+            int contTotal = 0;
+
+            List<int> ListaCant = (from p in ctx.Propuestas
+                                   join p_in in ctx.PropuestasDonacionesHorasTrabajo
+                                    on p.IdPropuesta equals p_in.IdPropuesta
+                                   join d_in in ctx.DonacionesHorasTrabajo
+                                    on p_in.IdPropuestaDonacionHorasTrabajo equals d_in.IdPropuestaDonacionHorasTrabajo
+                                   where p.IdPropuesta == id
+                                   select d_in.Cantidad
+                             ).ToList();
+            foreach (int item in ListaCant)
+            {
+                contTotal += item;
+            }
+
+            return contTotal;
+        }
+        public decimal CalcularTotalPropuestaMon(int id)
+        {
+            Entities ctx = new Entities();
+            decimal contTotal = 0;
+
+            List<decimal> ListaCant = (from p in ctx.Propuestas
+                                   join p_in in ctx.PropuestasDonacionesMonetarias
+                                    on p.IdPropuesta equals p_in.IdPropuesta
+                                   join d_in in ctx.DonacionesMonetarias
+                                    on p_in.IdPropuestaDonacionMonetaria equals d_in.IdPropuestaDonacionMonetaria
+                                   where p.IdPropuesta == id
+                                   select d_in.Dinero
+                             ).ToList();
+            foreach (decimal item in ListaCant)
+            {
+                contTotal +=item;
+            }
+
+            return contTotal;
         }
     }
 }

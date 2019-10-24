@@ -18,10 +18,9 @@
             <th scope="col">Detalle Propuesta</th>
         </tr>
     </thead>
-    <tbody>
-        <tr id="mostrarContenido" class="text-center">
+    <tbody id="mostrarContenido">
 
-        </tr>
+        
 
     </tbody>
 </table>
@@ -30,22 +29,23 @@
     $(document).ready(
         function () {
             var cadena;
-            $.getJSON('http://localhost:62985/api/HistorialDonaciones/1', function (data) {
+            $.getJSON('http://localhost:62985/api/HistorialDonaciones/2', function (data) {
                 data.forEach(function (item) {
+                cadena+=`<tr  class="text-center">`
 
                     cadena += `<td>${item.FechaDonacion}</td>`
                     cadena += `<td>${item.Nombre}</td>`
                     if (item.TipoDonacion==1) {
 
-                        cadena += `<td>Monetaria</td>`
+                        cadena += `<td class="${item.TipoDonacion}">Monetaria</td>`
                     }
                     else if (item.TipoDonacion==2) {
 
-                        cadena += `<td>Insumos</td>`
+                        cadena += `<td class="${item.TipoDonacion}">Insumos</td>`
                     }
                     else if (item.TipoDonacion==3) {
 
-                        cadena += `<td>Horas de Trabajo</td>`
+                        cadena += `<td class="${item.TipoDonacion}">Horas de Trabajo</td>`
                     }
                     if (item.Estado==1) {
 
@@ -55,10 +55,11 @@
 
                         cadena += `<td>Cerrado</td>`
                     }
+
                     cadena += `<td>${item.TotalRecaudado}</td>`
                     cadena += `<td>${item.MiDonacion}</td>`
 
-
+                    cadena+=`</tr>`
 
                 });
 
