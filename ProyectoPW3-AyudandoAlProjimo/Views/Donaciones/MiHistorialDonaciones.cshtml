@@ -4,4 +4,23 @@
 }
 
 <h2>MiHistorialDonaciones</h2>
+<div id="mostrarContenido">
+    Datos:
+</div>
 
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    $(document).ready(
+        function () {
+
+                $.getJSON('http://localhost:62985/api/HistorialDonaciones/1', function(data) {
+
+                var text = `Fecha de la Donacion: ${data[0].Nombre}<br>`
+
+
+            $("#mostrarContenido").html(text);
+        });
+
+        }
+    );
+</script>
