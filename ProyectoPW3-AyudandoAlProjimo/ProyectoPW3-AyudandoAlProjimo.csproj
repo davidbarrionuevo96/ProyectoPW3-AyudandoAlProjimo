@@ -127,6 +127,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DenunciasController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -172,10 +174,13 @@
     <Content Include="Views\Home\MiPerfil.cshtml" />
     <Content Include="Views\Home\EditarPerfil.cshtml" />
     <Content Include="Views\Home\CambiarContraseña.cshtml" />
+    <Content Include="Views\Home\Denuncias.cshtml" />
+    <Content Include="Views\Error\_ErrorPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Denuncias\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -192,7 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
-      <Project>{af7e2187-7c7c-41bd-adcf-61d0258daa41}</Project>
+      <Project>{994ba2fc-3c19-411e-971c-4f89c13926cf}</Project>
       <Name>Entidades</Name>
     </ProjectReference>
     <ProjectReference Include="..\Servicios\Servicios.csproj">

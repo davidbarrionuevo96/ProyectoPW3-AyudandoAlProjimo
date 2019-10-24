@@ -46,6 +46,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Motivo">
+      <EntityTypeMapping TypeName="Model.Motivo">
+        <MappingFragment StoreEntitySet="Motivo">
+          <ScalarProperty Name="IdMotivo" ColumnName="IdMotivo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Propuestas">
       <EntityTypeMapping TypeName="Model.Propuestas">
         <MappingFragment StoreEntitySet="Propuestas">

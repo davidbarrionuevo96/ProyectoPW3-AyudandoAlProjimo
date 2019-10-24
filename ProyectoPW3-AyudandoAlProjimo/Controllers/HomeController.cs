@@ -23,6 +23,19 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                 return RedirectToAction("Login","Login");
             }           
         }
+        public ActionResult Denuncias()
+        {
+            if (Session["usuario"] != null)
+            {
+                List<DenunciaMotivo> denu = new List<DenunciaMotivo>();
+                denu = l.BuscarDenuncias();
+                return View(denu);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
         public ActionResult MiPerfil()
         {
             if (Session["usuario"] != null)

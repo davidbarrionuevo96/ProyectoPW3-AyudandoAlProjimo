@@ -1,3 +1,5 @@
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\obj\Debug\Servicios.csprojAssemblyReference.cache
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\obj\Debug\Servicios.csproj.CoreCompileInputs.cache
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\bin\Debug\Servicios.dll.config
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\bin\Debug\Servicios.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\bin\Debug\Servicios.pdb
@@ -8,8 +10,6 @@ C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\bin\Debug\Entid
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\bin\Debug\Entidades.dll.config
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\bin\Debug\EntityFramework.xml
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\obj\Debug\Servicios.csprojAssemblyReference.cache
-C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\obj\Debug\Servicios.csproj.CoreCompileInputs.cache
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\obj\Debug\Servicios.csproj.CopyComplete
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\obj\Debug\Servicios.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\Servicios\obj\Debug\Servicios.pdb

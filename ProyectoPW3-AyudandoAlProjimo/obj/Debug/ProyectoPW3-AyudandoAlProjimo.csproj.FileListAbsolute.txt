@@ -81,6 +81,8 @@ D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\
 D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.dll
 D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.pdb
 D:\GitHub\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csprojAssemblyReference.cache
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csprojAssemblyReference.cache
+C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csproj.CoreCompileInputs.cache
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\ProyectoPW3-AyudandoAlProjimo.dll.config
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\ProyectoPW3-AyudandoAlProjimo.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\ProyectoPW3-AyudandoAlProjimo.pdb
@@ -169,8 +171,6 @@ C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlPro
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\es\System.Web.WebPages.resources.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csprojAssemblyReference.cache
-C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csproj.CoreCompileInputs.cache
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csproj.CopyComplete
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.dll
 C:\Users\Nicolas\Desktop\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.pdb

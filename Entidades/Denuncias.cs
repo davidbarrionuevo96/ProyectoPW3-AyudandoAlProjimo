@@ -24,5 +24,6 @@ namespace Entidades
     
         public virtual Propuestas Propuestas { get; set; }
         public virtual Usuarios Usuarios { get; set; }
+        public virtual Motivo Motivo { get; set; }
     }
 }
