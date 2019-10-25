@@ -28,8 +28,7 @@ namespace Servicios
                                   MiDonacion =  d_mon.Dinero,
                                   Nombre = p.Nombre,
                                   TipoDonacion = p.TipoDonacion,
-                              //    TotalRecaudado = CalcularTotalPropuestaMon(p.IdPropuesta),
-                                  IdPropuesta=p.IdPropuesta
+                                  IdPropuesta = p.IdPropuesta
                               }
                              ).ToList();
 
@@ -47,7 +46,7 @@ namespace Servicios
                                    MiDonacion = d_in.Cantidad,
                                    Nombre = p.Nombre,
                                    TipoDonacion = p.TipoDonacion,
-                                   //TotalRecaudado = CalcularTotalPropuestaIns(p.IdPropuesta),
+                                  // TotalRecaudado = CalcularTotalPropuestaIns(p.IdPropuesta),
                                    IdPropuesta=p.IdPropuesta
                                }
                              ).ToList();
@@ -70,70 +69,74 @@ namespace Servicios
                                  }
                              ).ToList();
             #endregion
-
+            
             donacions.AddRange(Donaciones);
             donacions.AddRange(DonacionesI);
             donacions.AddRange(DonacionesHrs);
 
-            return donacions;
+            return CalcularTotalesDesdeLista(donacions);
+        }         
+
+        public List<Donacion> CalcularTotalesDesdeLista(List<Donacion> list)
+        {
+            foreach (Donacion item in list)
+            {//1->Monetaria   2->Insumos   3->HorasDeTrabajo
+                if (item.TipoDonacion==1)
+                {
+                    item.TotalRecaudado = CalcularTotalPropuestaMon(item.IdPropuesta);
+                }
+                else if (item.TipoDonacion == 2)
+                {
+                    item.TotalRecaudado = CalcularTotalPropuestaIns(item.IdPropuesta);
+                }
+                else if (item.TipoDonacion == 3)
+                {
+                    item.TotalRecaudado = CalcularTotalPropuestaHrs(item.IdPropuesta);
+                }
+            }
+            
+            return list;
         }
+
         public decimal CalcularTotalPropuestaIns(int id)
         {
             Entities ctx = new Entities();
-            decimal contTotal=0;
-
-            List<int> ListaCant = (from p in ctx.Propuestas
+            decimal contTotal = (from p in ctx.Propuestas
                                join p_in in ctx.PropuestasDonacionesInsumos
                                 on p.IdPropuesta equals p_in.IdPropuesta
                                join d_in in ctx.DonacionesInsumos
                                 on p_in.IdPropuestaDonacionInsumo equals d_in.IdPropuestaDonacionInsumo
                                 where p.IdPropuesta==id
                                select d_in.Cantidad
-                             ).ToList();
-            foreach (int item in ListaCant)
-            {
-                contTotal += item;
-            }
+                             ).Sum();
 
             return contTotal;
         }
         public decimal CalcularTotalPropuestaHrs(int id)
         {
             Entities ctx = new Entities();
-            int contTotal = 0;
-
-            List<int> ListaCant = (from p in ctx.Propuestas
+            int contTotal = (from p in ctx.Propuestas
                                    join p_in in ctx.PropuestasDonacionesHorasTrabajo
                                     on p.IdPropuesta equals p_in.IdPropuesta
                                    join d_in in ctx.DonacionesHorasTrabajo
                                     on p_in.IdPropuestaDonacionHorasTrabajo equals d_in.IdPropuestaDonacionHorasTrabajo
                                    where p.IdPropuesta == id
                                    select d_in.Cantidad
-                             ).ToList();
-            foreach (int item in ListaCant)
-            {
-                contTotal += item;
-            }
+                             ).Sum();
 
             return contTotal;
         }
         public decimal CalcularTotalPropuestaMon(int id)
         {
             Entities ctx = new Entities();
-            decimal contTotal = 0;
-
-            List<decimal> ListaCant = (from p in ctx.Propuestas
+            decimal contTotal = (from p in ctx.Propuestas
                                    join p_in in ctx.PropuestasDonacionesMonetarias
                                     on p.IdPropuesta equals p_in.IdPropuesta
                                    join d_in in ctx.DonacionesMonetarias
                                     on p_in.IdPropuestaDonacionMonetaria equals d_in.IdPropuestaDonacionMonetaria
                                    where p.IdPropuesta == id
                                    select d_in.Dinero
-                             ).ToList();
-            foreach (decimal item in ListaCant)
-            {
-                contTotal +=item;
-            }
+                             ).Sum();
 
             return contTotal;
         }

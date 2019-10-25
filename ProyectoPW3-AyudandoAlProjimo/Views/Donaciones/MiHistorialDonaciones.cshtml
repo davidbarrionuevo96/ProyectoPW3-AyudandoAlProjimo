@@ -19,9 +19,7 @@
         </tr>
     </thead>
     <tbody id="mostrarContenido">
-
-        
-
+       
     </tbody>
 </table>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -29,7 +27,7 @@
     $(document).ready(
         function () {
             var cadena;
-            $.getJSON('http://localhost:62985/api/HistorialDonaciones/2', function (data) {
+            $.getJSON('http://localhost:62985/api/HistorialDonaciones/@ViewBag.Usuario', function (data) {
                 data.forEach(function (item) {
                 cadena+=`<tr  class="text-center">`
 
@@ -58,7 +56,7 @@
 
                     cadena += `<td>${item.TotalRecaudado}</td>`
                     cadena += `<td>${item.MiDonacion}</td>`
-
+                    cadena += `<td> <a href="/Detalle/Propuestas/${item.IdPropuesta}">Ir a Propuesta</a> </td>`
                     cadena+=`</tr>`
 
                 });

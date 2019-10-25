@@ -13,7 +13,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         
         public ActionResult MiHistorialDonaciones()
         {
-            
+            ViewBag.Usuario = Session["usuario"];
             return View();
         }
     }
