@@ -190,6 +190,7 @@
     <Content Include="Views\Error\_ErrorPage.cshtml" />
     <Content Include="Views\Donaciones\MiHistorialDonaciones.cshtml" />
     <Content Include="Views\Propuestas\Crear.cshtml" />
+    <Content Include="Views\Propuestas\Modificar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

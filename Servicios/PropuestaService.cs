@@ -21,6 +21,10 @@ namespace Servicios
                 ctx.SaveChanges();
             }
         }
+        public void ModificarPropuesta(Propuestas p)
+        {
+            
+        }
 
     }
 }

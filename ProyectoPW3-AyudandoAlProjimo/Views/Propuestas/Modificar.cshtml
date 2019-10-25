@@ -1,12 +1,12 @@
 ﻿@model Entidades.Propuestas
 
 @{
-    ViewBag.Title = "Crear";
+    ViewBag.Title = "Modificar";
 }
 
 <h2>Crear Propuesta</h2>
 
-@using (Html.BeginForm("Crear", "Propuestas", FormMethod.Post))
+@using (Html.BeginForm("Modificar", "Propuestas", FormMethod.Post))
 {
     <div class="form-horizontal">
 
@@ -50,7 +50,7 @@
                 </select>
             </div>
         </div>
-        <div class="form-group ml-4" id="formmon" style="display:none">
+        <div class="form-group ml-4" id="formmon">
             <label for="Dinero" class="control-label ">Dinero</label>
             <input class="form-control form-control col-md-8" type="number" name="Dinero" value="" />
 
@@ -58,14 +58,14 @@
             <input class="form-control form-control-user col-md-8" type="text" name="CBU" value="" />
         </div>
 
-        <div class="form-group ml-4 " id="formins" style="display:none">
+        <div class="form-group ml-4 " id="formins">
             <label for="NombreIns" class="control-label ">Nombre</label>
             <input class="form-control form-control-user col-md-8" type="text" name="NombreIns" value="" />
             <label for="Cantidad" class="control-label ">Cantidad</label>
             <input class="form-control form-control-user col-md-8" type="number" name="Cantidad" value="" />
         </div>
 
-        <div class="form-group ml-4" id="formhor" style="display:none">
+        <div class="form-group ml-4" id="formhor">
             <label for="CantidadHoras" class="control-label">Cantidad de Horas</label>
             <input class="form-control form-control-user col-md-8" type="number" name="CantidadHoras" value="" />
             <label for="Profesion" class="control-label ">Profesion</label>
@@ -78,22 +78,18 @@
 <script>
     $(document).ready(
         function () {
-            
-            $("#monetaria").click(function () {
-                $("#formmon").show(1000);
-                $("#formins").hide(1000);
-                $("#formhor").hide(1000);
-            });
-            $("#insumos").click(function () {
-                $("#formmon").hide(1000);
-                $("#formins").show(1000);
-                $("#formhor").hide(1000);
-            });
-            $("#horas").click(function () {
-                $("#formmon").hide(1000);
-                $("#formins").hide(1000);
-                $("#formhor").show(1000);
-            });
+            $("#formmon").hide();
+            $("#formins").hide();
+            $("#formhor").hide();
+            if (@ViewBag.Tipo== 1) {
+                $("#formmon").show();
+            }
+            else if (@ViewBag.Tipo== 2) {
+                $("#formins").show();
+            }
+            else if (@ViewBag.Tipo== 3) {
+                $("#formhor").hide();
+            }
         }
     );
 </script>

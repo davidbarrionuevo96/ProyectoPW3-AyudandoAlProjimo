@@ -65,11 +65,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Clases.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DenunciaMotivo.cs" />
+    <Compile Include="Auxiliares\DenunciaMotivo.cs" />
     <Compile Include="Denuncias.cs">
       <DependentUpon>Clases.tt</DependentUpon>
     </Compile>
-    <Compile Include="Donacion.cs" />
+    <Compile Include="Auxiliares\Donacion.cs" />
     <Compile Include="DonacionesHorasTrabajo.cs">
       <DependentUpon>Clases.tt</DependentUpon>
     </Compile>
@@ -132,6 +132,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Partials\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

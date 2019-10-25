@@ -13,65 +13,66 @@
             <div class="mb-2"><a href="/Home/CambiarContraseña"><button class="btn btn-primary">Cambiar Contraseña</button></a></div>
         </div>
         <div class="col-lg-6 ">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4 class="m-t-1">Mi Perfil</h4>
-                            <table class="table table-striped mt-3">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <strong>Usuario</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="color:black!important">
-                                            @HttpContext.Current.Session["Nombre"]
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Email</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="color:black!important">
-                                            @HttpContext.Current.Session["Email"]
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Nombre</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="color:black!important">
-                                            @HttpContext.Current.Session["Name"]
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Apellido</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="color:black!important">
-                                            @HttpContext.Current.Session["Apellido"]
-                                        </td>
-                                    </tr>
+            <div class="row">
+                <div class="col-md-12">
+                <div class="mb-4 float-right"><a href="/Donaciones/MiHistorialDonaciones"><button class="btn btn-info btn-sm">Historial de Donaciones</button></a></div>
+                    <h4 class="m-t-1">Mi Perfil</h4>
+                    <table class="table table-striped mt-3">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Usuario</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="color:black!important">
+                                    @HttpContext.Current.Session["Nombre"]
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Email</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="color:black!important">
+                                    @HttpContext.Current.Session["Email"]
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Nombre</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="color:black!important">
+                                    @HttpContext.Current.Session["Name"]
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Apellido</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="color:black!important">
+                                    @HttpContext.Current.Session["Apellido"]
+                                </td>
+                            </tr>
 
-                                    <tr>
-                                        <td>
-                                            <strong>Fecha de nacimiento</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="color:black!important">
-                                            @HttpContext.Current.Session["fn"]
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                            <tr>
+                                <td>
+                                    <strong>Fecha de nacimiento</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="color:black!important">
+                                    @HttpContext.Current.Session["fn"]
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
                 </div>
             </div>

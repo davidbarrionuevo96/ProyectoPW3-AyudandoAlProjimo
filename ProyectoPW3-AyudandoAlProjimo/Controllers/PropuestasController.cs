@@ -49,5 +49,43 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             return RedirectToAction("MisPrupuestas", "Propuestas");
 
         }
+        public ActionResult Modificar(int id)
+        {
+            
+            
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Modificar(Propuestas p, FormCollection form)
+        {
+            PropuestasDonacionesMonetarias pm = new PropuestasDonacionesMonetarias();
+            PropuestasDonacionesInsumos pi = new PropuestasDonacionesInsumos();
+            PropuestasDonacionesHorasTrabajo ph = new PropuestasDonacionesHorasTrabajo();
+            //1->Monetaria   2->Insumos   3->HorasDeTrabajo
+            if (p.TipoDonacion == 1)
+            {
+                pm.Dinero = Convert.ToDecimal(form["Dinero"]);
+                pm.CBU = form["CBU"];
+            }
+            else if (p.TipoDonacion == 2)
+            {
+                pi.Nombre = form["NombreIns"];
+                pi.Cantidad = Convert.ToInt32(form["Cantidad"]);
+            }
+            else if (p.TipoDonacion == 3)
+            {
+                ph.CantidadHoras = Convert.ToInt32(form["CantidadHoras"]);
+                ph.Profesion = form["Profesion"];
+            }
+            _propuestaService.ModificarPropuesta(p);
+            return RedirectToAction("MisPrupuestas", "Propuestas");
+
+            //return View();
+        }
+        public ActionResult MisPropuestas()
+        {
+            //no esta hecho
+            return View();
+        }
     }
 }
