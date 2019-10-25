@@ -46,7 +46,6 @@ namespace Servicios
                                    MiDonacion = d_in.Cantidad,
                                    Nombre = p.Nombre,
                                    TipoDonacion = p.TipoDonacion,
-                                   // TotalRecaudado = CalcularTotalPropuestaIns(p.IdPropuesta),
                                    IdPropuesta = p.IdPropuesta
                                }
                              ).ToList();
@@ -64,7 +63,6 @@ namespace Servicios
                                      MiDonacion = d_hrs.Cantidad,
                                      Nombre = p.Nombre,
                                      TipoDonacion = p.TipoDonacion,
-                                     //TotalRecaudado = CalcularTotalPropuestaHrs(p.IdPropuesta),
                                      IdPropuesta = p.IdPropuesta
                                  }
                              ).ToList();

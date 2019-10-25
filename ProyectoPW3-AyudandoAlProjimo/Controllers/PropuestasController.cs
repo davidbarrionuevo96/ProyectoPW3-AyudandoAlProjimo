@@ -17,16 +17,36 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         [HttpPost]
         public ActionResult Crear(Propuestas p, FormCollection form)
         {
-            PropuestasDonacionesMonetarias pr = new PropuestasDonacionesMonetarias();
-            pr.Dinero = Convert.ToDecimal(form["Dinero"]);
-            pr.CBU = form["CBU"];
-            p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
+            PropuestasDonacionesMonetarias pm = new PropuestasDonacionesMonetarias();
+            PropuestasDonacionesInsumos pi = new PropuestasDonacionesInsumos();
+            PropuestasDonacionesHorasTrabajo ph = new PropuestasDonacionesHorasTrabajo();
+            //1->Monetaria   2->Insumos   3->HorasDeTrabajo
+            if (p.TipoDonacion==1)
+            {
+                pm.Dinero = Convert.ToDecimal(form["Dinero"]);
+                pm.CBU = form["CBU"];
 
-            p.PropuestasDonacionesMonetarias.Add(pr);
+                p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
+                p.PropuestasDonacionesMonetarias.Add(pr);
+            }
+            else if (p.TipoDonacion == 2)
+            {
+                pi.Nombre = form["Nombre"];
+                pi.Cantidad =int.Parse( form["Nombre"]);
 
+                p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
+                p.PropuestasDonacionesInsumos.Add(pi);
+            }
+            else if (p.TipoDonacion == 3)
+            {
+                ph.CantidadHoras =int.Parse( form["CantidadHoras"]);
+                ph.Profesion = form["Profesion"];
+
+                p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
+                p.PropuestasDonacionesHorasTrabajo.Add(ph);
+            }
             _propuestaService.RegistrarPropuesta(p);
             return RedirectToAction("MisPrupuestas", "Propuestas");
-
 
         }
     }
