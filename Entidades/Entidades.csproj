@@ -66,10 +66,10 @@
       <DependentUpon>Clases.edmx</DependentUpon>
     </Compile>
     <Compile Include="DenunciaMotivo.cs" />
-    <Compile Include="Class2.cs" />
     <Compile Include="Denuncias.cs">
       <DependentUpon>Clases.tt</DependentUpon>
     </Compile>
+    <Compile Include="Donacion.cs" />
     <Compile Include="DonacionesHorasTrabajo.cs">
       <DependentUpon>Clases.tt</DependentUpon>
     </Compile>

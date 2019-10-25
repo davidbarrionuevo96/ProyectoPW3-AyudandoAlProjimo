@@ -53,9 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DenunciasService.cs" />
+    <Compile Include="DonacionService.cs" />
     <Compile Include="HomeService.cs" />
     <Compile Include="LoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropuestaService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
