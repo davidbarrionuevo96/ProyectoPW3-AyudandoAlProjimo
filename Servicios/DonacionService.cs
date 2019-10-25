@@ -8,10 +8,10 @@ namespace Servicios
 {
     public class DonacionService
     {
-        public List<Donacion> MisDonacionesId(int id)
+        public List<DonacionAux> MisDonacionesId(int id)
         {
             Entities ctx = new Entities();
-            List<Donacion> donacions = new List<Donacion>();
+            List<DonacionAux> donacions = new List<DonacionAux>();
 
             #region Donaciones por Id Consulta
             var Donaciones = (from p in ctx.Propuestas
@@ -20,7 +20,7 @@ namespace Servicios
                               join d_mon in ctx.DonacionesMonetarias
                                on p_mon.IdPropuestaDonacionMonetaria equals d_mon.IdPropuestaDonacionMonetaria
                               where d_mon.IdUsuario == id
-                              select new Donacion
+                              select new DonacionAux
                               {
                                   Estado = p.Estado,
                                   FechaDonacion = d_mon.FechaCreacion,
@@ -38,7 +38,7 @@ namespace Servicios
                                join d_in in ctx.DonacionesInsumos
                                 on p_in.IdPropuestaDonacionInsumo equals d_in.IdPropuestaDonacionInsumo
                                where d_in.IdUsuario == id
-                               select new Donacion
+                               select new DonacionAux
                                {
                                    Estado = p.Estado,
                                    // FechaDonacion= d_in.FechaCreacion,
@@ -55,7 +55,7 @@ namespace Servicios
                                  join d_hrs in ctx.DonacionesHorasTrabajo
                                   on p_hrs.IdPropuestaDonacionHorasTrabajo equals d_hrs.IdPropuestaDonacionHorasTrabajo
                                  where d_hrs.IdUsuario == id
-                                 select new Donacion
+                                 select new DonacionAux
                                  {
                                      Estado = p.Estado,
                                      //FechaDonacion = d_hrs.FechaCreacion,
@@ -75,9 +75,9 @@ namespace Servicios
             return CalcularTotalesDesdeLista(donacions);
         }
 
-        public List<Donacion> CalcularTotalesDesdeLista(List<Donacion> list)
+        public List<DonacionAux> CalcularTotalesDesdeLista(List<DonacionAux> list)
         {
-            foreach (Donacion item in list)
+            foreach (DonacionAux item in list)
             {//1->Monetaria   2->Insumos   3->HorasDeTrabajo
                 if (item.TipoDonacion == 1)
                 {

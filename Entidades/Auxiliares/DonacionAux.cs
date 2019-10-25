@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Donacion
+    public class DonacionAux
     {
         public DateTime FechaDonacion { get; set; }
         public string Nombre { get; set; }

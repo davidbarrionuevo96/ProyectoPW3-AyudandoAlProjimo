@@ -18,7 +18,7 @@ namespace WebApiDonaciones.Controllers
         }
 
         // GET: api/HistorialDonaciones/1
-        public List<Donacion> Get(int id)
+        public List<DonacionAux> Get(int id)
         {
 
             return _donacionService.MisDonacionesId(id);
