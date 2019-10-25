@@ -27,19 +27,19 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                 pm.CBU = form["CBU"];
 
                 p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
-                p.PropuestasDonacionesMonetarias.Add(pr);
+                p.PropuestasDonacionesMonetarias.Add(pm);
             }
             else if (p.TipoDonacion == 2)
             {
-                pi.Nombre = form["Nombre"];
-                pi.Cantidad =int.Parse( form["Nombre"]);
+                pi.Nombre = form["NombreIns"];
+                pi.Cantidad = Convert.ToInt32(form["Cantidad"]);
 
                 p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
                 p.PropuestasDonacionesInsumos.Add(pi);
             }
             else if (p.TipoDonacion == 3)
             {
-                ph.CantidadHoras =int.Parse( form["CantidadHoras"]);
+                ph.CantidadHoras = Convert.ToInt32(form["CantidadHoras"]);
                 ph.Profesion = form["Profesion"];
 
                 p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());

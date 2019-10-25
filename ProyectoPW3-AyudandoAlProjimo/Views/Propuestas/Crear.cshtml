@@ -59,15 +59,15 @@
         </div>
 
         <div class="form-group ml-4 " id="formins" style="display:none">
-            <label for="Nombre" class="control-label ">Nombre</label>
-            <input class="form-control form-control-user col-md-8" type="text" name="Nombre" value="" />
+            <label for="NombreIns" class="control-label ">Nombre</label>
+            <input class="form-control form-control-user col-md-8" type="text" name="NombreIns" value="" />
             <label for="Cantidad" class="control-label ">Cantidad</label>
             <input class="form-control form-control-user col-md-8" type="number" name="Cantidad" value="" />
         </div>
 
         <div class="form-group ml-4" id="formhor" style="display:none">
             <label for="CantidadHoras" class="control-label">Cantidad de Horas</label>
-            <input class="form-control form-control-user col-md-8" type="number" name="CantidadHoras " value="" />
+            <input class="form-control form-control-user col-md-8" type="number" name="CantidadHoras" value="" />
             <label for="Profesion" class="control-label ">Profesion</label>
             <input class="form-control form-control-user col-md-8" type="text" name="Profesion" value="" />
         </div>
@@ -85,14 +85,14 @@
                 $("#formhor").hide(1000);
             });
             $("#insumos").click(function () {
-                $("#formmon").hide(1000,"");
-                $("#formins").show(1000,"");
-                $("#formhor").hide(1000,"");
+                $("#formmon").hide(1000);
+                $("#formins").show(1000);
+                $("#formhor").hide(1000);
             });
             $("#horas").click(function () {
-                $("#formmon").hide(1000,"");
-                $("#formins").hide(1000,"");
-                $("#formhor").show(1000,"");
+                $("#formmon").hide(1000);
+                $("#formins").hide(1000);
+                $("#formhor").show(1000);
             });
         }
     );
