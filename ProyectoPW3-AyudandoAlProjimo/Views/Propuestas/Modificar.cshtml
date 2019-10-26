@@ -1,4 +1,4 @@
-﻿@model Entidades.Propuestas
+﻿@model Entidades.Auxiliares.PropuestaAux
 
 @{
     ViewBag.Title = "Modificar";
@@ -8,71 +8,83 @@
 
 @using (Html.BeginForm("Modificar", "Propuestas", FormMethod.Post))
 {
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nombre, "Nombre de la propuesta", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control form-control-user" })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre, "Nombre de la propuesta", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Descripcion, "Descripcion de la propuesta", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control form-control-user" })
-                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FechaFin, "Fecha de fin", htmlAttributes: new { @class = "control-label col-md-4", type = "date" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.FechaFin, new { @class = "form-control form-control-user" })
-                @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.TelefonoContacto, "Telefono de contacto", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.TelefonoContacto, new { @class = "form-control form-control-user" })
-                @Html.ValidationMessageFor(model => model.TelefonoContacto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                <label for="TipoDonacion">Tipo de Donacion:</label>
-                <select class="form-control" id="TipoDonacion" name="TipoDonacion">
-                    <option id="monetaria" value="1" class="monetaria">Monetaria</option>
-                    <option id="insumos" value="2">De Insumos</option>
-                    <option id="horas" value="3">De Horas de Trabajo</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group ml-4" id="formmon">
-            <label for="Dinero" class="control-label ">Dinero</label>
-            <input class="form-control form-control col-md-8" type="number" name="Dinero" value="" />
-
-            <label for="CBU" class="control-label">Cbu</label>
-            <input class="form-control form-control-user col-md-8" type="text" name="CBU" value="" />
-        </div>
-
-        <div class="form-group ml-4 " id="formins">
-            <label for="NombreIns" class="control-label ">Nombre</label>
-            <input class="form-control form-control-user col-md-8" type="text" name="NombreIns" value="" />
-            <label for="Cantidad" class="control-label ">Cantidad</label>
-            <input class="form-control form-control-user col-md-8" type="number" name="Cantidad" value="" />
-        </div>
-
-        <div class="form-group ml-4" id="formhor">
-            <label for="CantidadHoras" class="control-label">Cantidad de Horas</label>
-            <input class="form-control form-control-user col-md-8" type="number" name="CantidadHoras" value="" />
-            <label for="Profesion" class="control-label ">Profesion</label>
-            <input class="form-control form-control-user col-md-8" type="text" name="Profesion" value="" />
-        </div>
-        <button type="submit" class="btn btn-primary btn-user btn-block">Registrar</button>
     </div>
+    @Html.TextBoxFor(model => model.IdPropuesta, new { @class = "d-none" , @Value = ViewBag.IdPropuesta})
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion, "Descripcion de la propuesta", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaFin, "Fecha de fin", htmlAttributes: new { @class = "control-label col-md-4", type = "date" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.FechaFin, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.TelefonoContacto, "Telefono de contacto", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.TelefonoContacto, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.TelefonoContacto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <label for="TipoDonacion">Tipo de Donacion:</label>
+            <select class="form-control" id="TipoDonacion" name="TipoDonacion">
+                @{ 
+                    if (ViewBag.Tipo==1)
+                    {
+
+                    <option id="monetaria" value="1" class="monetaria">Monetaria</option>
+                    }
+                    if (ViewBag.Tipo == 2)
+                    {
+                <option id="insumos" value="2">De Insumos</option>
+                    }
+                    if (ViewBag.Tipo == 3)
+                    {
+                <option id="horas" value="3">De Horas de Trabajo</option>
+                        }
+                    }
+            </select>
+        </div>
+    </div>
+    <div class="form-group ml-4" id="formmon">
+        <label for="Dinero" class="control-label ">Dinero</label>
+        <input class="form-control form-control col-md-8" type="number" name="Dinero" value="" />
+
+        <label for="CBU" class="control-label">Cbu</label>
+        <input class="form-control form-control-user col-md-8" type="text" name="CBU" value="" />
+    </div>
+
+    <div class="form-group ml-4 " id="formins">
+        <label for="NombreIns" class="control-label ">Nombre</label>
+        <input class="form-control form-control-user col-md-8" type="text" name="NombreIns" value="" />
+        <label for="Cantidad" class="control-label ">Cantidad</label>
+        <input class="form-control form-control-user col-md-8" type="number" name="CantidadIns" value="" />
+    </div>
+
+    <div class="form-group ml-4" id="formhor">
+        <label for="CantidadHoras" class="control-label">Cantidad de Horas</label>
+        <input class="form-control form-control-user col-md-8" type="number" name="CantidadHoras" value="" />
+        <label for="Profesion" class="control-label ">Profesion</label>
+        <input class="form-control form-control-user col-md-8" type="text" name="Profesion" value="" />
+    </div>
+    <button type="submit" class="btn btn-primary btn-user btn-block">Registrar</button>
+</div>
 }
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
@@ -84,11 +96,11 @@
             if (@ViewBag.Tipo== 1) {
                 $("#formmon").show();
             }
-            else if (@ViewBag.Tipo== 2) {
+            if (@ViewBag.Tipo== 2) {
                 $("#formins").show();
             }
-            else if (@ViewBag.Tipo== 3) {
-                $("#formhor").hide();
+            if (@ViewBag.Tipo== 3) {
+                $("#formhor").show();
             }
         }
     );

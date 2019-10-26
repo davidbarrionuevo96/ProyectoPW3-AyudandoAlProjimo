@@ -80,6 +80,7 @@
     <Compile Include="DonacionesMonetarias.cs">
       <DependentUpon>Clases.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enums\EnumTipoDonacion.cs" />
     <Compile Include="Motivo.cs">
       <DependentUpon>Clases.tt</DependentUpon>
     </Compile>

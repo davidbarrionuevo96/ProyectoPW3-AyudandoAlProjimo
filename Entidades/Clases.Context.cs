@@ -18,6 +18,7 @@ namespace Entidades
         public Entities()
             : base("name=Entities")
         {
+            //this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

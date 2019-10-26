@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using Entidades.Auxiliares;
+using Entidades.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,50 +25,54 @@ namespace Servicios
         }
         public void ModificarPropuesta(PropuestaAux paux)
         {
-            using (Entities ctx=new Entities())
+            
+            using (var ctx=new Entities())
             {
                 //1->Monetaria   2->Insumos   3->HorasDeTrabajo
 
-                Propuestas prop = GetPorId(paux.IdPropuesta);
+                Propuestas prop = (from pr in ctx.Propuestas
+                                   where pr.IdPropuesta == paux.IdPropuesta
+                                   select pr).First();
 
                 prop.Descripcion = paux.Descripcion;
                 prop.Estado = paux.Estado;
                 prop.FechaFin = paux.FechaFin;
-                prop.Foto = paux.Foto;
+                //prop.Foto = paux.Foto;
+                prop.Foto = "FotoNueva";
                 prop.Nombre = paux.Nombre;
                 prop.TelefonoContacto = paux.TelefonoContacto;
 
-                if (prop.TipoDonacion==1)
+                if (prop.TipoDonacion == (int)EnumTipoDonacion.Monetaria)
                 {
-                    prop.PropuestasDonacionesMonetarias.Single().Dinero=paux.Dinero;
-                    prop.PropuestasDonacionesMonetarias.Single().CBU = paux.CBU;
+                    prop.PropuestasDonacionesMonetarias.FirstOrDefault().Dinero = paux.Dinero;
+                    prop.PropuestasDonacionesMonetarias.FirstOrDefault().CBU = paux.CBU;
                 }
-                else if (prop.TipoDonacion == 2)
-                {   
-                    prop.PropuestasDonacionesInsumos.Single().Cantidad = paux.CantidadIns;
-                    prop.PropuestasDonacionesInsumos.Single().Nombre = paux.NombreIns;
-                }
-                else if (prop.TipoDonacion == 3)
+                else if (prop.TipoDonacion == (int)EnumTipoDonacion.Insumo)
                 {
-                    prop.PropuestasDonacionesHorasTrabajo.Single().CantidadHoras= paux.CantidadHoras;
-                    prop.PropuestasDonacionesHorasTrabajo.Single().Profesion = paux.Profesion;
+                    prop.PropuestasDonacionesInsumos.FirstOrDefault().Cantidad = paux.CantidadIns;
+                    prop.PropuestasDonacionesInsumos.FirstOrDefault().Nombre = paux.NombreIns;
+                }
+                else if (prop.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
+                {
+                    prop.PropuestasDonacionesHorasTrabajo.FirstOrDefault().CantidadHoras = paux.CantidadHoras;
+                    prop.PropuestasDonacionesHorasTrabajo.FirstOrDefault().Profesion = paux.Profesion;
                 }
 
 
                 ctx.SaveChanges();
+
             }
         }
         public Propuestas GetPorId(int id)
         {
             using (Entities ctx=new Entities())
             {
-                Propuestas p = (from pr in ctx.Propuestas
-                                where pr.IdPropuesta == id
-                                select pr).Single();
+                var p =( from pr in ctx.Propuestas
+                               where pr.IdPropuesta == id
+                               select pr).FirstOrDefault();
                 return p;
             }
-        }
-        
+        }        
 
     }
 }

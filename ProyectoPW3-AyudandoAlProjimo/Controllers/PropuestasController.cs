@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Entidades;
+using Entidades.Enums;
 using Entidades.Auxiliares;
 using Servicios;
 namespace ProyectoPW3_AyudandoAlProjimo.Controllers
@@ -22,7 +23,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             PropuestasDonacionesInsumos pi = new PropuestasDonacionesInsumos();
             PropuestasDonacionesHorasTrabajo ph = new PropuestasDonacionesHorasTrabajo();
             //1->Monetaria   2->Insumos   3->HorasDeTrabajo
-            if (p.TipoDonacion==1)
+            if (p.TipoDonacion==(int)EnumTipoDonacion.Monetaria)
             {
                 pm.Dinero = Convert.ToDecimal(form["Dinero"]);
                 pm.CBU = form["CBU"];
@@ -30,7 +31,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                 p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
                 p.PropuestasDonacionesMonetarias.Add(pm);
             }
-            else if (p.TipoDonacion == 2)
+            else if (p.TipoDonacion == (int)EnumTipoDonacion.Insumo)
             {
                 pi.Nombre = form["NombreIns"];
                 pi.Cantidad = Convert.ToInt32(form["Cantidad"]);
@@ -38,7 +39,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                 p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
                 p.PropuestasDonacionesInsumos.Add(pi);
             }
-            else if (p.TipoDonacion == 3)
+            else if (p.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
             {
                 ph.CantidadHoras = Convert.ToInt32(form["CantidadHoras"]);
                 ph.Profesion = form["Profesion"];
@@ -50,33 +51,18 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             return RedirectToAction("MisPrupuestas", "Propuestas");
 
         }
+        [HttpGet]
         public ActionResult Modificar(int id)
         {
-            
-            
+            ViewBag.IdPropuesta = id;
+            ViewBag.Tipo = (_propuestaService.GetPorId(id)).TipoDonacion;
             return View();
         }
         [HttpPost]
-        public ActionResult Modificar(Propuestas p, FormCollection form)
+        public ActionResult Modificar(PropuestaAux p)
         {
-            PropuestaAux paux = new PropuestaAux();
-
-            if (p.TipoDonacion == 1)
-            {
-                paux.Dinero = Convert.ToDecimal(form["Dinero"]);
-                paux.CBU = form["CBU"];
-            }
-            else if (p.TipoDonacion == 2)
-            {
-                paux.NombreIns = form["NombreIns"];
-                paux.CantidadIns = Convert.ToInt32(form["Cantidad"]);
-            }
-            else if (p.TipoDonacion == 3)
-            {
-                paux.CantidadHoras = Convert.ToInt32(form["CantidadHoras"]);
-                paux.Profesion = form["Profesion"];
-            }
-            //_propuestaService.ModificarPropuesta(p);
+            
+            _propuestaService.ModificarPropuesta(p);
 
             return RedirectToAction("MisPrupuestas", "Propuestas");
 
