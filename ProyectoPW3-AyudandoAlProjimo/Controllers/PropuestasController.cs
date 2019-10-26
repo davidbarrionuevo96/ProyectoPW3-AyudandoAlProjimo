@@ -76,7 +76,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                 paux.CantidadHoras = Convert.ToInt32(form["CantidadHoras"]);
                 paux.Profesion = form["Profesion"];
             }
-            _propuestaService.ModificarPropuesta(p);
+            //_propuestaService.ModificarPropuesta(p);
 
             return RedirectToAction("MisPrupuestas", "Propuestas");
 

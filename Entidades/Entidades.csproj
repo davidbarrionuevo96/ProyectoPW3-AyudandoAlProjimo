@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auxiliares\PropuestaAux.cs" />
     <Compile Include="Clases.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -69,7 +70,7 @@
     <Compile Include="Denuncias.cs">
       <DependentUpon>Clases.tt</DependentUpon>
     </Compile>
-    <Compile Include="Auxiliares\Donacion.cs" />
+    <Compile Include="Auxiliares\DonacionAux.cs" />
     <Compile Include="DonacionesHorasTrabajo.cs">
       <DependentUpon>Clases.tt</DependentUpon>
     </Compile>
