@@ -26,80 +26,101 @@ namespace Servicios
         public int TotalPropuestaIns(int id)
         {
             Entities ctx = new Entities();
-            int contTotal = (from p in ctx.PropuestasDonacionesInsumos
-                             join d_in in ctx.DonacionesInsumos
-                              on p.IdPropuestaDonacionInsumo equals d_in.IdPropuestaDonacionInsumo
+            var v = (from p in ctx.PropuestasDonacionesInsumos
                              where p.IdPropuesta == id
                              select p.Cantidad
                              ).First();
-
-            return contTotal;
+            return v;
         }
         public int TotalPropuestaHrs(int id)
         {
             Entities ctx = new Entities();
-            int contTotal = (from p in ctx.PropuestasDonacionesHorasTrabajo
-                             join d_in in ctx.DonacionesHorasTrabajo
-                              on p.IdPropuestaDonacionHorasTrabajo equals d_in.IdPropuestaDonacionHorasTrabajo
+            var v = (from p in ctx.PropuestasDonacionesHorasTrabajo
                              where p.IdPropuesta == id
                              select p.CantidadHoras
                              ).First();
 
-            return contTotal;
+            return v;
         }
         public decimal TotalPropuestaMon(int id)
         {
             Entities ctx = new Entities();
-            decimal contTotal = (from p in ctx.PropuestasDonacionesMonetarias
-                                 join d_in in ctx.DonacionesMonetarias
-                                  on p.IdPropuestaDonacionMonetaria equals d_in.IdPropuestaDonacionMonetaria
+            var v = (from p in ctx.PropuestasDonacionesMonetarias
                                  where p.IdPropuesta == id
                                  select p.Dinero
                              ).First();
 
-            return contTotal;
+            return v;
         }
-        public decimal CalcularTotalPropuestaIns(int id)
+        public int CalcularTotalPropuestaIns(int id)
         {
             Entities ctx = new Entities();
-            decimal contTotal = (from p in ctx.Propuestas
+            int contTotal = 0;
+            var dlist = (from p in ctx.Propuestas
                                  join p_in in ctx.PropuestasDonacionesInsumos
                                   on p.IdPropuesta equals p_in.IdPropuesta
                                  join d_in in ctx.DonacionesInsumos
                                   on p_in.IdPropuestaDonacionInsumo equals d_in.IdPropuestaDonacionInsumo
                                  where p.IdPropuesta == id
                                  select d_in.Cantidad
-                             ).Sum();
+                             ).ToList();
 
-            return contTotal;
+            if (dlist.Count > 0)
+            {
+                foreach (int item in dlist)
+                {
+                    contTotal += item;
+                }
+                return contTotal;
+            }
+            else return 0;
         }
-        public decimal CalcularTotalPropuestaHrs(int id)
+        public int CalcularTotalPropuestaHrs(int id)
         {
             Entities ctx = new Entities();
-            int contTotal = (from p in ctx.Propuestas
+
+            int contTotal = 0;
+            var dlist = (from p in ctx.Propuestas
                              join p_in in ctx.PropuestasDonacionesHorasTrabajo
                               on p.IdPropuesta equals p_in.IdPropuesta
                              join d_in in ctx.DonacionesHorasTrabajo
                               on p_in.IdPropuestaDonacionHorasTrabajo equals d_in.IdPropuestaDonacionHorasTrabajo
                              where p.IdPropuesta == id
                              select d_in.Cantidad
-                             ).Sum();
+                             ).ToList();
 
-            return contTotal;
+            if (dlist.Count > 0)
+            {
+                foreach (int item in dlist)
+                {
+                    contTotal += item;
+                }
+                return contTotal;
+            }
+            else return 0;
         }
         public decimal CalcularTotalPropuestaMon(int id)
         {
             Entities ctx = new Entities();
-            decimal contTotal = (from p in ctx.Propuestas
-                                 join p_in in ctx.PropuestasDonacionesMonetarias
-                                  on p.IdPropuesta equals p_in.IdPropuesta
-                                 join d_in in ctx.DonacionesMonetarias
-                                  on p_in.IdPropuestaDonacionMonetaria equals d_in.IdPropuestaDonacionMonetaria
-                                 where p.IdPropuesta == id
-                                 select d_in.Dinero
-                             ).Sum();
 
-            return contTotal;
+            decimal contTotal = 0;
+            var dlist = (from p in ctx.Propuestas
+                     join p_in in ctx.PropuestasDonacionesMonetarias
+                      on p.IdPropuesta equals p_in.IdPropuesta
+                     join d_in in ctx.DonacionesMonetarias
+                      on p_in.IdPropuestaDonacionMonetaria equals d_in.IdPropuestaDonacionMonetaria
+                     where p.IdPropuesta == id
+                     select d_in.Dinero
+                          ).ToList();
+            if (dlist.Count>0 )
+            {
+                foreach (decimal item in dlist)
+                {
+                    contTotal += item;
+                }
+                return contTotal;
+            }
+            else return 0;
         }
         public int IdPropuestaMonetaria(int id)
         {
