@@ -21,3 +21,4 @@ D:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csproj.Cor
 D:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csproj.CopyComplete
 D:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.dll
 D:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.pdb
+D:\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache

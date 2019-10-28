@@ -23,6 +23,84 @@ namespace Servicios
                 ctx.SaveChanges();
             }
         }
+        public int TotalPropuestaIns(int id)
+        {
+            Entities ctx = new Entities();
+            int contTotal = (from p in ctx.PropuestasDonacionesInsumos
+                             join d_in in ctx.DonacionesInsumos
+                              on p.IdPropuestaDonacionInsumo equals d_in.IdPropuestaDonacionInsumo
+                             where p.IdPropuesta == id
+                             select p.Cantidad
+                             ).First();
+
+            return contTotal;
+        }
+        public int TotalPropuestaHrs(int id)
+        {
+            Entities ctx = new Entities();
+            int contTotal = (from p in ctx.PropuestasDonacionesHorasTrabajo
+                             join d_in in ctx.DonacionesHorasTrabajo
+                              on p.IdPropuestaDonacionHorasTrabajo equals d_in.IdPropuestaDonacionHorasTrabajo
+                             where p.IdPropuesta == id
+                             select p.CantidadHoras
+                             ).First();
+
+            return contTotal;
+        }
+        public decimal TotalPropuestaMon(int id)
+        {
+            Entities ctx = new Entities();
+            decimal contTotal = (from p in ctx.PropuestasDonacionesMonetarias
+                                 join d_in in ctx.DonacionesMonetarias
+                                  on p.IdPropuestaDonacionMonetaria equals d_in.IdPropuestaDonacionMonetaria
+                                 where p.IdPropuesta == id
+                                 select p.Dinero
+                             ).First();
+
+            return contTotal;
+        }
+        public decimal CalcularTotalPropuestaIns(int id)
+        {
+            Entities ctx = new Entities();
+            decimal contTotal = (from p in ctx.Propuestas
+                                 join p_in in ctx.PropuestasDonacionesInsumos
+                                  on p.IdPropuesta equals p_in.IdPropuesta
+                                 join d_in in ctx.DonacionesInsumos
+                                  on p_in.IdPropuestaDonacionInsumo equals d_in.IdPropuestaDonacionInsumo
+                                 where p.IdPropuesta == id
+                                 select d_in.Cantidad
+                             ).Sum();
+
+            return contTotal;
+        }
+        public decimal CalcularTotalPropuestaHrs(int id)
+        {
+            Entities ctx = new Entities();
+            int contTotal = (from p in ctx.Propuestas
+                             join p_in in ctx.PropuestasDonacionesHorasTrabajo
+                              on p.IdPropuesta equals p_in.IdPropuesta
+                             join d_in in ctx.DonacionesHorasTrabajo
+                              on p_in.IdPropuestaDonacionHorasTrabajo equals d_in.IdPropuestaDonacionHorasTrabajo
+                             where p.IdPropuesta == id
+                             select d_in.Cantidad
+                             ).Sum();
+
+            return contTotal;
+        }
+        public decimal CalcularTotalPropuestaMon(int id)
+        {
+            Entities ctx = new Entities();
+            decimal contTotal = (from p in ctx.Propuestas
+                                 join p_in in ctx.PropuestasDonacionesMonetarias
+                                  on p.IdPropuesta equals p_in.IdPropuesta
+                                 join d_in in ctx.DonacionesMonetarias
+                                  on p_in.IdPropuestaDonacionMonetaria equals d_in.IdPropuestaDonacionMonetaria
+                                 where p.IdPropuesta == id
+                                 select d_in.Dinero
+                             ).Sum();
+
+            return contTotal;
+        }
         public int IdPropuestaMonetaria(int id)
         {
             using (var ctx=new Entities())
@@ -61,6 +139,18 @@ namespace Servicios
             }
 
 
+        }
+        public string RetornarProfesionPorIdPropuesta(int id)
+        {
+            using (var ctx = new Entities())
+            {
+                string pro = (from p in ctx.Propuestas
+                           join p_m in ctx.PropuestasDonacionesHorasTrabajo
+                           on p.IdPropuesta equals p_m.IdPropuesta
+                           where p.IdPropuesta==id
+                           select p_m.Profesion).First();
+                return pro;
+            }
         }
         public void ModificarPropuesta(PropuestaAux paux)
         {

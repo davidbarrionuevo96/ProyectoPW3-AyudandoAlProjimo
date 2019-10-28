@@ -84,63 +84,21 @@ namespace Servicios
             {//1->Monetaria   2->Insumos   3->HorasDeTrabajo
                 if (item.TipoDonacion == (int)EnumTipoDonacion.Monetaria)
                 {
-                    item.TotalRecaudado = CalcularTotalPropuestaMon(item.IdPropuesta);
+                    item.TotalRecaudado = _propuestaService.CalcularTotalPropuestaMon(item.IdPropuesta);
                 }
                 else if (item.TipoDonacion == (int)EnumTipoDonacion.Insumo)
                 {
-                    item.TotalRecaudado = CalcularTotalPropuestaIns(item.IdPropuesta);
+                    item.TotalRecaudado = _propuestaService.CalcularTotalPropuestaIns(item.IdPropuesta);
                 }
                 else if (item.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
                 {
-                    item.TotalRecaudado = CalcularTotalPropuestaHrs(item.IdPropuesta);
+                    item.TotalRecaudado = _propuestaService.CalcularTotalPropuestaHrs(item.IdPropuesta);
                 }
             }
 
             return list;
         }
-
-        public decimal CalcularTotalPropuestaIns(int id)
-        {
-            Entities ctx = new Entities();
-            decimal contTotal = (from p in ctx.Propuestas
-                                 join p_in in ctx.PropuestasDonacionesInsumos
-                                  on p.IdPropuesta equals p_in.IdPropuesta
-                                 join d_in in ctx.DonacionesInsumos
-                                  on p_in.IdPropuestaDonacionInsumo equals d_in.IdPropuestaDonacionInsumo
-                                 where p.IdPropuesta == id
-                                 select d_in.Cantidad
-                             ).Sum();
-
-            return contTotal;
-        }
-        public decimal CalcularTotalPropuestaHrs(int id)
-        {
-            Entities ctx = new Entities();
-            int contTotal = (from p in ctx.Propuestas
-                             join p_in in ctx.PropuestasDonacionesHorasTrabajo
-                              on p.IdPropuesta equals p_in.IdPropuesta
-                             join d_in in ctx.DonacionesHorasTrabajo
-                              on p_in.IdPropuestaDonacionHorasTrabajo equals d_in.IdPropuestaDonacionHorasTrabajo
-                             where p.IdPropuesta == id
-                             select d_in.Cantidad
-                             ).Sum();
-
-            return contTotal;
-        }
-        public decimal CalcularTotalPropuestaMon(int id)
-        {
-            Entities ctx = new Entities();
-            decimal contTotal = (from p in ctx.Propuestas
-                                 join p_in in ctx.PropuestasDonacionesMonetarias
-                                  on p.IdPropuesta equals p_in.IdPropuesta
-                                 join d_in in ctx.DonacionesMonetarias
-                                  on p_in.IdPropuestaDonacionMonetaria equals d_in.IdPropuestaDonacionMonetaria
-                                 where p.IdPropuesta == id
-                                 select d_in.Dinero
-                             ).Sum();
-
-            return contTotal;
-        }
+        
         public void GuardarDonacionMonetaria(DonacionesMonetarias dm,int id)
         {
             using (var ctx = new Entities())
