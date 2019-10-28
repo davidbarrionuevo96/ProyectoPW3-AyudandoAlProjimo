@@ -7,6 +7,8 @@ using Entidades;
 using Entidades.Enums;
 using Entidades.Auxiliares;
 using Servicios;
+using System.Net.Mail;
+using System.Web;
 using WebApiDonaciones.Controllers;
 namespace ProyectoPW3_AyudandoAlProjimo.Controllers
 {

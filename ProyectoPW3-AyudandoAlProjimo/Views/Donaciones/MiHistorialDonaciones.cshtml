@@ -26,7 +26,8 @@
     $(document).ready(
         function () {
             var cadena;
-            $.getJSON('http://localhost:62985/api/HistorialDonaciones/@ViewBag.Usuario', function (data) {
+            var url='http://@HttpContext.Current.Request.Url.Authority/api/HistorialDonaciones/@ViewBag.Usuario'
+            $.getJSON(url, function (data) {
                 data.forEach(function (item) {
                 cadena+=`<tr  class="text-center">`
 
