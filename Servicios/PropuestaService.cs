@@ -23,6 +23,45 @@ namespace Servicios
                 ctx.SaveChanges();
             }
         }
+        public int IdPropuestaMonetaria(int id)
+        {
+            using (var ctx=new Entities())
+            {
+                int ide = (from p in ctx.Propuestas
+                          join p_m in ctx.PropuestasDonacionesMonetarias
+                          on p.IdPropuesta equals p_m.IdPropuesta
+                          select p_m.IdPropuestaDonacionMonetaria).First();
+                return ide;
+            }
+
+
+        }
+        public int IdPropuestaInsumos(int id)
+        {
+            using (var ctx = new Entities())
+            {
+                int ide = (from p in ctx.Propuestas
+                           join p_m in ctx.PropuestasDonacionesInsumos
+                           on p.IdPropuesta equals p_m.IdPropuesta
+                           select p_m.IdPropuestaDonacionInsumo).First();
+                return ide;
+            }
+
+
+        }
+        public int IdPropuestaHoras(int id)
+        {
+            using (var ctx = new Entities())
+            {
+                int ide = (from p in ctx.Propuestas
+                           join p_m in ctx.PropuestasDonacionesHorasTrabajo
+                           on p.IdPropuesta equals p_m.IdPropuesta
+                           select p_m.IdPropuestaDonacionHorasTrabajo).First();
+                return ide;
+            }
+
+
+        }
         public void ModificarPropuesta(PropuestaAux paux)
         {
             
@@ -72,7 +111,17 @@ namespace Servicios
                                select pr).FirstOrDefault();
                 return p;
             }
-        }        
-
+        }
+        //borrar
+        public Propuestas GetPropuestaMonetaria(int id)
+        {
+            using (Entities ctx = new Entities())
+            {
+                var p = (from pr in ctx.Propuestas
+                         where pr.IdPropuesta == id
+                         select pr).FirstOrDefault();
+                return p;
+            }
+        }
     }
 }

@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auxiliares\CrearDonacionAux.cs" />
     <Compile Include="Auxiliares\PropuestaAux.cs" />
     <Compile Include="Clases.Context.cs">
       <AutoGen>True</AutoGen>
