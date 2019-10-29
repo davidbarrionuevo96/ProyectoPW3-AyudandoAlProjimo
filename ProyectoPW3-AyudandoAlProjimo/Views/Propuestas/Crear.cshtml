@@ -1,80 +1,125 @@
-﻿@model Entidades.Propuestas
+﻿@model Entidades.Auxiliares.PropuestaAux
 
 @{
     ViewBag.Title = "Crear";
 }
-
+    <style>.custom-file-input ~ .custom-file-label::after {
+    content: "Buscar";
+}</style>
 <h2>Crear Propuesta</h2>
-@using (Html.BeginForm("Crear", "Propuestas", FormMethod.Post))
+@using (Html.BeginForm("Crear", "Propuestas", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="form-horizontal">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nombre, "Nombre de la propuesta", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control form-control-user" })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-            </div>
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre, "Nombre de la propuesta", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Descripcion, "Descripcion de la propuesta", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control form-control-user" })
-                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FechaFin, "Fecha de fin", htmlAttributes: new { @class = "control-label col-md-4", type = "date" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.FechaFin, new { @class = "form-control form-control-user" })
-                @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.TelefonoContacto, "Telefono de contacto", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.TelefonoContacto, new { @class = "form-control form-control-user" })
-                @Html.ValidationMessageFor(model => model.TelefonoContacto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                <label for="TipoDonacion">Tipo de Donacion:</label>
-                <select class="form-control" id="TipoDonacion" name="TipoDonacion">
-                    <option id="monetaria" value="1">Monetaria</option>
-                    <option id="insumos" value="2">De Insumos</option>
-                    <option id="horas" value="3">De Horas de Trabajo</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group ml-4" id="formmon" style="display:none">
-            <label for="Dinero" class="control-label ">Dinero</label>
-            <input class="form-control form-control col-md-8" type="number" name="Dinero" value="" />
-
-            <label for="CBU" class="control-label">Cbu</label>
-            <input class="form-control form-control-user col-md-8" type="text" name="CBU" value="" />
-        </div>
-
-        <div class="form-group ml-4 " id="formins" style="display:none">
-
-            <label for="Cantidad" class="control-label ">Seleccione la cantidad de tipos insumos, para luego ser cargados</label>
-            <input class="form-control form-control-user col-md-8" type="number" name="CantidadIns" value="" />
-
-        </div>
-
-        <div class="form-group ml-4" id="formhor" style="display:none">
-            <label for="CantidadHoras" class="control-label">Cantidad de Horas</label>
-            <input class="form-control form-control-user col-md-8" type="number" name="CantidadHoras" value="" />
-            <label for="Profesion" class="control-label ">Profesion</label>
-            <input class="form-control form-control-user col-md-8" type="text" name="Profesion" value="" />
-        </div>
-        <button type="submit" class="btn btn-primary btn-user btn-block">Registrar</button>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion, "Descripcion de la propuesta", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaFin, "Fecha de fin", htmlAttributes: new { @class = "control-label col-md-4", type = "date" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.FechaFin, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.TelefonoContacto, "Telefono de contacto", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.TelefonoContacto, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.TelefonoContacto, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+    <div class="form-group  col-md-4 mb-2">
+        <div class="custom-file" lang="es">
+            @Html.TextBox("Foto", null, new { type = "file", @class = "custom-file-input"})
+            <label class="custom-file-label" for="Foto">Elegir un archivo</label>
+        </div>
+    </div>
+    <div class="form-group  ml-2">
+        @Html.LabelFor(model => model.FechaFin, "Fecha de fin", htmlAttributes: new { @class = "control-label col-md-4", type = "date" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.FechaFin, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group ml-2">
+        @Html.LabelFor(model => model.Telefono1, "Telefono de Referencia 1", htmlAttributes: new { @class = "control-label col-md-3", type = "date" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Telefono1, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.Telefono1, "", new { @class = "text-danger" })
+        </div>            
+    </div>                
+    <div class="form-group ml-2">
+        @Html.LabelFor(model => model.NombreRef1, "Nombre de Referencia 1", htmlAttributes: new { @class = "control-label col-md-3", })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.NombreRef1, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.NombreRef1, "", new { @class = "text-danger" })
+        </div>            
+    </div>                
+    <div class="form-group ml-2">
+        @Html.LabelFor(model => model.Telefono2, "Telefono de Referencia 2", htmlAttributes: new { @class = "control-label col-md-3"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Telefono2, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.Telefono2, "", new { @class = "text-danger" })
+        </div>            
+    </div>                
+    <div class="form-group ml-2">
+        @Html.LabelFor(model => model.NombreRef2, "Nombre de Referencia 2", htmlAttributes: new { @class = "control-label col-md-3"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.NombreRef2, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.NombreRef2, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group ">
+        <div class="col-md-10">
+            <label for="TipoDonacion">Tipo de Donacion:</label>
+            <select class="form-control" id="TipoDonacion" name="TipoDonacion">
+                <option id="monetaria" value="1">Monetaria</option>
+                <option id="insumos" value="2">De Insumos</option>
+                <option id="horas" value="3">De Horas de Trabajo</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group ml-4" id="formmon" style="display:none">
+        <label for="Dinero" class="control-label ">Dinero</label>
+        <input class="form-control form-control col-md-8" type="number" name="Dinero" value="" />
+
+        <label for="CBU" class="control-label">Cbu</label>
+        <input class="form-control form-control-user col-md-8" type="text" name="CBU" value="" />
+    </div>
+
+    <div class="form-group ml-4 " id="formins" style="display:none">
+
+        <label for="Cantidad" class="control-label ">Seleccione la cantidad de tipos insumos, para luego ser cargados</label>
+        <input class="form-control form-control-user col-md-8" type="number" name="CantidadIns" value="" />
+
+    </div>
+
+    <div class="form-group ml-4" id="formhor" style="display:none">
+        <label for="CantidadHoras" class="control-label">Cantidad de Horas</label>
+        <input class="form-control form-control-user col-md-8" type="number" name="CantidadHoras" value="" />
+        <label for="Profesion" class="control-label ">Profesion</label>
+        <input class="form-control form-control-user col-md-8" type="text" name="Profesion" value="" />
+    </div>
+    <button type="submit" class="btn btn-primary btn-user btn-block">Registrar</button>
+</div>
 }
 <script>
     $('document').ready(
         function () {
+
             $("#formmon").show(1000);
 
             function Cambio() {

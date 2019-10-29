@@ -3,6 +3,7 @@ using Entidades.Auxiliares;
 using Entidades.Enums;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,12 +19,31 @@ namespace Servicios
             pr.Estado = 1;
             pr.FechaCreacion = DateTime.Today;
             pr.FechaFin = p.FechaFin;
-            //pr.Foto = p.Foto;
-            pr.Foto = "nva";
+
+            String filename = Path.GetFileName(p.Foto.FileName);
+            var path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/img/propuestas/"), filename);
+            p.Foto.SaveAs(path);
+            pr.Foto = filename;
+
+            pr.PropuestasReferencias.Add(
+                new PropuestasReferencias()
+                {
+                 Nombre=p.NombreRef1,
+                 Telefono=p.Telefono1
+                }
+                );
+            pr.PropuestasReferencias.Add(
+                new PropuestasReferencias()
+                {
+                    Nombre = p.NombreRef2,
+                    Telefono = p.Telefono2
+                }
+                );
             pr.IdUsuarioCreador = p.IdUsuarioCreador;
             pr.Nombre = p.Nombre;
             pr.TelefonoContacto = p.TelefonoContacto;
             pr.TipoDonacion = p.TipoDonacion;
+
             if (p.TipoDonacion==(int)EnumTipoDonacion.Monetaria)
             {
                 PropuestasDonacionesMonetarias d = new PropuestasDonacionesMonetarias();

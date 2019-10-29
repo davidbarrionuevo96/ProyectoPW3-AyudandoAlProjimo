@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Entidades.Auxiliares
 {
@@ -26,9 +27,13 @@ namespace Entidades.Auxiliares
         public System.DateTime FechaFin { get; set; }
         public string TelefonoContacto { get; set; }
         public int TipoDonacion { get; set; }
-        public string Foto { get; set; }
+        public HttpPostedFileBase Foto { get; set; }
         public int IdUsuarioCreador { get; set; }
         public int Estado { get; set; }
+        public string Telefono1{ get; set; }
+        public string NombreRef1 { get; set; }
+        public string Telefono2 { get; set; }
+        public string NombreRef2 { get; set; }
         public Nullable<decimal> Valoracion { get; set; }
     }
 }
