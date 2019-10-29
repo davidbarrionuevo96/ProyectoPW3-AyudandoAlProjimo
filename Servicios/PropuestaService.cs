@@ -11,18 +11,62 @@ namespace Servicios
 {
     public class PropuestaService
     {
-        public void RegistrarPropuesta(Propuestas p)
+        public void RegistrarPropuesta(PropuestaAux p)
         {
+            Propuestas pr = new Propuestas();
+            pr.Descripcion = p.Descripcion;
+            pr.Estado = 1;
+            pr.FechaCreacion = DateTime.Today;
+            pr.FechaFin = p.FechaFin;
+            //pr.Foto = p.Foto;
+            pr.Foto = "nva";
+            pr.IdUsuarioCreador = p.IdUsuarioCreador;
+            pr.Nombre = p.Nombre;
+            pr.TelefonoContacto = p.TelefonoContacto;
+            pr.TipoDonacion = p.TipoDonacion;
+            if (p.TipoDonacion==(int)EnumTipoDonacion.Monetaria)
+            {
+                PropuestasDonacionesMonetarias d = new PropuestasDonacionesMonetarias();
+                d.Dinero = p.Dinero;
+                d.CBU = p.CBU;
+                pr.PropuestasDonacionesMonetarias.Add(d);
+            }
+            if (p.TipoDonacion == (int)EnumTipoDonacion.Insumo)
+            {
+                foreach (var item in p.pins)
+                {
+                    pr.PropuestasDonacionesInsumos.Add(item);    
+                }
+                
+            }
+            if (p.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
+            {
+                PropuestasDonacionesHorasTrabajo d = new PropuestasDonacionesHorasTrabajo();
+                d.CantidadHoras = p.CantidadHoras;
+                d.Profesion = p.Profesion;
+                pr.PropuestasDonacionesHorasTrabajo.Add(d);
+            }
             using (Entities ctx = new Entities())
             {
-
-                p.FechaCreacion = DateTime.Today;
-                p.Estado = 1;
-                p.Foto = "asdas";
-                ctx.Propuestas.Add(p);
+                ctx.Propuestas.Add(pr);
                 ctx.SaveChanges();
             }
         }
+
+        public List<PropuestasDonacionesInsumos> CrearListaPropuestasInsumos(int cant)
+        {
+            List<PropuestasDonacionesInsumos> list = new List<PropuestasDonacionesInsumos>();
+            for (int i = 0; i <cant; i++)
+            {
+                list.Add(
+                    new PropuestasDonacionesInsumos()
+                    {
+                    }
+                    );
+            }
+            return list;
+        }
+
         public int TotalPropuestaIns(int id)
         {
             Entities ctx = new Entities();

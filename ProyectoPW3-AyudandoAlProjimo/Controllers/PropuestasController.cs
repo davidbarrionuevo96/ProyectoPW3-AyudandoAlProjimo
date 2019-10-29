@@ -17,39 +17,38 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Crear(Propuestas p, FormCollection form)
+        public ActionResult Crear(PropuestaAux p)
         {
-            PropuestasDonacionesMonetarias pm = new PropuestasDonacionesMonetarias();
-            PropuestasDonacionesInsumos pi = new PropuestasDonacionesInsumos();
-            PropuestasDonacionesHorasTrabajo ph = new PropuestasDonacionesHorasTrabajo();
-            //1->Monetaria   2->Insumos   3->HorasDeTrabajo
-            if (p.TipoDonacion==(int)EnumTipoDonacion.Monetaria)
-            {
-                pm.Dinero = Convert.ToDecimal(form["Dinero"]);
-                pm.CBU = form["CBU"];
+            p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
 
-                p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
-                p.PropuestasDonacionesMonetarias.Add(pm);
-            }
-            else if (p.TipoDonacion == (int)EnumTipoDonacion.Insumo)
-            {
-                pi.Nombre = form["NombreIns"];
-                pi.Cantidad = Convert.ToInt32(form["Cantidad"]);
 
-                p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
-                p.PropuestasDonacionesInsumos.Add(pi);
-            }
-            else if (p.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
+            if (p.TipoDonacion==(int)EnumTipoDonacion.Insumo)
             {
-                ph.CantidadHoras = Convert.ToInt32(form["CantidadHoras"]);
-                ph.Profesion = form["Profesion"];
-
-                p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
-                p.PropuestasDonacionesHorasTrabajo.Add(ph);
+                p.pins = new List<PropuestasDonacionesInsumos>();
+                Session["pinsumo"]=p;
+                return RedirectToAction("CargarListaInsumos", "Propuestas",p);
             }
             _propuestaService.RegistrarPropuesta(p);
             return RedirectToAction("MisPrupuestas", "Propuestas");
+        }
 
+        [HttpGet]
+        public ActionResult CargarListaInsumos(PropuestaAux p)
+        {            
+            //idpropuesta nombre cant
+            return View(_propuestaService.CrearListaPropuestasInsumos(p.CantidadIns));
+        }
+        [HttpPost]
+        public ActionResult CargarListaInsumos(List<PropuestasDonacionesInsumos> plist)
+        {
+            PropuestaAux p= (PropuestaAux)Session["pinsumo"];
+           
+                foreach (var item in plist)
+                {
+                    p.pins.Add(item);
+                }
+            _propuestaService.RegistrarPropuesta(p);
+            return RedirectToAction("MisPrupuestas", "Propuestas");
         }
         [HttpGet]
         public ActionResult Modificar(int id)

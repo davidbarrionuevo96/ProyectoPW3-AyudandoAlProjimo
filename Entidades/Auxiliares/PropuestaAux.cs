@@ -14,6 +14,7 @@ namespace Entidades.Auxiliares
         //Insumos
         public string NombreIns { get; set; }
         public int CantidadIns { get; set; }
+        public List<PropuestasDonacionesInsumos> pins { get; set; }
         //Insumos
         //Monetaria
         public decimal Dinero { get; set; }
