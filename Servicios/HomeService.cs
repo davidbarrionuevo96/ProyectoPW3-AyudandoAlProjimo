@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -71,6 +72,27 @@ namespace Servicios
                 denumoti.Add(denu);
             }
             return denumoti;
+        }
+
+        public void CargarImagen(HttpPostedFileBase file)
+        {
+
+            int id = Int32.Parse(HttpContext.Current.Session["usuario"].ToString());
+            var usua = (from p in asd.Usuarios
+                        where p.IdUsuario == id
+                        select p).ToList();
+
+            Usuarios usu2 = new Usuarios();
+            foreach (var a in usua)
+            {
+                usu2 = a;
+            }
+
+            var filename = Path.GetFileName(file.FileName);
+            var path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/img/"), filename);
+            file.SaveAs(path);
+            usu2.Foto = filename;
+            asd.SaveChanges();
         }
 
         public Usuarios ActualizarPassword(String u)

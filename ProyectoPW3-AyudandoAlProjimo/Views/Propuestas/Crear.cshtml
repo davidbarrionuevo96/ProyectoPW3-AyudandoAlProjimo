@@ -7,96 +7,95 @@
 <h2>Crear Propuesta</h2>
 @using (Html.BeginForm("Crear", "Propuestas", FormMethod.Post))
 {
-<div class="form-horizontal">
-    <div class="form-group">
-        @Html.LabelFor(model => model.Nombre, "Nombre de la propuesta", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control form-control-user" })
-            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, "Nombre de la propuesta", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control form-control-user" })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Descripcion, "Descripcion de la propuesta", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control form-control-user" })
-            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descripcion, "Descripcion de la propuesta", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control form-control-user" })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.FechaFin, "Fecha de fin", htmlAttributes: new { @class = "control-label col-md-4", type = "date" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.FechaFin, new { @class = "form-control form-control-user" })
-            @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaFin, "Fecha de fin", htmlAttributes: new { @class = "control-label col-md-4", type = "date" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.FechaFin, new { @class = "form-control form-control-user" })
+                @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.TelefonoContacto, "Telefono de contacto", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.TelefonoContacto, new { @class = "form-control form-control-user" })
-            @Html.ValidationMessageFor(model => model.TelefonoContacto, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TelefonoContacto, "Telefono de contacto", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.TelefonoContacto, new { @class = "form-control form-control-user" })
+                @Html.ValidationMessageFor(model => model.TelefonoContacto, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-10">
-            <label for="TipoDonacion">Tipo de Donacion:</label>
-            <select class="form-control" id="TipoDonacion" name="TipoDonacion">
-                <option id="monetaria" value="1">Monetaria</option>
-                <option id="insumos" value="2">De Insumos</option>
-                <option id="horas" value="3">De Horas de Trabajo</option>
-            </select>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label for="TipoDonacion">Tipo de Donacion:</label>
+                <select class="form-control" id="TipoDonacion" name="TipoDonacion">
+                    <option id="monetaria" value="1">Monetaria</option>
+                    <option id="insumos" value="2">De Insumos</option>
+                    <option id="horas" value="3">De Horas de Trabajo</option>
+                </select>
+            </div>
         </div>
+        <div class="form-group ml-4" id="formmon" style="display:none">
+            <label for="Dinero" class="control-label ">Dinero</label>
+            <input class="form-control form-control col-md-8" type="number" name="Dinero" value="" />
+
+            <label for="CBU" class="control-label">Cbu</label>
+            <input class="form-control form-control-user col-md-8" type="text" name="CBU" value="" />
+        </div>
+
+        <div class="form-group ml-4 " id="formins" style="display:none">
+
+            <label for="Cantidad" class="control-label ">Seleccione la cantidad de tipos insumos, para luego ser cargados</label>
+            <input class="form-control form-control-user col-md-8" type="number" name="CantidadIns" value="" />
+
+        </div>
+
+        <div class="form-group ml-4" id="formhor" style="display:none">
+            <label for="CantidadHoras" class="control-label">Cantidad de Horas</label>
+            <input class="form-control form-control-user col-md-8" type="number" name="CantidadHoras" value="" />
+            <label for="Profesion" class="control-label ">Profesion</label>
+            <input class="form-control form-control-user col-md-8" type="text" name="Profesion" value="" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-user btn-block">Registrar</button>
     </div>
-    <div class="form-group ml-4" id="formmon" style="display:none">
-        <label for="Dinero" class="control-label ">Dinero</label>
-        <input class="form-control form-control col-md-8" type="number" name="Dinero" value="" />
-
-        <label for="CBU" class="control-label">Cbu</label>
-        <input class="form-control form-control-user col-md-8" type="text" name="CBU" value="" />
-    </div>
-
-    <div class="form-group ml-4 " id="formins" style="display:none">
-
-        <label for="Cantidad" class="control-label ">Seleccione la cantidad de tipos insumos, para luego ser cargados</label>
-        <input class="form-control form-control-user col-md-8" type="number" name="CantidadIns" value="" />
-
-    </div>
-
-    <div class="form-group ml-4" id="formhor" style="display:none">
-        <label for="CantidadHoras" class="control-label">Cantidad de Horas</label>
-        <input class="form-control form-control-user col-md-8" type="number" name="CantidadHoras" value="" />
-        <label for="Profesion" class="control-label ">Profesion</label>
-        <input class="form-control form-control-user col-md-8" type="text" name="Profesion" value="" />
-    </div>
-    <button type="submit" class="btn btn-primary btn-user btn-block">Registrar</button>
-</div>
 }
 <script>
     $('document').ready(
-        function () {   
-
+        function () {
             $("#formmon").show(1000);
 
             function Cambio() {
-                if ( $('#TipoDonacion').val()  == 1){
+                if ($('#TipoDonacion').val() == 1) {
 
                     $("#formmon").show(1000);
                     $("#formins").hide(1000);
                     $("#formhor").hide(1000);
-                   }
-               if ( $('#TipoDonacion').val() == 2){
+                }
+                if ($('#TipoDonacion').val() == 2) {
 
                     $("#formmon").hide(1000);
                     $("#formins").show(1000);
                     $("#formhor").hide(1000);
-                   }
-               if ( $('#TipoDonacion').val()  == 3){
+                }
+                if ($('#TipoDonacion').val() == 3) {
 
                     $("#formmon").hide(1000);
                     $("#formins").hide(1000);
                     $("#formhor").show(1000);
-                   }
+                }
             }
             $('#TipoDonacion').on("change", Cambio);
         }
