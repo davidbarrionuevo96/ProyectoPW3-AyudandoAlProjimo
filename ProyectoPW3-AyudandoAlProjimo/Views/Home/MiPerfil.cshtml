@@ -1,78 +1,102 @@
-﻿<div class="row m-y-2">
-        <div class="col-lg-6 pull-lg-8 text-center">
-            @if (@HttpContext.Current.Session["Foto"] != null)
-            {
-                <img src="@HttpContext.Current.Session["Foto"]" class="m-0-auto img-fluid rounded-circle " style="width:250px;" alt="avatar">
-            }
-            else
-            {
-                <img src="~/Content/img/avatar.png" class="m-0-auto img-fluid rounded-circle " style="width:250px;" alt="avatar">
-            }
-            <div class="mt-4 mb-2"><a href="/Home/EditarPerfil"><button class="btn btn-primary">Editar Perfil</button></a></div>
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<div class="row m-y-2">
+    <div class="col-lg-6 pull-lg-8 text-center">
 
-            <div class="mb-2"><a href="/Home/CambiarContraseña"><button class="btn btn-primary">Cambiar Contraseña</button></a></div>
-        </div>
-        <div class="col-lg-6 ">
-            <div class="row">
-                <div class="col-md-12">
+        @if (@HttpContext.Current.Session["Foto"] != null)
+        {
+            <img src="@HttpContext.Current.Session["Foto"]" class="m-0-auto img-fluid rounded-circle " style="width:250px; height:250px;" id="avatarImage" alt="avatar">
+        }
+        else
+        {
+            <img src="~/Content/img/avatar.png" id="avatarImage" class="m-0-auto img-fluid rounded-circle " style="width:250px;height:250px;" alt="avatar">
+        }
+
+        @using (Html.BeginForm("CambiarImagen", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" style="display:none;" name="imagen" id="avatarInput" />
+
+            <br /><br /> <button type="submit" style="display:none;" class="btn btn-danger" id="aceptar">Aceptar </button>
+        }
+        <div class="mt-1 mb-2"><a href="/Home/EditarPerfil"><button class="btn btn-primary">Editar Perfil</button></a></div>
+
+        <div class="mb-2"><a href="/Home/CambiarContraseña"><button class="btn btn-primary">Cambiar Contraseña</button></a></div>
+    </div>
+    <div class="col-lg-6 ">
+        <div class="row">
+            <div class="col-md-12">
                 <div class="mb-4 float-right"><a href="/Donaciones/MiHistorialDonaciones"><button class="btn btn-info btn-sm">Historial de Donaciones</button></a></div>
-                    <h4 class="m-t-1">Mi Perfil</h4>
-                    <table class="table table-striped mt-3">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <strong>Usuario</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="color:black!important">
-                                    @HttpContext.Current.Session["Nombre"]
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>Email</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="color:black!important">
-                                    @HttpContext.Current.Session["Email"]
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>Nombre</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="color:black!important">
-                                    @HttpContext.Current.Session["Name"]
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>Apellido</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="color:black!important">
-                                    @HttpContext.Current.Session["Apellido"]
-                                </td>
-                            </tr>
+                <h4 class="m-t-1">Mi Perfil</h4>
+                <table class="table table-striped mt-3">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Usuario</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:black!important">
+                                @HttpContext.Current.Session["Nombre"]
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Email</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:black!important">
+                                @HttpContext.Current.Session["Email"]
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Nombre</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:black!important">
+                                @HttpContext.Current.Session["Name"]
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Apellido</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:black!important">
+                                @HttpContext.Current.Session["Apellido"]
+                            </td>
+                        </tr>
 
-                            <tr>
-                                <td>
-                                    <strong>Fecha de nacimiento</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="color:black!important">
-                                    @HttpContext.Current.Session["fn"]
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        <tr>
+                            <td>
+                                <strong>Fecha de nacimiento</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:black!important">
+                                @HttpContext.Current.Session["fn"]
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-                </div>
-            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var $avatarInput, $avatarImage;
+
+    $(function () {
+        $avatarInput = $('#avatarInput');
+        $avatarImage = $('#avatarImage');
+
+        $avatarImage.on('click', function () {
+
+            $avatarInput.click();
+            $("#aceptar").attr("style", "none");
+        })
+    })
+</script>

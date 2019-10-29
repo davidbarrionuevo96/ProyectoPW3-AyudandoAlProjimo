@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Entidades;
-
+using System.IO;
 
 namespace ProyectoPW3_AyudandoAlProjimo.Controllers
 {
@@ -131,6 +131,26 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             Session["fn"] = u.FechaNacimiento.ToString("MM/dd/yyyy");
 
             return View("MiPerfil");
+        }
+
+        [HttpPost]
+        public ActionResult CambiarImagen(HttpPostedFileBase imagen)
+        {
+            if (Session["usuario"] != null)
+            {
+                if (imagen != null)
+                {
+                    String filename = Path.GetFileName(imagen.FileName);
+                    l.CargarImagen(imagen);
+                    Session["Foto"] = "/Content/img/" + filename;
+                    return View("MiPerfil");
+                }
+                return View("MiPerfil");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
     }
