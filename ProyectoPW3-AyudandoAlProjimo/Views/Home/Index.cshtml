@@ -1,31 +1,33 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@model List<Entidades.Auxiliares.PropuestaUsuario>
 <br />
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
+    @foreach (var a in Model)
+    {
+        <div class="col-md-4">
+            <div class="card bg-light shadow-sm">
+                <img class="card-img-top mt-3" style="width:90%;height:200px; margin:0 auto;" src="~/Content/img/@a.foto" alt="Card image cap">
+                <div class="mt-2 pl-1 pr-1" style="height:45px;">
+                    <h5 class="card-title pb-3 text-center text-info">@a.nombre</h5>
+                </div>
+                <div class="card-body">
+                    <div class=" mb-1 card-text text-primary">@a.usuario</div>
+                    <div class=" mb-1 card-text text-danger">@a.fechaFin.ToString("MM/dd/yyyy")</div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: @a.porcentajePositivo%;">
+                            @a.porcentajePositivo%
+                        </div>
+
+                        <div class="progress-bar bg-success" style="width:@a.porcentajeNegativo%;">
+                        </div>
+                    </div>
+                    <a href="~/Home/DetallePropuesta/@a.idPropuesta" class="mt-2 btn btn-sm btn-primary float-right">Detalle <i class="fas fa-angle-double-right"></i></a>
+                </div>
+            </div>
+        </div>
+    }
 </div>

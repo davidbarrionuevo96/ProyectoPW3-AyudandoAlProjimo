@@ -16,12 +16,24 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         {
             if (Session["usuario"] != null)
             {
-                return View();
+                return View("Index", l.BuscarPropuestas());
             }
             else
             {
-                return RedirectToAction("Login","Login");
-            }           
+                return RedirectToAction("Login", "Login");
+            }
+        }
+        [HttpPost]
+        public ActionResult Buscador(FormCollection f)
+        {
+            if (Session["usuario"] != null)
+            {
+                return View("Index", l.BuscadorDePropuestas(f["buscar"].ToString()));
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public ActionResult Denuncias()
         {
