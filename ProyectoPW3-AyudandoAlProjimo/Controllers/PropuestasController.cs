@@ -11,24 +11,25 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
 {
     public class PropuestasController : Controller
     {
+        static HttpPostedFileBase fotofija;
         private readonly PropuestaService _propuestaService = new PropuestaService();
         public ActionResult Crear()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Crear(PropuestaAux p)
+        public ActionResult Crear(PropuestaAux p, HttpPostedFileBase Foto)
         {
             p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
 
-
+            fotofija = Foto;
             if (p.TipoDonacion==(int)EnumTipoDonacion.Insumo)
             {
                 p.pins = new List<PropuestasDonacionesInsumos>();
                 Session["pinsumo"]=p;
                 return RedirectToAction("CargarListaInsumos", "Propuestas",p);
             }
-            _propuestaService.RegistrarPropuesta(p);
+            _propuestaService.RegistrarPropuesta(p, Foto);
             return RedirectToAction("MisPrupuestas", "Propuestas");
         }
 
@@ -47,7 +48,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                 {
                     p.pins.Add(item);
                 }
-            _propuestaService.RegistrarPropuesta(p);
+            _propuestaService.RegistrarPropuesta(p,fotofija);
             return RedirectToAction("MisPrupuestas", "Propuestas");
         }
         [HttpGet]

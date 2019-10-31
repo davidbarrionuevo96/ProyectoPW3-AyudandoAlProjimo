@@ -7,12 +7,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Servicios
 {
     public class PropuestaService
     {
-        public void RegistrarPropuesta(PropuestaAux p)
+        public void RegistrarPropuesta(PropuestaAux p, HttpPostedFileBase Foto)
         {
             Propuestas pr = new Propuestas();
             pr.Descripcion = p.Descripcion;
@@ -20,9 +21,10 @@ namespace Servicios
             pr.FechaCreacion = DateTime.Today;
             pr.FechaFin = p.FechaFin;
 
-            String filename = Path.GetFileName(p.Foto.FileName);
-            var path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/img/propuestas/"), filename);
-            p.Foto.SaveAs(path);
+
+            var filename = Path.GetFileName(Foto.FileName);
+            var path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/img/"), filename);
+            Foto.SaveAs(path);
             pr.Foto = filename;
 
             pr.PropuestasReferencias.Add(
