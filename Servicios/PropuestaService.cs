@@ -75,6 +75,20 @@ namespace Servicios
             }
         }
 
+        public int TamListaInsPorId(int idPropuesta)
+        {
+            using (Entities ctx = new Entities())
+            {
+                int cant = (from p in ctx.Propuestas
+                            join pi in ctx.PropuestasDonacionesInsumos
+                            on p.IdPropuesta equals pi.IdPropuesta
+                            where pi.IdPropuesta==idPropuesta
+                            select pi
+                         ).Count();
+                return cant;
+            }
+        }
+
         public List<PropuestasDonacionesInsumos> CrearListaPropuestasInsumos(int cant)
         {
             List<PropuestasDonacionesInsumos> list = new List<PropuestasDonacionesInsumos>();
@@ -239,40 +253,46 @@ namespace Servicios
                 return pro;
             }
         }
-        public void ModificarPropuesta(PropuestaAux paux)
+        public void ModificarPropuesta(Propuestas p, HttpPostedFileBase Foto)
         {
             
             using (var ctx=new Entities())
             {
                 //1->Monetaria   2->Insumos   3->HorasDeTrabajo
 
-                Propuestas prop = (from pr in ctx.Propuestas
-                                   where pr.IdPropuesta == paux.IdPropuesta
-                                   select pr).First();
+                Propuestas pr = (from prop in ctx.Propuestas
+                                   where prop.IdPropuesta == p.IdPropuesta
+                                   select prop).First();
+                pr.Descripcion = p.Descripcion;
+                pr.FechaFin = p.FechaFin;
+                pr.Nombre = p.Nombre;
+                pr.TelefonoContacto = p.TelefonoContacto;
+                pr.TipoDonacion = p.TipoDonacion;
 
-                prop.Descripcion = paux.Descripcion;
-                prop.Estado = paux.Estado;
-                prop.FechaFin = paux.FechaFin;
-                //prop.Foto = paux.Foto;
-                prop.Foto = "FotoNueva";
-                prop.Nombre = paux.Nombre;
-                prop.TelefonoContacto = paux.TelefonoContacto;
+                if (p.TipoDonacion == (int)EnumTipoDonacion.Monetaria)
+                {
+                    pr.PropuestasDonacionesMonetarias.First().CBU = p.PropuestasDonacionesMonetarias.First().CBU;
+                    pr.PropuestasDonacionesMonetarias.First().Dinero = p.PropuestasDonacionesMonetarias.First().Dinero;
+                }
+                if (p.TipoDonacion == (int)EnumTipoDonacion.Insumo)
+                {
+                    for (int i = 0; i < p.PropuestasDonacionesInsumos.Count; i++)
+                    {
+                        pr.PropuestasDonacionesInsumos.ToList()[i].Cantidad = p.PropuestasDonacionesInsumos.ToList()[i].Cantidad;
+                        pr.PropuestasDonacionesInsumos.ToList()[i].Nombre = p.PropuestasDonacionesInsumos.ToList()[i].Nombre;
+                    }
 
-                if (prop.TipoDonacion == (int)EnumTipoDonacion.Monetaria)
-                {
-                    prop.PropuestasDonacionesMonetarias.FirstOrDefault().Dinero = paux.Dinero;
-                    prop.PropuestasDonacionesMonetarias.FirstOrDefault().CBU = paux.CBU;
                 }
-                else if (prop.TipoDonacion == (int)EnumTipoDonacion.Insumo)
+                if (p.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
                 {
-                    prop.PropuestasDonacionesInsumos.FirstOrDefault().Cantidad = paux.CantidadIns;
-                    prop.PropuestasDonacionesInsumos.FirstOrDefault().Nombre = paux.NombreIns;
+                    pr.PropuestasDonacionesHorasTrabajo.First().Profesion = p.PropuestasDonacionesHorasTrabajo.First().Profesion;
+                    pr.PropuestasDonacionesHorasTrabajo.First().CantidadHoras= p.PropuestasDonacionesHorasTrabajo.First().CantidadHoras;
                 }
-                else if (prop.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
-                {
-                    prop.PropuestasDonacionesHorasTrabajo.FirstOrDefault().CantidadHoras = paux.CantidadHoras;
-                    prop.PropuestasDonacionesHorasTrabajo.FirstOrDefault().Profesion = paux.Profesion;
-                }
+
+                var filename = Path.GetFileName(Foto.FileName);
+                var path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/img/"), filename);
+                Foto.SaveAs(path);
+                pr.Foto = filename;
 
 
                 ctx.SaveChanges();
@@ -283,7 +303,8 @@ namespace Servicios
         {
             using (Entities ctx=new Entities())
             {
-                var p =( from pr in ctx.Propuestas
+                ctx.Configuration.LazyLoadingEnabled = false;
+                var p =( from pr in ctx.Propuestas.Include("PropuestasDonacionesHorasTrabajo").Include("PropuestasDonacionesInsumos").Include("PropuestasDonacionesMonetarias")
                                where pr.IdPropuesta == id
                                select pr).FirstOrDefault();
                 return p;
