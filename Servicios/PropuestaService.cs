@@ -18,7 +18,7 @@ namespace Servicios
         {
             Propuestas pr = new Propuestas();
             pr.Descripcion = p.Descripcion;
-            pr.Estado = 1;
+            pr.Estado = 0;
             pr.FechaCreacion = DateTime.Today;
             pr.FechaFin = p.FechaFin;
 
