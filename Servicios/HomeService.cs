@@ -34,6 +34,7 @@ namespace Servicios
         {
             var usua2 = (from p in asd.Propuestas
                          join f in asd.Usuarios on p.IdUsuarioCreador equals f.IdUsuario
+                         where p.Estado == 0
                          orderby p.FechaCreacion
                          select new
                          {
@@ -68,7 +69,7 @@ namespace Servicios
         {
             var usua2 = (from p in asd.Propuestas
                          join f in asd.Usuarios on p.IdUsuarioCreador equals f.IdUsuario
-                         where f.Nombre.Contains(TextoABuscar) || p.Nombre.Contains(TextoABuscar)
+                         where f.Nombre.Contains(TextoABuscar) && p.Estado == 0 || p.Nombre.Contains(TextoABuscar) && p.Estado == 0
                          orderby p.FechaCreacion, p.Valoracion descending
                          select new
                          {
@@ -117,20 +118,21 @@ namespace Servicios
         public List<DenunciaMotivo> BuscarDenuncias()
         {
             var usua2 = (from p in asd.Denuncias
-                                     join f in asd.Motivo on p.IdMotivo equals f.IdMotivo
-                                     where p.Estado == 1
-                                     orderby p.FechaCreacion
-                                     select new {
-                                            idDbenuncia = p.IdDenuncia,
-                                            IdPropuesta=p.IdPropuesta,
-                                            Comentarios=p.Comentarios,
-                                            DescripcionMotivo = f.Descripcion,
-                                            FechaCreacion = p.FechaCreacion,
+                         join f in asd.Motivo on p.IdMotivo equals f.IdMotivo
+                         where p.Estado == 1
+                         orderby p.FechaCreacion
+                         select new
+                         {
+                             idDbenuncia = p.IdDenuncia,
+                             IdPropuesta = p.IdPropuesta,
+                             Comentarios = p.Comentarios,
+                             DescripcionMotivo = f.Descripcion,
+                             FechaCreacion = p.FechaCreacion,
 
-                                     }).ToList();
+                         }).ToList();
 
             List<DenunciaMotivo> denumoti = new List<DenunciaMotivo>();
-           
+
             foreach (var a in usua2)
             {
                 DenunciaMotivo denu = new DenunciaMotivo();
@@ -178,7 +180,7 @@ namespace Servicios
                 usu2 = a;
             }
 
-            usu2.Password =u;
+            usu2.Password = u;
             asd.SaveChanges();
             return usu2;
         }

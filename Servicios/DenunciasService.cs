@@ -23,7 +23,7 @@ namespace Servicios
             {
                 usu2 = a;
             }
-            usu2.Estado = 2;
+            usu2.Estado = 0;
             asd.SaveChanges();
         }
 
@@ -36,14 +36,35 @@ namespace Servicios
             Denuncias usu2 = new Denuncias();
             foreach (var a in usua)
             {
+                a.Estado = 0;
                 usu2 = a;
             }
-            usu2.Estado = 0;
+
+            var usua3 = (from p in asd.Propuestas
+                         where p.IdPropuesta == usu2.IdPropuesta
+                         select p).ToList();
+
+            Propuestas usu4 = new Propuestas();
+            foreach (var a in usua3)
+            {
+                usu4 = a;
+            }
+
+            usu4.Estado = 0;
+
+            var usua5 = (from p in asd.Denuncias
+                         where p.IdPropuesta == usu4.IdPropuesta
+                         select p).ToList();
+
+            Denuncias usu6 = new Denuncias();
+            foreach (var a in usua5)
+            {
+                usu6 = a;
+                usu6.Estado = 0;
+                asd.SaveChanges();
+            }
             asd.SaveChanges();
         }
-
-
-
     }
-    
+
 }

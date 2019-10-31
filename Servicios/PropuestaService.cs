@@ -13,6 +13,7 @@ namespace Servicios
 {
     public class PropuestaService
     {
+        Entities asd = new Entities();
         public void RegistrarPropuesta(PropuestaAux p, HttpPostedFileBase Foto)
         {
             Propuestas pr = new Propuestas();
@@ -73,6 +74,113 @@ namespace Servicios
                 ctx.Propuestas.Add(pr);
                 ctx.SaveChanges();
             }
+        }
+
+        public List<PropuestaUsuario> BuscarPropuestas()
+        {
+            int id = Int32.Parse(HttpContext.Current.Session["usuario"].ToString());
+            var usua2 = (from p in asd.Propuestas
+                         join f in asd.Usuarios on p.IdUsuarioCreador equals f.IdUsuario
+                         where f.IdUsuario == id
+                         orderby p.FechaCreacion
+                         select new
+                         {
+                             idPropuesta = p.IdPropuesta,
+                             nombre = p.Nombre,
+                             usuario = f.Nombre,
+                             foto = p.Foto,
+                             fechaFin = p.FechaFin,
+                             porcentajePositivo = p.Valoracion,
+
+                         }).ToList();
+
+            List<PropuestaUsuario> propu = new List<PropuestaUsuario>();
+
+            foreach (var a in usua2)
+            {
+                PropuestaUsuario p = new PropuestaUsuario();
+                p.fechaFin = a.fechaFin;
+                p.foto = a.foto;
+                p.idPropuesta = a.idPropuesta;
+                p.nombre = a.nombre;
+                p.usuario = a.usuario;
+                p.porcentajePositivo = Convert.ToDecimal(a.porcentajePositivo);
+                p.generarPorcentajeNegativo();
+
+                propu.Add(p);
+            }
+            return propu;
+        }
+
+        public List<PropuestaUsuario> BuscarPropuestasActivas()
+        {
+            int id = Int32.Parse(HttpContext.Current.Session["usuario"].ToString());
+            var usua2 = (from p in asd.Propuestas
+                         join f in asd.Usuarios on p.IdUsuarioCreador equals f.IdUsuario
+                         where f.IdUsuario == id && p.FechaFin >= DateTime.Today
+                         orderby p.FechaCreacion
+                         select new
+                         {
+                             idPropuesta = p.IdPropuesta,
+                             nombre = p.Nombre,
+                             usuario = f.Nombre,
+                             foto = p.Foto,
+                             fechaFin = p.FechaFin,
+                             porcentajePositivo = p.Valoracion,
+
+                         }).ToList();
+
+            List<PropuestaUsuario> propu = new List<PropuestaUsuario>();
+
+            foreach (var a in usua2)
+            {
+                PropuestaUsuario p = new PropuestaUsuario();
+                p.fechaFin = a.fechaFin;
+                p.foto = a.foto;
+                p.idPropuesta = a.idPropuesta;
+                p.nombre = a.nombre;
+                p.usuario = a.usuario;
+                p.porcentajePositivo = Convert.ToDecimal(a.porcentajePositivo);
+                p.generarPorcentajeNegativo();
+
+                propu.Add(p);
+            }
+            return propu;
+        }
+        public List<PropuestaUsuario> BuscarPropuestasInactivas()
+        {
+            int id = Int32.Parse(HttpContext.Current.Session["usuario"].ToString());
+            var usua2 = (from p in asd.Propuestas
+                         join f in asd.Usuarios on p.IdUsuarioCreador equals f.IdUsuario
+                         where f.IdUsuario == id && p.FechaFin <= DateTime.Today
+                         orderby p.FechaCreacion
+                         select new
+                         {
+                             idPropuesta = p.IdPropuesta,
+                             nombre = p.Nombre,
+                             usuario = f.Nombre,
+                             foto = p.Foto,
+                             fechaFin = p.FechaFin,
+                             porcentajePositivo = p.Valoracion,
+
+                         }).ToList();
+
+            List<PropuestaUsuario> propu = new List<PropuestaUsuario>();
+
+            foreach (var a in usua2)
+            {
+                PropuestaUsuario p = new PropuestaUsuario();
+                p.fechaFin = a.fechaFin;
+                p.foto = a.foto;
+                p.idPropuesta = a.idPropuesta;
+                p.nombre = a.nombre;
+                p.usuario = a.usuario;
+                p.porcentajePositivo = Convert.ToDecimal(a.porcentajePositivo);
+                p.generarPorcentajeNegativo();
+
+                propu.Add(p);
+            }
+            return propu;
         }
 
         public int TamListaInsPorId(int idPropuesta)

@@ -87,8 +87,36 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         }
         public ActionResult MisPropuestas()
         {
-            //no esta hecho
-            return View();
+            if (Session["usuario"] != null)
+            {
+                return View("MisPropuestas", _propuestaService.BuscarPropuestas());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+        public ActionResult Activas()
+        {
+            if (Session["usuario"] != null)
+            {
+                return View("MisPropuestas", _propuestaService.BuscarPropuestasActivas());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+        public ActionResult Inactivas()
+        {
+            if (Session["usuario"] != null)
+            {
+                return View("MisPropuestas", _propuestaService.BuscarPropuestasInactivas());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
     }
 }
