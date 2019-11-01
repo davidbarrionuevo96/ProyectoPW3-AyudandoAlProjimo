@@ -29,9 +29,10 @@
             var url='http://@HttpContext.Current.Request.Url.Authority/api/HistorialDonaciones/@ViewBag.Usuario'
             $.getJSON(url, function (data) {
                 data.forEach(function (item) {
+                var p = new Date(item.FechaDonacion);
                 cadena+=`<tr  class="text-center">`
 
-                    cadena += `<td>${item.FechaDonacion}</td>`
+                    cadena += `<td>${p.getDate()}-${p.getMonth()}-${p.getFullYear()}</td>`
                     cadena += `<td>${item.Nombre}</td>`
                     if (item.TipoDonacion==1) {
 
@@ -45,11 +46,11 @@
 
                         cadena += `<td class="${item.TipoDonacion}">Horas de Trabajo</td>`
                     }
-                    if (item.Estado==1) {
+                    if (item.Estado==0) {
 
                         cadena += `<td>Abierto</td>`
                     }
-                    if (item.Estado==0) {
+                    if (item.Estado==1) {
 
                         cadena += `<td>Cerrado</td>`
                     }

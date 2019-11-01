@@ -13,59 +13,76 @@
 {
     @Html.TextBoxFor(model => model.IdPropuesta, new { @class = "d-none", @Value = ViewBag.IdPropuesta })
     @Html.TextBoxFor(model => model.TipoDonacion, new { @class = "d-none", @Value = ViewBag.Tipo })
-<div class="form-group ml-0">
-    @{
-        if (ViewBag.Tipo == 1)
-        {
-            <div class="ml-1">
+    <div class="form-group ml-0">
+        @{
+            if (ViewBag.Tipo == 1)
+            {
+                <div class="ml-1">
                     <h6 class="font-weight-bold text-info">
                         Donar Dinero
                         (Faltante: @ViewBag.Faltante)
                         (Total: @ViewBag.Total)
                     </h6>
-            </div>
-            @Html.LabelFor(model => model.ArchivoTransferencia, "Archivo de Transferencia", htmlAttributes: new { @class = "control-label col-md-4" })
+                </div>
+                @Html.TextBoxFor(model => model.IdUsuario, new { @class = "d-none", @Value = @HttpContext.Current.Session["usuario"] })
+                @Html.LabelFor(model => model.ArchivoTransferencia, "Archivo de Transferencia", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.ArchivoTransferencia, new { @class = "form-control form-control-user" })
+                    @Html.ValidationMessageFor(model => model.ArchivoTransferencia, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.Dinero, "Dinero", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Dinero, new { @class = "form-control form-control-user" })
+                    @Html.ValidationMessageFor(model => model.Dinero, "", new { @class = "text-danger" })
+                </div>
+            }
+            if (ViewBag.Tipo == 2)
+            {
+                <div class="ml-1">
+                    <h6 class="font-weight-bold text-info">Donar Insumos</h6>
+                </div>
+                int c = 0;
+                foreach (Entidades.PropuestasDonacionesInsumos item in (List<Entidades.PropuestasDonacionesInsumos>)ViewBag.ListaIns)
+                {
+                    <div class="ml-1">
+                        <h6 class="font-weight-bold text-primary">
+                            (Insumo Requerido: @item.Nombre)
+                            (Cantidad Requerida: @item.Cantidad)
+                            (Cantidad Faltante: @ViewBag.Faltante)
+                        </h6>
+                    </div>
 
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ArchivoTransferencia, new { @class = "form-control form-control-user" })
-                @Html.ValidationMessageFor(model => model.ArchivoTransferencia, "", new { @class = "text-danger" })
-            </div>
-            @Html.LabelFor(model => model.Dinero, "Dinero", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Dinero, new { @class = "form-control form-control-user" })
-                @Html.ValidationMessageFor(model => model.Dinero, "", new { @class = "text-danger" })
-            </div>
-        }
-        if (ViewBag.Tipo == 2)
-        {
-            <div class="ml-1">
-                <h6 class="font-weight-bold text-info">Donar Insumos</h6>
-            </div>
-            @Html.LabelFor(model => model.CantidadIns, "Cantidad", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.CantidadIns, new { @class = "form-control form-control-user" })
-                @Html.ValidationMessageFor(model => model.CantidadIns, "", new { @class = "text-danger" })
-            </div>
-        }
-        if (ViewBag.Tipo == 3)
-        {
-            <div class="ml-1">
-                <h6 class="font-weight-bold text-primary">
-                    Donar Horas de Trabajo(Profesion: @ViewBag.Profesion)
-                    (Horas restantes requeridas: @ViewBag.Faltante)
-                    (Total de horas requeridas: @ViewBag.Total)
-                </h6>
-            </div>
-            @Html.LabelFor(model => model.CantidadHoras, "Cantidad de Horas", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.CantidadHoras, new { @class = "form-control form-control-user" })
-                @Html.ValidationMessageFor(model => model.CantidadHoras, "", new { @class = "text-danger" })
-            </div>
+                    @Html.TextBoxFor(model => model.dlistins[c].IdUsuario, new { @class = "d-none", @Value = @HttpContext.Current.Session["usuario"] })
+                    @Html.TextBoxFor(model => model.dlistins[c].IdPropuestaDonacionInsumo, new { @class = "d-none", @Value = item.IdPropuestaDonacionInsumo })
+
+                    @Html.LabelFor(model => model.dlistins[c].Cantidad, "Cantidad", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.dlistins[c].Cantidad, new { @class = "form-control form-control-user" })
+                        @Html.ValidationMessageFor(model => model.dlistins[c].Cantidad, "", new { @class = "text-danger" })
+                    </div>
+                    c++;
+                }
+            }
+            if (ViewBag.Tipo == 3)
+            {
+                <div class="ml-1">
+                    <h6 class="font-weight-bold text-primary">
+                        Donar Horas de Trabajo(Profesion: @ViewBag.Profesion)
+                        (Horas restantes requeridas: @ViewBag.Faltante)
+                        (Total de horas requeridas: @ViewBag.Total)
+                    </h6>
+                </div>
+                @Html.LabelFor(model => model.CantidadHoras, "Cantidad de Horas", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CantidadHoras, new { @class = "form-control form-control-user" })
+                    @Html.ValidationMessageFor(model => model.CantidadHoras, "", new { @class = "text-danger" })
+                </div>
+                @Html.TextBoxFor(model => model.IdUsuario, new { @class = "d-none", @Value = @HttpContext.Current.Session["usuario"] })
+
+            }
 
         }
-
-    }
-</div>
+    </div>
     <div class=" row">
         <div class="col-sm-12">
             <input type="submit" class="offset-sm-3 btn btn-primary" value="Aceptar">

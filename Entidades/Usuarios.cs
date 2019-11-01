@@ -11,44 +11,73 @@ namespace Entidades
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Usuarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuarios()
         {
             this.Denuncias = new HashSet<Denuncias>();
+            this.DonacionesHorasTrabajo = new HashSet<DonacionesHorasTrabajo>();
+            this.DonacionesInsumos = new HashSet<DonacionesInsumos>();
             this.DonacionesMonetarias = new HashSet<DonacionesMonetarias>();
             this.Propuestas = new HashSet<Propuestas>();
             this.PropuestasValoraciones = new HashSet<PropuestasValoraciones>();
-            this.DonacionesHorasTrabajo = new HashSet<DonacionesHorasTrabajo>();
-            this.DonacionesInsumos = new HashSet<DonacionesInsumos>();
         }
-    
+
         public int IdUsuario { get; set; }
+
+        [MaxLength(50, ErrorMessage = "50 caracteres como Maximo")]
         public string Nombre { get; set; }
+
+        [MaxLength(50, ErrorMessage = "50 caracteres como Maximo")]
         public string Apellido { get; set; }
+
+        [Required(ErrorMessage = "La Fecha de Nacimiento es obligatorio")]
+        [DataType(DataType.Date)]
         public System.DateTime FechaNacimiento { get; set; }
+
+        [MaxLength(20, ErrorMessage = "20 caracteres como Maximo")]
         public string UserName { get; set; }
+
+        [Required(ErrorMessage = "El Email es obligatorio")]
+        [MaxLength(50, ErrorMessage = "50 caracteres como Maximo")]
+        [EmailAddress(ErrorMessage = "Formato valido: ejemplo@ejemplo.com.ar")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+
+        [RegularExpression(@"^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$",
+        ErrorMessage = "Minimo 1 mayúscula, 1 número y 8 caracteres")]
+        [MaxLength(20, ErrorMessage = "20 caracteres como Maximo")]
+        [Required(ErrorMessage = "La contraseña es obligatoria")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [MaxLength(100, ErrorMessage = "100 caracteres como Maximo")]
         public string Foto { get; set; }
+
+
         public int TipoUsuario { get; set; }
         public System.DateTime FechaCracion { get; set; }
         public bool Activo { get; set; }
+
+        [MaxLength(50, ErrorMessage = "50 caracteres como Maximo")]
         public string Token { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Denuncias> Denuncias { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DonacionesHorasTrabajo> DonacionesHorasTrabajo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DonacionesInsumos> DonacionesInsumos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonacionesMonetarias> DonacionesMonetarias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Propuestas> Propuestas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PropuestasValoraciones> PropuestasValoraciones { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonacionesHorasTrabajo> DonacionesHorasTrabajo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonacionesInsumos> DonacionesInsumos { get; set; }
     }
 }

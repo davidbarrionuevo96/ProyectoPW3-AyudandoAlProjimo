@@ -12,8 +12,7 @@ namespace Entidades.Auxiliares
         public int CantidadHoras { get; set; }
         //Horas de Trabajo
         //Insumos
-        public string NombreIns { get; set; }
-        public int CantidadIns { get; set; }
+        public List<DonacionesInsumos> dlistins { get; set; }
         //Insumos
         //Monetaria
         public decimal Dinero { get; set; }

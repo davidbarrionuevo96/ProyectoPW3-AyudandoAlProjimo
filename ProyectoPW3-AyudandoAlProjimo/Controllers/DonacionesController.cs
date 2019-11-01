@@ -8,7 +8,6 @@ using Entidades.Enums;
 using Entidades.Auxiliares;
 using Servicios;
 using System.Net.Mail;
-using System.Web;
 using WebApiDonaciones.Controllers;
 namespace ProyectoPW3_AyudandoAlProjimo.Controllers
 {
@@ -23,25 +22,32 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         }
         [HttpGet]
         public ActionResult RealizarDonacion(int id)
-        { int tipo = (_propuestaService.GetPorId(id)).TipoDonacion;
+        {
+            int tipo = (_propuestaService.GetPorId(id)).TipoDonacion;
             ViewBag.IdPropuesta = id;
-            if (tipo==(int)EnumTipoDonacion.Monetaria)
+            if (tipo == (int)EnumTipoDonacion.Monetaria)
             {
                 ViewBag.Total = _propuestaService.TotalPropuestaMon(id);
-                ViewBag.Faltante = (_propuestaService.TotalPropuestaMon(id) - _propuestaService.CalcularTotalPropuestaMon(id));
+                ViewBag.Faltante = (_propuestaService.TotalPropuestaMon(id) - _propuestaService.CalcularTotalDonadoPropuestaMon(id));
+            }
+            else if (tipo == (int)EnumTipoDonacion.Insumo)
+            {
+                ViewBag.Total = _propuestaService.TotalPropuestaIns(id);
+                ViewBag.Faltante = (_propuestaService.TotalPropuestaIns(id) - _propuestaService.CalcularTotalDonadoPropuestaIns(id));
+                ViewBag.ListaIns = _propuestaService.GetPorId(id).PropuestasDonacionesInsumos.ToList();
             }
             else if (tipo == (int)EnumTipoDonacion.HorasTrabajo)
             {
                 ViewBag.Total = _propuestaService.TotalPropuestaHrs(id);
                 ViewBag.Profesion = _propuestaService.RetornarProfesionPorIdPropuesta(id);
-                ViewBag.Faltante = (_propuestaService.TotalPropuestaHrs(id) - _propuestaService.CalcularTotalPropuestaHrs(id));
+                ViewBag.Faltante = (_propuestaService.TotalPropuestaHrs(id) - _propuestaService.CalcularTotalDonadoPropuestaHrs(id));
             }
             ViewBag.Tipo = tipo;
             return View();
         }
         [HttpPost]
         public ActionResult RealizarDonacion(CrearDonacionAux cd)
-        {   cd.IdUsuario= int.Parse(Session["usuario"].ToString());
+        {
             _DonacionService.RealizarDonacion(cd);
 
             return View();

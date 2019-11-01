@@ -31,8 +31,8 @@ namespace Servicios
             pr.PropuestasReferencias.Add(
                 new PropuestasReferencias()
                 {
-                 Nombre=p.NombreRef1,
-                 Telefono=p.Telefono1
+                    Nombre = p.NombreRef1,
+                    Telefono = p.Telefono1
                 }
                 );
             pr.PropuestasReferencias.Add(
@@ -47,7 +47,7 @@ namespace Servicios
             pr.TelefonoContacto = p.TelefonoContacto;
             pr.TipoDonacion = p.TipoDonacion;
 
-            if (p.TipoDonacion==(int)EnumTipoDonacion.Monetaria)
+            if (p.TipoDonacion == (int)EnumTipoDonacion.Monetaria)
             {
                 PropuestasDonacionesMonetarias d = new PropuestasDonacionesMonetarias();
                 d.Dinero = p.Dinero;
@@ -58,9 +58,9 @@ namespace Servicios
             {
                 foreach (var item in p.pins)
                 {
-                    pr.PropuestasDonacionesInsumos.Add(item);    
+                    pr.PropuestasDonacionesInsumos.Add(item);
                 }
-                
+
             }
             if (p.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
             {
@@ -190,7 +190,7 @@ namespace Servicios
                 int cant = (from p in ctx.Propuestas
                             join pi in ctx.PropuestasDonacionesInsumos
                             on p.IdPropuesta equals pi.IdPropuesta
-                            where pi.IdPropuesta==idPropuesta
+                            where pi.IdPropuesta == idPropuesta
                             select pi
                          ).Count();
                 return cant;
@@ -200,7 +200,7 @@ namespace Servicios
         public List<PropuestasDonacionesInsumos> CrearListaPropuestasInsumos(int cant)
         {
             List<PropuestasDonacionesInsumos> list = new List<PropuestasDonacionesInsumos>();
-            for (int i = 0; i <cant; i++)
+            for (int i = 0; i < cant; i++)
             {
                 list.Add(
                     new PropuestasDonacionesInsumos()
@@ -213,19 +213,28 @@ namespace Servicios
 
         public int TotalPropuestaIns(int id)
         {
+            int contTotal = 0;
             Entities ctx = new Entities();
-            var v = (from p in ctx.PropuestasDonacionesInsumos
-                             where p.IdPropuesta == id
-                             select p.Cantidad
-                             ).First();
-            return v;
+            var plist = (from p in ctx.PropuestasDonacionesInsumos
+                         where p.IdPropuesta == id
+                         select p.Cantidad
+                             ).ToList();
+            if (plist.Count > 0)
+            {
+                foreach (int item in plist)
+                {
+                    contTotal += item;
+                }
+                return contTotal;
+            }
+            else return 0;
         }
         public int TotalPropuestaHrs(int id)
         {
             Entities ctx = new Entities();
             var v = (from p in ctx.PropuestasDonacionesHorasTrabajo
-                             where p.IdPropuesta == id
-                             select p.CantidadHoras
+                     where p.IdPropuesta == id
+                     select p.CantidadHoras
                              ).First();
 
             return v;
@@ -234,23 +243,23 @@ namespace Servicios
         {
             Entities ctx = new Entities();
             var v = (from p in ctx.PropuestasDonacionesMonetarias
-                                 where p.IdPropuesta == id
-                                 select p.Dinero
+                     where p.IdPropuesta == id
+                     select p.Dinero
                              ).First();
 
             return v;
         }
-        public int CalcularTotalPropuestaIns(int id)
+        public int CalcularTotalDonadoPropuestaIns(int id)
         {
             Entities ctx = new Entities();
             int contTotal = 0;
             var dlist = (from p in ctx.Propuestas
-                                 join p_in in ctx.PropuestasDonacionesInsumos
-                                  on p.IdPropuesta equals p_in.IdPropuesta
-                                 join d_in in ctx.DonacionesInsumos
-                                  on p_in.IdPropuestaDonacionInsumo equals d_in.IdPropuestaDonacionInsumo
-                                 where p.IdPropuesta == id
-                                 select d_in.Cantidad
+                         join p_in in ctx.PropuestasDonacionesInsumos
+                          on p.IdPropuesta equals p_in.IdPropuesta
+                         join d_in in ctx.DonacionesInsumos
+                          on p_in.IdPropuestaDonacionInsumo equals d_in.IdPropuestaDonacionInsumo
+                         where p.IdPropuesta == id
+                         select d_in.Cantidad
                              ).ToList();
 
             if (dlist.Count > 0)
@@ -263,18 +272,18 @@ namespace Servicios
             }
             else return 0;
         }
-        public int CalcularTotalPropuestaHrs(int id)
+        public int CalcularTotalDonadoPropuestaHrs(int id)
         {
             Entities ctx = new Entities();
 
             int contTotal = 0;
             var dlist = (from p in ctx.Propuestas
-                             join p_in in ctx.PropuestasDonacionesHorasTrabajo
-                              on p.IdPropuesta equals p_in.IdPropuesta
-                             join d_in in ctx.DonacionesHorasTrabajo
-                              on p_in.IdPropuestaDonacionHorasTrabajo equals d_in.IdPropuestaDonacionHorasTrabajo
-                             where p.IdPropuesta == id
-                             select d_in.Cantidad
+                         join p_in in ctx.PropuestasDonacionesHorasTrabajo
+                          on p.IdPropuesta equals p_in.IdPropuesta
+                         join d_in in ctx.DonacionesHorasTrabajo
+                          on p_in.IdPropuestaDonacionHorasTrabajo equals d_in.IdPropuestaDonacionHorasTrabajo
+                         where p.IdPropuesta == id
+                         select d_in.Cantidad
                              ).ToList();
 
             if (dlist.Count > 0)
@@ -287,20 +296,20 @@ namespace Servicios
             }
             else return 0;
         }
-        public decimal CalcularTotalPropuestaMon(int id)
+        public decimal CalcularTotalDonadoPropuestaMon(int id)
         {
             Entities ctx = new Entities();
 
             decimal contTotal = 0;
             var dlist = (from p in ctx.Propuestas
-                     join p_in in ctx.PropuestasDonacionesMonetarias
-                      on p.IdPropuesta equals p_in.IdPropuesta
-                     join d_in in ctx.DonacionesMonetarias
-                      on p_in.IdPropuestaDonacionMonetaria equals d_in.IdPropuestaDonacionMonetaria
-                     where p.IdPropuesta == id
-                     select d_in.Dinero
+                         join p_in in ctx.PropuestasDonacionesMonetarias
+                          on p.IdPropuesta equals p_in.IdPropuesta
+                         join d_in in ctx.DonacionesMonetarias
+                          on p_in.IdPropuestaDonacionMonetaria equals d_in.IdPropuestaDonacionMonetaria
+                         where p.IdPropuesta == id
+                         select d_in.Dinero
                           ).ToList();
-            if (dlist.Count>0 )
+            if (dlist.Count > 0)
             {
                 foreach (decimal item in dlist)
                 {
@@ -312,12 +321,12 @@ namespace Servicios
         }
         public int IdPropuestaMonetaria(int id)
         {
-            using (var ctx=new Entities())
+            using (var ctx = new Entities())
             {
                 int ide = (from p in ctx.Propuestas
-                          join p_m in ctx.PropuestasDonacionesMonetarias
-                          on p.IdPropuesta equals p_m.IdPropuesta
-                          select p_m.IdPropuestaDonacionMonetaria).First();
+                           join p_m in ctx.PropuestasDonacionesMonetarias
+                           on p.IdPropuesta equals p_m.IdPropuesta
+                           select p_m.IdPropuestaDonacionMonetaria).First();
                 return ide;
             }
 
@@ -354,23 +363,23 @@ namespace Servicios
             using (var ctx = new Entities())
             {
                 string pro = (from p in ctx.Propuestas
-                           join p_m in ctx.PropuestasDonacionesHorasTrabajo
-                           on p.IdPropuesta equals p_m.IdPropuesta
-                           where p.IdPropuesta==id
-                           select p_m.Profesion).First();
+                              join p_m in ctx.PropuestasDonacionesHorasTrabajo
+                              on p.IdPropuesta equals p_m.IdPropuesta
+                              where p.IdPropuesta == id
+                              select p_m.Profesion).First();
                 return pro;
             }
         }
         public void ModificarPropuesta(Propuestas p, HttpPostedFileBase Foto)
         {
-            
-            using (var ctx=new Entities())
+
+            using (var ctx = new Entities())
             {
                 //1->Monetaria   2->Insumos   3->HorasDeTrabajo
 
                 Propuestas pr = (from prop in ctx.Propuestas
-                                   where prop.IdPropuesta == p.IdPropuesta
-                                   select prop).First();
+                                 where prop.IdPropuesta == p.IdPropuesta
+                                 select prop).First();
                 pr.Descripcion = p.Descripcion;
                 pr.FechaFin = p.FechaFin;
                 pr.Nombre = p.Nombre;
@@ -394,7 +403,7 @@ namespace Servicios
                 if (p.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
                 {
                     pr.PropuestasDonacionesHorasTrabajo.First().Profesion = p.PropuestasDonacionesHorasTrabajo.First().Profesion;
-                    pr.PropuestasDonacionesHorasTrabajo.First().CantidadHoras= p.PropuestasDonacionesHorasTrabajo.First().CantidadHoras;
+                    pr.PropuestasDonacionesHorasTrabajo.First().CantidadHoras = p.PropuestasDonacionesHorasTrabajo.First().CantidadHoras;
                 }
 
                 var filename = Path.GetFileName(Foto.FileName);
@@ -409,25 +418,15 @@ namespace Servicios
         }
         public Propuestas GetPorId(int id)
         {
-            using (Entities ctx=new Entities())
-            {
-                ctx.Configuration.LazyLoadingEnabled = false;
-                var p =( from pr in ctx.Propuestas.Include("PropuestasDonacionesHorasTrabajo").Include("PropuestasDonacionesInsumos").Include("PropuestasDonacionesMonetarias")
-                               where pr.IdPropuesta == id
-                               select pr).FirstOrDefault();
-                return p;
-            }
-        }
-        //borrar
-        public Propuestas GetPropuestaMonetaria(int id)
-        {
             using (Entities ctx = new Entities())
             {
-                var p = (from pr in ctx.Propuestas
+                ctx.Configuration.LazyLoadingEnabled = false;
+                var p = (from pr in ctx.Propuestas.Include("PropuestasDonacionesHorasTrabajo").Include("PropuestasDonacionesInsumos").Include("PropuestasDonacionesMonetarias")
                          where pr.IdPropuesta == id
                          select pr).FirstOrDefault();
                 return p;
             }
         }
+
     }
 }

@@ -8,7 +8,7 @@ namespace Entidades
 {
     public class DonacionAux
     {
-  
+
         public DateTime FechaDonacion { get; set; }
         public string Nombre { get; set; }
         public int TipoDonacion { get; set; }
