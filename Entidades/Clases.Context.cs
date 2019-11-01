@@ -18,7 +18,6 @@ namespace Entidades
         public Entities()
             : base("name=Entities")
         {
-            //this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -27,8 +26,6 @@ namespace Entidades
         }
     
         public virtual DbSet<Denuncias> Denuncias { get; set; }
-        public virtual DbSet<DonacionesHorasTrabajo> DonacionesHorasTrabajo { get; set; }
-        public virtual DbSet<DonacionesInsumos> DonacionesInsumos { get; set; }
         public virtual DbSet<DonacionesMonetarias> DonacionesMonetarias { get; set; }
         public virtual DbSet<Motivo> Motivo { get; set; }
         public virtual DbSet<Propuestas> Propuestas { get; set; }
@@ -38,5 +35,7 @@ namespace Entidades
         public virtual DbSet<PropuestasReferencias> PropuestasReferencias { get; set; }
         public virtual DbSet<PropuestasValoraciones> PropuestasValoraciones { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<DonacionesHorasTrabajo> DonacionesHorasTrabajo { get; set; }
+        public virtual DbSet<DonacionesInsumos> DonacionesInsumos { get; set; }
     }
 }

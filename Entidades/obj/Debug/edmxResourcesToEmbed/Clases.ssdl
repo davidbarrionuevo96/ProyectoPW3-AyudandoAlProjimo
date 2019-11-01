@@ -20,6 +20,7 @@
     <Property Name="IdPropuestaDonacionHorasTrabajo" Type="int" Nullable="false" />
     <Property Name="IdUsuario" Type="int" Nullable="false" />
     <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="FechaCreacion" Type="datetime" />
   </EntityType>
   <EntityType Name="DonacionesInsumos">
     <Key>
@@ -29,6 +30,7 @@
     <Property Name="IdPropuestaDonacionInsumo" Type="int" Nullable="false" />
     <Property Name="IdUsuario" Type="int" Nullable="false" />
     <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="FechaCreacion" Type="datetime" />
   </EntityType>
   <EntityType Name="DonacionesMonetarias">
     <Key>

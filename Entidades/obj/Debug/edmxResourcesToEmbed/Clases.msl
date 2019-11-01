@@ -14,26 +14,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DonacionesHorasTrabajo">
-      <EntityTypeMapping TypeName="Model.DonacionesHorasTrabajo">
-        <MappingFragment StoreEntitySet="DonacionesHorasTrabajo">
-          <ScalarProperty Name="IdDonacionHorasTrabajo" ColumnName="IdDonacionHorasTrabajo" />
-          <ScalarProperty Name="IdPropuestaDonacionHorasTrabajo" ColumnName="IdPropuestaDonacionHorasTrabajo" />
-          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DonacionesInsumos">
-      <EntityTypeMapping TypeName="Model.DonacionesInsumos">
-        <MappingFragment StoreEntitySet="DonacionesInsumos">
-          <ScalarProperty Name="IdDonacionInsumo" ColumnName="IdDonacionInsumo" />
-          <ScalarProperty Name="IdPropuestaDonacionInsumo" ColumnName="IdPropuestaDonacionInsumo" />
-          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DonacionesMonetarias">
       <EntityTypeMapping TypeName="Model.DonacionesMonetarias">
         <MappingFragment StoreEntitySet="DonacionesMonetarias">
@@ -136,6 +116,28 @@
           <ScalarProperty Name="FechaCracion" ColumnName="FechaCracion" />
           <ScalarProperty Name="Activo" ColumnName="Activo" />
           <ScalarProperty Name="Token" ColumnName="Token" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonacionesHorasTrabajo">
+      <EntityTypeMapping TypeName="Model.DonacionesHorasTrabajo">
+        <MappingFragment StoreEntitySet="DonacionesHorasTrabajo">
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdPropuestaDonacionHorasTrabajo" ColumnName="IdPropuestaDonacionHorasTrabajo" />
+          <ScalarProperty Name="IdDonacionHorasTrabajo" ColumnName="IdDonacionHorasTrabajo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonacionesInsumos">
+      <EntityTypeMapping TypeName="Model.DonacionesInsumos">
+        <MappingFragment StoreEntitySet="DonacionesInsumos">
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdPropuestaDonacionInsumo" ColumnName="IdPropuestaDonacionInsumo" />
+          <ScalarProperty Name="IdDonacionInsumo" ColumnName="IdDonacionInsumo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

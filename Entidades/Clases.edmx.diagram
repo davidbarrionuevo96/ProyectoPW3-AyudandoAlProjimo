@@ -6,8 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="48cc6884e0744097b71629e4bade78fd" Name="Diagram1">
         <EntityTypeShape EntityType="Model.Denuncias" Width="1.5" PointX="5.25" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.DonacionesHorasTrabajo" Width="1.5" PointX="7.5" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.DonacionesInsumos" Width="1.5" PointX="7.5" PointY="21.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DonacionesMonetarias" Width="1.5" PointX="10.5" PointY="20.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Motivo" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Propuestas" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
@@ -20,10 +18,6 @@
         <AssociationConnector Association="Model.FK_Denuncias_Propuestas" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Denuncias_Usuarios" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Motivo" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_DonacionesHorasTrabajo_PropuestasDonacionesHorasTrabajo" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_DonacionesHorasTrabajo_Usuarios" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_DonacionesInsumos_PropuestasDonacionesInsumos" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_DonacionesInsumos_Usuarios" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_DonacionesMonetarias_PropuestasDonacionesMonetarias" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_DonacionesMonetarias_Usuarios" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Propuestas_Usuarios" ManuallyRouted="false" />
@@ -33,6 +27,12 @@
         <AssociationConnector Association="Model.FK_PropuestasReferencias_Propuestas" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_PropuestasValoraciones_Propuestas" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_PropuestasValoraciones_Usuarios" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.DonacionesHorasTrabajo" Width="1.5" PointX="7.5" PointY="17.875" />
+        <EntityTypeShape EntityType="Model.DonacionesInsumos" Width="1.5" PointX="7.5" PointY="21.375" />
+        <AssociationConnector Association="Model.FK_DonacionesHorasTrabajo_PropuestasDonacionesHorasTrabajo" />
+        <AssociationConnector Association="Model.FK_DonacionesHorasTrabajo_Usuarios" />
+        <AssociationConnector Association="Model.FK_DonacionesInsumos_PropuestasDonacionesInsumos" />
+        <AssociationConnector Association="Model.FK_DonacionesInsumos_Usuarios" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

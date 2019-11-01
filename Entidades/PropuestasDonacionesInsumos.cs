@@ -25,8 +25,8 @@ namespace Entidades
         public string Nombre { get; set; }
         public int Cantidad { get; set; }
     
+        public virtual Propuestas Propuestas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonacionesInsumos> DonacionesInsumos { get; set; }
-        public virtual Propuestas Propuestas { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace Entidades
         public int IdPropuestaDonacionInsumo { get; set; }
         public int IdUsuario { get; set; }
         public int Cantidad { get; set; }
+        public Nullable<System.DateTime> FechaCreacion { get; set; }
     
         public virtual PropuestasDonacionesInsumos PropuestasDonacionesInsumos { get; set; }
         public virtual Usuarios Usuarios { get; set; }
