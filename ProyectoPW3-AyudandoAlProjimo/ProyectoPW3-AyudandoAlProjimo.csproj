@@ -193,6 +193,7 @@
     <Content Include="Views\Propuestas\Modificar.cshtml" />
     <Content Include="Views\Donaciones\RealizarDonacion.cshtml" />
     <Content Include="Views\Propuestas\MisPropuestas.cshtml" />
+    <Content Include="Views\Propuestas\CargarListaInsumos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

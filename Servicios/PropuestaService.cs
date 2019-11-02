@@ -76,6 +76,28 @@ namespace Servicios
             }
         }
 
+        public int Permitirpropuesta(int id)
+        {
+            using (var ctx=new Entities())
+            {
+                var cant = (from p in ctx.Propuestas
+                            where p.IdUsuarioCreador == id
+                            && p.Estado==0
+                            select p).ToList();
+                var usu = (from u in ctx.Usuarios
+                           where u.IdUsuario==id
+                           select u).First();
+                if (cant.Count>=3 || usu.Nombre==null || usu.Apellido==null || usu.FechaNacimiento==null || usu.Foto==null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+        }
+
         public List<PropuestaUsuario> BuscarPropuestas()
         {
             int id = Int32.Parse(HttpContext.Current.Session["usuario"].ToString());

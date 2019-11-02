@@ -30,10 +30,10 @@
                     @Html.TextBoxFor(model => model.ArchivoTransferencia, new { @class = "form-control form-control-user" })
                     @Html.ValidationMessageFor(model => model.ArchivoTransferencia, "", new { @class = "text-danger" })
                 </div>
-                @Html.LabelFor(model => model.Dinero, "Dinero", htmlAttributes: new { @class = "control-label col-md-4" })
+                @Html.Label("Dinero", "Dinero", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Dinero, new { @class = "form-control form-control-user" })
-                    @Html.ValidationMessageFor(model => model.Dinero, "", new { @class = "text-danger" })
+                    @Html.TextBox("Dinero",null, new { @class = "form-control form-control-user" ,@Value=1})
+                    @Html.ValidationMessage("Dinero", "El dinero ingresado es invalido", new { @class = "text-danger" })
                 </div>
             }
             if (ViewBag.Tipo == 2)
@@ -57,8 +57,8 @@
 
                     @Html.LabelFor(model => model.dlistins[c].Cantidad, "Cantidad", htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.dlistins[c].Cantidad, new { @class = "form-control form-control-user" })
-                        @Html.ValidationMessageFor(model => model.dlistins[c].Cantidad, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.dlistins[c].Cantidad, new { @class = "form-control form-control-user" ,@Value=1})
+                        @Html.ValidationMessageFor(model => model.dlistins[c].Cantidad, "Cantidad de insumos invalida", new { @class = "text-danger" })
                     </div>
                     c++;
                 }
@@ -74,8 +74,8 @@
                 </div>
                 @Html.LabelFor(model => model.CantidadHoras, "Cantidad de Horas", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.CantidadHoras, new { @class = "form-control form-control-user" })
-                    @Html.ValidationMessageFor(model => model.CantidadHoras, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.CantidadHoras, new { @class = "form-control form-control-user" ,@Value=1})
+                    @Html.ValidationMessageFor(model => model.CantidadHoras, "Cantidad de horas invalida", new { @class = "text-danger" })
                 </div>
                 @Html.TextBoxFor(model => model.IdUsuario, new { @class = "d-none", @Value = @HttpContext.Current.Session["usuario"] })
 
@@ -85,8 +85,8 @@
     </div>
     <div class=" row">
         <div class="col-sm-12">
-            <input type="submit" class="offset-sm-3 btn btn-primary" value="Aceptar">
-            <a href="~/Home/MiPerfil"><input type="button" class="offset-sm-0 btn btn-danger" value="Cancelar"></a>
+            <button type="submit" class="btn btn-primary btn-user float-left mr-5">Registrar</button>
+            <a href="~/Home/Index"><input type="button" class="btn btn-danger" value="Cancelar"></a>
         </div>
     </div>
 

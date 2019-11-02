@@ -7,10 +7,10 @@
 @using (Html.BeginForm("CargarListaInsumos", "Propuestas", FormMethod.Post))
 {
 <div class="form-horizontal">
-    
+
     @for (int i = 0; i < Model.Count; i++)
     {
-        int c=i;
+        int c = i;
         <div class="form-group">
             @Html.LabelFor(model => model[c].Nombre, "Nombre del Insumo", htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10">
@@ -27,9 +27,16 @@
             </div>
         </div>
 
-            @Html.TextBoxFor(model => model[c].IdPropuestaDonacionInsumo, new { @class = "d-none", @Value = c+1 })
+        @Html.TextBoxFor(model => model[c].IdPropuestaDonacionInsumo, new { @class = "d-none", @Value = c + 1 })
 
-      }
-            <button type="submit" class="btn btn-primary btn-user btn-block">Registrar</button>
- </div>
     }
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary btn-user float-left mr-5">Registrar</button>
+            <a href="~/Home/Index"><input type="button" class="btn btn-danger" value="Cancelar"></a>
+        </div>
+    </div>
+</div>
+}
+
+

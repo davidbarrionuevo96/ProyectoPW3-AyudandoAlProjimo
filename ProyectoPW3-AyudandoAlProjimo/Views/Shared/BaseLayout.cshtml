@@ -54,12 +54,27 @@
             <hr class="sidebar-divider my-2">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="/Propuestas/Crear">
-                    <i class="fas fa-fw fa-plus"></i>
-                    <span>Crear Propuesta</span>
-                </a>
-            </li>
+            @{
+                if (@HttpContext.Current.Session["PermitirPropuesta"].ToString() != "1")
+                {
+                    <li class="nav-item">
+                        <a class="nav-link disabled" cl href="/Propuestas/Crear">
+                            <i class="fas fa-fw fa-plus"></i>
+                            <span>Crear Propuesta(Deshabilitado)</span>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Propuestas/Crear">
+                            <i class="fas fa-fw fa-plus"></i>
+                            <span>Crear Propuesta</span>
+                        </a>
+                    </li>
+                }
+            }
+
 
             <hr class="sidebar-divider my-2">
 

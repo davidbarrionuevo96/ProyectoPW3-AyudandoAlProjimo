@@ -75,10 +75,10 @@ namespace Servicios
             donacions.AddRange(DonacionesI);
             donacions.AddRange(DonacionesHrs);
 
-            return CalcularTotalesDesdeLista(donacions);
+            return CargarDonacionesTotalesALista(donacions);
         }
 
-        public List<DonacionAux> CalcularTotalesDesdeLista(List<DonacionAux> list)
+        public List<DonacionAux> CargarDonacionesTotalesALista(List<DonacionAux> list)
         {
             foreach (DonacionAux item in list)
             {//1->Monetaria   2->Insumos   3->HorasDeTrabajo
@@ -96,7 +96,7 @@ namespace Servicios
                 }
             }
 
-            return list;
+            return list.OrderByDescending(model=>model.FechaDonacion).ToList();
         }
 
         public void GuardarDonacionMonetaria(DonacionesMonetarias dm)

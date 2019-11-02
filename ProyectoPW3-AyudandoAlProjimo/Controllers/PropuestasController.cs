@@ -20,6 +20,14 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         [HttpPost]
         public ActionResult Crear(PropuestaAux p, HttpPostedFileBase Foto)
         {
+            if (Foto==null)
+            {
+                ModelState.AddModelError("Foto", "Imagen requerida");
+            }
+            if (!ModelState.IsValid )
+            {
+                return View();
+            }
             p.IdUsuarioCreador = int.Parse(Session["usuario"].ToString());
 
             fotofija = Foto;
@@ -42,6 +50,12 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         [HttpPost]
         public ActionResult CargarListaInsumos(List<PropuestasDonacionesInsumos> plist)
         {
+            
+
+            if (!ModelState.IsValid)
+            {
+                return View(plist);
+            }
             PropuestaAux p= (PropuestaAux)Session["pinsumo"];
            
                 foreach (var item in plist)

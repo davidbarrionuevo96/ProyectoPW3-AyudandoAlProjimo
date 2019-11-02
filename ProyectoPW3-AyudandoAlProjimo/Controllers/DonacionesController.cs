@@ -48,9 +48,15 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         [HttpPost]
         public ActionResult RealizarDonacion(CrearDonacionAux cd)
         {
-            _DonacionService.RealizarDonacion(cd);
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("RealizarDonacion", "Donaciones",cd.IdPropuesta);
+            }
+            
+                _DonacionService.RealizarDonacion(cd);
+            
+                return RedirectToAction("Index", "Home");
 
-            return View();
         }
     }
 }

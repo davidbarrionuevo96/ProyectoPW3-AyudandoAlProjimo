@@ -12,10 +12,12 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
     public class HomeController : Controller
 {
         HomerService l = new HomerService();
+        PropuestaService _p = new PropuestaService();
         public ActionResult Index()
         {
             if (Session["usuario"] != null)
             {
+                Session["PermitirPropuesta"] = _p.Permitirpropuesta((int)Session["usuario"]);
                 return View("Index", l.BuscarPropuestas());
             }
             else
