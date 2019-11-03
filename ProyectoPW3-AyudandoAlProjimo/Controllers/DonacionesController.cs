@@ -57,6 +57,11 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             {   
                 if (cd.TipoDonacion==(int)EnumTipoDonacion.Insumo)
                 {
+                    foreach (var item in _propuestaService.GetPorId(cd.IdPropuesta).PropuestasDonacionesInsumos.ToList())
+                    {
+
+                        cd.Faltantes.Add(_propuestaService.TotalPropuestaIns(item.IdPropuestaDonacionInsumo) - _propuestaService.CalcularTotalDonadoPropuestaIns(item.IdPropuestaDonacionInsumo));
+                    }
                     ViewBag.ListaIns = _propuestaService.GetPorId(cd.IdPropuesta).PropuestasDonacionesInsumos.ToList();
                 }
                 return View(cd);
