@@ -91,6 +91,8 @@
     <Compile Include="Partials\PropuestasDonacionesInsumos.cs" />
     <Compile Include="Partials\PropuestasDonacionesInsumosMetaData.cs" />
     <Compile Include="Partials\PropuestasMetaData.cs" />
+    <Compile Include="Partials\Usuarios.cs" />
+    <Compile Include="Partials\UsuariosMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Propuestas.cs">
       <DependentUpon>Clases.tt</DependentUpon>
