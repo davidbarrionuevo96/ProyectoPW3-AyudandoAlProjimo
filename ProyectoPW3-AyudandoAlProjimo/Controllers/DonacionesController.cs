@@ -23,34 +23,40 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         [HttpGet]
         public ActionResult RealizarDonacion(int id)
         {
-            int tipo = (_propuestaService.GetPorId(id)).TipoDonacion;
-            ViewBag.IdPropuesta = id;
-            if (tipo == (int)EnumTipoDonacion.Monetaria)
+            CrearDonacionAux cd = new CrearDonacionAux()
+            {
+                TipoDonacion= (_propuestaService.GetPorId(id)).TipoDonacion,
+                IdPropuesta=id
+            };
+            if (cd.TipoDonacion== (int)EnumTipoDonacion.Monetaria)
             {
                 ViewBag.Total = _propuestaService.TotalPropuestaMon(id);
                 ViewBag.Faltante = (_propuestaService.TotalPropuestaMon(id) - _propuestaService.CalcularTotalDonadoPropuestaMon(id));
             }
-            else if (tipo == (int)EnumTipoDonacion.Insumo)
+            else if (cd.TipoDonacion == (int)EnumTipoDonacion.Insumo)
             {
                 ViewBag.Total = _propuestaService.TotalPropuestaIns(id);
                 ViewBag.Faltante = (_propuestaService.TotalPropuestaIns(id) - _propuestaService.CalcularTotalDonadoPropuestaIns(id));
                 ViewBag.ListaIns = _propuestaService.GetPorId(id).PropuestasDonacionesInsumos.ToList();
             }
-            else if (tipo == (int)EnumTipoDonacion.HorasTrabajo)
+            else if (cd.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
             {
                 ViewBag.Total = _propuestaService.TotalPropuestaHrs(id);
                 ViewBag.Profesion = _propuestaService.RetornarProfesionPorIdPropuesta(id);
                 ViewBag.Faltante = (_propuestaService.TotalPropuestaHrs(id) - _propuestaService.CalcularTotalDonadoPropuestaHrs(id));
             }
-            ViewBag.Tipo = tipo;
-            return View();
+            return View(cd);
         }
         [HttpPost]
         public ActionResult RealizarDonacion(CrearDonacionAux cd)
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("RealizarDonacion", "Donaciones",cd.IdPropuesta);
+                if (cd.TipoDonacion==(int)EnumTipoDonacion.Insumo)
+                {
+                    ViewBag.ListaIns = _propuestaService.GetPorId(cd.IdPropuesta).PropuestasDonacionesInsumos.ToList();
+                }
+                return View(cd);
             }
             
                 _DonacionService.RealizarDonacion(cd);

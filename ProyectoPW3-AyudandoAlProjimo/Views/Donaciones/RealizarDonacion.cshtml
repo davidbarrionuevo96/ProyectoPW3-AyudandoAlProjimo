@@ -1,5 +1,4 @@
 ﻿
-
 @model Entidades.Auxiliares.CrearDonacionAux
 
 @{
@@ -11,11 +10,11 @@
 
 @using (Html.BeginForm("RealizarDonacion", "Donaciones", FormMethod.Post))
 {
-    @Html.TextBoxFor(model => model.IdPropuesta, new { @class = "d-none", @Value = ViewBag.IdPropuesta })
-    @Html.TextBoxFor(model => model.TipoDonacion, new { @class = "d-none", @Value = ViewBag.Tipo })
+    @Html.TextBoxFor(model => model.IdPropuesta, new { @class = "d-none"})
+    @Html.TextBoxFor(model => model.TipoDonacion, new { @class = "d-none"})
     <div class="form-group ml-0">
         @{
-            if (ViewBag.Tipo == 1)
+            if (Model.TipoDonacion == 1)
             {
                 <div class="ml-1">
                     <h6 class="font-weight-bold text-info">
@@ -28,15 +27,19 @@
                 @Html.LabelFor(model => model.ArchivoTransferencia, "Archivo de Transferencia", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
                     @Html.TextBoxFor(model => model.ArchivoTransferencia, new { @class = "form-control form-control-user" })
-                    @Html.ValidationMessageFor(model => model.ArchivoTransferencia, "", new { @class = "text-danger" })
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(model => model.ArchivoTransferencia)
+                    </div>
                 </div>
                 @Html.Label("Dinero", "Dinero", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.TextBox("Dinero",null, new { @class = "form-control form-control-user" ,@Value=1})
-                    @Html.ValidationMessage("Dinero", "El dinero ingresado es invalido", new { @class = "text-danger" })
+                    @Html.TextBox("Dinero",null, new { @class = "form-control form-control-user" ,@Value=0})
+                    <div class="text-danger">
+                        @Html.ValidationMessage("Dinero")
+                    </div>
                 </div>
             }
-            if (ViewBag.Tipo == 2)
+            if (Model.TipoDonacion == 2)
             {
                 <div class="ml-1">
                     <h6 class="font-weight-bold text-info">Donar Insumos</h6>
@@ -58,12 +61,14 @@
                     @Html.LabelFor(model => model.dlistins[c].Cantidad, "Cantidad", htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(model => model.dlistins[c].Cantidad, new { @class = "form-control form-control-user" ,@Value=1})
-                        @Html.ValidationMessageFor(model => model.dlistins[c].Cantidad, "Cantidad de insumos invalida", new { @class = "text-danger" })
+                        <div class="text-danger">
+                            @Html.ValidationMessageFor(model => model.dlistins[c].Cantidad)
+                        </div>
                     </div>
                     c++;
                 }
             }
-            if (ViewBag.Tipo == 3)
+            if (Model.TipoDonacion == 3)
             {
                 <div class="ml-1">
                     <h6 class="font-weight-bold text-primary">
@@ -74,8 +79,10 @@
                 </div>
                 @Html.LabelFor(model => model.CantidadHoras, "Cantidad de Horas", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.CantidadHoras, new { @class = "form-control form-control-user" ,@Value=1})
-                    @Html.ValidationMessageFor(model => model.CantidadHoras, "Cantidad de horas invalida", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.CantidadHoras, new { @class = "form-control form-control-user" ,@Value=0})
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(model => model.CantidadHoras)
+                    </div>
                 </div>
                 @Html.TextBoxFor(model => model.IdUsuario, new { @class = "d-none", @Value = @HttpContext.Current.Session["usuario"] })
 

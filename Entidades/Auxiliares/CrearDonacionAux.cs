@@ -9,6 +9,11 @@ namespace Entidades.Auxiliares
 {
     public class CrearDonacionAux
     {
+        public CrearDonacionAux()
+        {
+            CantidadHoras = 0;
+            Dinero = 0;
+        }
         //Horas de Trabajo
         [Required(ErrorMessage = "Cantidad invalida")]
         [Range(0, int.MaxValue)]
