@@ -179,6 +179,30 @@ namespace Servicios
             return propu;
         }
 
+        public void ComprobarFinPropuestaIns(int idPropuesta)
+        {
+            using (var ctx=new Entities())
+            {
+                int c = 0;
+                Propuestas p = (from pro in ctx.Propuestas
+                                where pro.IdPropuesta == idPropuesta
+                                select pro).First();
+                int c2 = p.PropuestasDonacionesInsumos.ToList().Count;
+                foreach (var item in p.PropuestasDonacionesInsumos.ToList())
+                {
+                    if (item.Cantidad==CalcularTotalDonadoPropuestaIns(item.IdPropuestaDonacionInsumo))
+                    {
+                        c++;
+                    }
+                }
+                if (c==c2)
+                {
+                    p.Estado = 1;
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
         public List<PropuestaUsuario> BuscarPropuestasActivas()
         {
             int id = Int32.Parse(HttpContext.Current.Session["usuario"].ToString());
@@ -214,6 +238,19 @@ namespace Servicios
             }
             return propu;
         }
+
+        public void CambiarEstadoPropuestaPorId(int idPropuesta)
+        {
+            using (var ctx = new Entities())
+            {
+                Propuestas p = (from pro in ctx.Propuestas
+                                where pro.IdPropuesta == idPropuesta
+                                select pro).First();
+                p.Estado = 1;
+                ctx.SaveChanges();
+            }
+        }
+
         public List<PropuestaUsuario> BuscarPropuestasInactivas()
         {
             int id = Int32.Parse(HttpContext.Current.Session["usuario"].ToString());
@@ -329,15 +366,13 @@ namespace Servicios
                          select d_in.Cantidad
                              ).ToList();
 
-            if (dlist.Count > 0)
-            {
+            
                 foreach (int item in dlist)
                 {
                     contTotal += item;
                 }
                 return contTotal;
-            }
-            else return 0;
+            
         }
         public int CalcularTotalDonadoPropuestaHrs(int id)
         {

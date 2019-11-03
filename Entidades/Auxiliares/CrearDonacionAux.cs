@@ -11,8 +11,8 @@ namespace Entidades.Auxiliares
     {
         public CrearDonacionAux()
         {
-            CantidadHoras = 0;
-            Dinero = 0;
+            CantidadHoras = 1;
+            Dinero = 1;
             TotalMon = 0;
             FaltanteMon = 0;
             Totales = new List<int>();
@@ -20,7 +20,7 @@ namespace Entidades.Auxiliares
         }
         //Horas de Trabajo
         [Required(ErrorMessage = "Cantidad invalida")]
-        [Range(0, int.MaxValue)]
+        [Range(1, int.MaxValue)]
         public int CantidadHoras { get; set; }
         //Horas de Trabajo
         //Insumos
@@ -28,7 +28,7 @@ namespace Entidades.Auxiliares
         //Insumos
         //Monetaria
         [Required(ErrorMessage = "Dinero invalido")]
-        [Range(0, int.MaxValue)]
+        [Range(1, int.MaxValue)]
         public decimal Dinero { get; set; }
         public string ArchivoTransferencia { get; set; }
         //Monetaria

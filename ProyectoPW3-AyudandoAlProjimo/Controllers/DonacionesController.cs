@@ -53,13 +53,37 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         [HttpPost]
         public ActionResult RealizarDonacion(CrearDonacionAux cd)
         {
+            if (cd.TipoDonacion==(int)EnumTipoDonacion.Monetaria)
+            {
+                if (cd.Dinero>cd.FaltanteMon)
+                {
+                    ModelState.AddModelError("Dinero","El dinero ingresado es mayor al necesitado");
+                }
+            }
+            if (cd.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
+            {
+                if (cd.CantidadHoras > cd.Faltanteh)
+                {
+                    ModelState.AddModelError("CantidadHoras", "La cantidad de horas ingresada es mayor al necesitada");
+                }
+            }
+            if (cd.TipoDonacion == (int)EnumTipoDonacion.Insumo)
+            {
+                for (int i = 0; i < cd.dlistins.Count; i++)
+                {
+                    if (cd.dlistins[i].Cantidad>cd.Faltantes[i])
+                    {
+                        ModelState.AddModelError("dlistins["+i+"].Cantidad", "La cantidad de insumos ingresado es mayor al necesitado");
+                    }
+                }
+            }
+
             if (!ModelState.IsValid)
             {   
                 if (cd.TipoDonacion==(int)EnumTipoDonacion.Insumo)
                 {
                     foreach (var item in _propuestaService.GetPorId(cd.IdPropuesta).PropuestasDonacionesInsumos.ToList())
                     {
-
                         cd.Faltantes.Add(_propuestaService.TotalPropuestaIns(item.IdPropuestaDonacionInsumo) - _propuestaService.CalcularTotalDonadoPropuestaIns(item.IdPropuestaDonacionInsumo));
                     }
                     ViewBag.ListaIns = _propuestaService.GetPorId(cd.IdPropuesta).PropuestasDonacionesInsumos.ToList();

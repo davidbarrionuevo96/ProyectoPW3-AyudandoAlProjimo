@@ -48,6 +48,7 @@ namespace Servicios
                                    IdUsuario = d_in.IdUsuario,
                                    MiDonacion = d_in.Cantidad,
                                    Nombre = p.Nombre,
+                                   IdPropuestaDIns=p_in.IdPropuestaDonacionInsumo,
                                    TipoDonacion = p.TipoDonacion,
                                    IdPropuesta = p.IdPropuesta
                                }
@@ -88,7 +89,7 @@ namespace Servicios
                 }
                 else if (item.TipoDonacion == (int)EnumTipoDonacion.Insumo)
                 {
-                    item.TotalRecaudado = _propuestaService.CalcularTotalDonadoPropuestaIns(item.IdPropuesta);
+                    item.TotalRecaudado = _propuestaService.CalcularTotalDonadoPropuestaIns(item.IdPropuestaDIns);
                 }
                 else if (item.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
                 {
@@ -104,9 +105,14 @@ namespace Servicios
             using (var ctx = new Entities())
             {
                 PropuestasDonacionesMonetarias pm = (from p in ctx.PropuestasDonacionesMonetarias
-                                                     where p.IdPropuesta == dm.IdPropuestaDonacionMonetaria
+                                                     where p.IdPropuestaDonacionMonetaria == dm.IdPropuestaDonacionMonetaria
                                                      select p
                                                     ).First();
+                decimal c = (pm.Dinero- _propuestaService.CalcularTotalDonadoPropuestaMon(pm.IdPropuesta));
+                if (c==dm.Dinero)
+                {
+                    _propuestaService.CambiarEstadoPropuestaPorId(pm.IdPropuesta);
+                }
                 pm.DonacionesMonetarias.Add(dm);
                 ctx.SaveChanges();
             }
@@ -120,10 +126,10 @@ namespace Servicios
                           where p.IdPropuestaDonacionInsumo == dm.IdPropuestaDonacionInsumo
                           select p
                                                     ).First();
-
+                
                 pm.DonacionesInsumos.Add(dm);
-
                 ctx.SaveChanges();
+                _propuestaService.ComprobarFinPropuestaIns(pm.IdPropuesta);
             }
 
         }
@@ -135,6 +141,11 @@ namespace Servicios
                                                        where p.IdPropuestaDonacionHorasTrabajo == dm.IdPropuestaDonacionHorasTrabajo
                                                        select p
                                                     ).First();
+                int c = (pm.CantidadHoras - _propuestaService.CalcularTotalDonadoPropuestaHrs(pm.IdPropuesta));
+                if ( c == dm.Cantidad)
+                {
+                   _propuestaService.CambiarEstadoPropuestaPorId(pm.IdPropuesta);
+                }
                 pm.DonacionesHorasTrabajo.Add(dm);
                 ctx.SaveChanges();
             }
@@ -157,13 +168,16 @@ namespace Servicios
             {
                 foreach (var item in cd.dlistins)
                 {
-                    DonacionesInsumos di = new DonacionesInsumos();
-                    di.FechaCreacion = DateTime.Today;
-                    di.Cantidad = item.Cantidad;
-                    di.IdPropuestaDonacionInsumo = item.IdPropuestaDonacionInsumo;
-                    di.IdUsuario = item.IdUsuario;
-                    di.FechaCreacion = DateTime.Today;
-                    GuardarDonacionInsumos(di);
+                    if (item.Cantidad!=0)
+                    {
+                        DonacionesInsumos di = new DonacionesInsumos();
+                        di.FechaCreacion = DateTime.Today;
+                        di.Cantidad = item.Cantidad;
+                        di.IdPropuestaDonacionInsumo = item.IdPropuestaDonacionInsumo;
+                        di.IdUsuario = item.IdUsuario;
+                        di.FechaCreacion = DateTime.Today;
+                        GuardarDonacionInsumos(di);
+                    }
                 }
             }
             else if (cd.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)

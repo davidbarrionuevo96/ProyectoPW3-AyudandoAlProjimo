@@ -16,6 +16,7 @@ namespace Entidades
         public decimal TotalRecaudado { get; set; }
         public decimal MiDonacion { get; set; }
         public int IdUsuario { get; set; }
+        public int IdPropuestaDIns { get; set; }
         public int IdPropuesta { get; set; }
         public List<PropuestasDonacionesInsumos> listin { get; set; }
     }
