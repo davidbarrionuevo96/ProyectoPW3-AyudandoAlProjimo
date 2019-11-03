@@ -35,11 +35,11 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             }
             else if (cd.TipoDonacion == (int)EnumTipoDonacion.Insumo)
             {
-               
+                ViewBag.ListaIns = _propuestaService.GetPorId(cd.IdPropuesta).PropuestasDonacionesInsumos.ToList();
                 foreach (var item in _propuestaService.GetPorId(id).PropuestasDonacionesInsumos.ToList())
                 {
                    
-                    cd.Faltantes.Add(_propuestaService.TotalPropuestaIns(id) - _propuestaService.CalcularTotalDonadoPropuestaIns(id));
+                    cd.Faltantes.Add(_propuestaService.TotalPropuestaIns(item.IdPropuestaDonacionInsumo) - _propuestaService.CalcularTotalDonadoPropuestaIns(item.IdPropuestaDonacionInsumo));
                 }
             }
             else if (cd.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)

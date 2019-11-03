@@ -283,7 +283,7 @@ namespace Servicios
             int contTotal = 0;
             Entities ctx = new Entities();
             var plist = (from p in ctx.PropuestasDonacionesInsumos
-                         where p.IdPropuesta == id
+                         where p.IdPropuestaDonacionInsumo == id
                          select p.Cantidad
                              ).ToList();
             if (plist.Count > 0)
@@ -325,7 +325,7 @@ namespace Servicios
                           on p.IdPropuesta equals p_in.IdPropuesta
                          join d_in in ctx.DonacionesInsumos
                           on p_in.IdPropuestaDonacionInsumo equals d_in.IdPropuestaDonacionInsumo
-                         where p.IdPropuesta == id
+                         where p_in.IdPropuestaDonacionInsumo == id
                          select d_in.Cantidad
                              ).ToList();
 
