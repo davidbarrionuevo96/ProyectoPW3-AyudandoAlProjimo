@@ -76,6 +76,51 @@ namespace Servicios
             }
         }
 
+        public PropuestaAux CargarPropuestaAux(int id)
+        {
+            using (var ctx=new Entities())
+            {
+                Propuestas p = (from pro in ctx.Propuestas
+                                  where pro.IdPropuesta==id
+                                  select pro).First();
+                PropuestaAux paux = new PropuestaAux
+                {
+                    Descripcion = p.Descripcion,
+                    FechaFin = p.FechaFin,
+                    IdPropuesta = p.IdPropuesta,
+                    IdUsuarioCreador = p.IdUsuarioCreador,
+                    Nombre = p.Nombre,
+                    TelefonoContacto = p.TelefonoContacto,
+                    TipoDonacion = p.TipoDonacion
+                };
+                paux.Telefono1 = p.PropuestasReferencias.First().Telefono;
+                paux.NombreRef1= p.PropuestasReferencias.First().Nombre;
+                paux.Telefono2 = p.PropuestasReferencias.Skip(1).First().Telefono;
+                paux.NombreRef2= p.PropuestasReferencias.Skip(1).First().Nombre;
+
+                if (p.TipoDonacion==(int)EnumTipoDonacion.HorasTrabajo)
+                {
+                    paux.CantidadHoras= p.PropuestasDonacionesHorasTrabajo.First().CantidadHoras;
+                    paux.Profesion = p.PropuestasDonacionesHorasTrabajo.First().Profesion;
+                }
+                else if (p.TipoDonacion == (int)EnumTipoDonacion.Monetaria)
+                {
+                    paux.Dinero = p.PropuestasDonacionesMonetarias.First().Dinero;
+                    paux.CBU = p.PropuestasDonacionesMonetarias.First().CBU;
+                }
+                else if (p.TipoDonacion == (int)EnumTipoDonacion.Insumo)
+                {
+                    foreach (var item in p.PropuestasDonacionesInsumos.ToList())
+                    {
+                        paux.pins.Add(item);
+                    }
+                }
+                return paux;
+
+
+            }
+        }
+
         public int Permitirpropuesta(int id)
         {
             using (var ctx=new Entities())
@@ -392,7 +437,7 @@ namespace Servicios
                 return pro;
             }
         }
-        public void ModificarPropuesta(Propuestas p, HttpPostedFileBase Foto)
+        public void ModificarPropuesta(PropuestaAux p, HttpPostedFileBase Foto)
         {
 
             using (var ctx = new Entities())
@@ -402,36 +447,42 @@ namespace Servicios
                 Propuestas pr = (from prop in ctx.Propuestas
                                  where prop.IdPropuesta == p.IdPropuesta
                                  select prop).First();
+
                 pr.Descripcion = p.Descripcion;
                 pr.FechaFin = p.FechaFin;
                 pr.Nombre = p.Nombre;
                 pr.TelefonoContacto = p.TelefonoContacto;
-                pr.TipoDonacion = p.TipoDonacion;
+                pr.PropuestasReferencias.First().Telefono=p.Telefono1;
+                pr.PropuestasReferencias.First().Nombre=p.NombreRef1;
+                pr.PropuestasReferencias.Skip(1).First().Telefono=p.Telefono1;
+                pr.PropuestasReferencias.Skip(1).First().Nombre=p.Telefono2;
 
                 if (p.TipoDonacion == (int)EnumTipoDonacion.Monetaria)
                 {
-                    pr.PropuestasDonacionesMonetarias.First().CBU = p.PropuestasDonacionesMonetarias.First().CBU;
-                    pr.PropuestasDonacionesMonetarias.First().Dinero = p.PropuestasDonacionesMonetarias.First().Dinero;
+                    pr.PropuestasDonacionesMonetarias.First().CBU = p.CBU;
+                    pr.PropuestasDonacionesMonetarias.First().Dinero = p.Dinero;
                 }
                 if (p.TipoDonacion == (int)EnumTipoDonacion.Insumo)
                 {
-                    for (int i = 0; i < p.PropuestasDonacionesInsumos.Count; i++)
+                    for (int i = 0; i < p.pins.Count; i++)
                     {
-                        pr.PropuestasDonacionesInsumos.ToList()[i].Cantidad = p.PropuestasDonacionesInsumos.ToList()[i].Cantidad;
-                        pr.PropuestasDonacionesInsumos.ToList()[i].Nombre = p.PropuestasDonacionesInsumos.ToList()[i].Nombre;
+                        pr.PropuestasDonacionesInsumos.ToList()[i].Cantidad = p.pins[i].Cantidad;
+                        pr.PropuestasDonacionesInsumos.ToList()[i].Nombre = p.pins[i].Nombre;
                     }
 
                 }
                 if (p.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
                 {
-                    pr.PropuestasDonacionesHorasTrabajo.First().Profesion = p.PropuestasDonacionesHorasTrabajo.First().Profesion;
-                    pr.PropuestasDonacionesHorasTrabajo.First().CantidadHoras = p.PropuestasDonacionesHorasTrabajo.First().CantidadHoras;
+                    pr.PropuestasDonacionesHorasTrabajo.First().Profesion = p.Profesion;
+                    pr.PropuestasDonacionesHorasTrabajo.First().CantidadHoras = p.CantidadHoras;
                 }
-
-                var filename = Path.GetFileName(Foto.FileName);
-                var path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/img/"), filename);
-                Foto.SaveAs(path);
-                pr.Foto = filename;
+                if (Foto!=null)
+                {
+                    var filename = Path.GetFileName(Foto.FileName);
+                    var path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/img/"), filename);
+                    Foto.SaveAs(path);
+                    pr.Foto = filename;
+                }
 
 
                 ctx.SaveChanges();

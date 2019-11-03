@@ -54,6 +54,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         {
             if (Session["usuario"] != null)
             {
+                Session["PermitirPropuesta"] = _p.Permitirpropuesta((int)Session["usuario"]);
                 return View();
             }
             else
@@ -66,6 +67,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         {
             if (Session["usuario"] != null)
             {
+                Session["PermitirPropuesta"] = _p.Permitirpropuesta((int)Session["usuario"]);
                 return View();
             }
             else

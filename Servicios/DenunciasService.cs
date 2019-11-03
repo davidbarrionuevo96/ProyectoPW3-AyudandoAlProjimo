@@ -50,7 +50,7 @@ namespace Servicios
                 usu4 = a;
             }
 
-            usu4.Estado = 0;
+            usu4.Estado = 1;
 
             var usua5 = (from p in asd.Denuncias
                          where p.IdPropuesta == usu4.IdPropuesta

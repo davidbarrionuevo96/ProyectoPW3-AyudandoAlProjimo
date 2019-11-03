@@ -71,33 +71,25 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             ViewBag.IdPropuesta = id;
             ViewBag.TamListaIns = _propuestaService.TamListaInsPorId(id);
             ViewBag.Tipo = (_propuestaService.GetPorId(id)).TipoDonacion;
-            var p = _propuestaService.GetPorId(id);
+            PropuestaAux p = _propuestaService.CargarPropuestaAux(id);
             return View(p);
         }
         [HttpPost]
-        public ActionResult Modificar(Propuestas p, HttpPostedFileBase FotoN,PropuestasDonacionesMonetarias pm,PropuestasDonacionesHorasTrabajo ph,List<PropuestasDonacionesInsumos> li)
+        public ActionResult Modificar(PropuestaAux p, HttpPostedFileBase FotoN)
         {
-            if (p.TipoDonacion==(int)EnumTipoDonacion.Monetaria)
+            if (!ModelState.IsValid)
             {
-                p.PropuestasDonacionesMonetarias.Add(pm);
-            }
-            if (p.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
-            {
-                p.PropuestasDonacionesHorasTrabajo.Add(ph);
-            }
-            if (p.TipoDonacion == (int)EnumTipoDonacion.Insumo)
-            {
-                foreach (var item in li)
-                {
-                    p.PropuestasDonacionesInsumos.Add(item);
-                }
+                ViewBag.IdPropuesta = p.IdPropuesta;
+                ViewBag.TamListaIns = _propuestaService.TamListaInsPorId(p.IdPropuesta);
+                ViewBag.Tipo = (_propuestaService.GetPorId(p.IdPropuesta)).TipoDonacion;
+                return View(p);
             }
 
             _propuestaService.ModificarPropuesta(p, FotoN);
 
             return RedirectToAction("MisPrupuestas", "Propuestas");
 
-            //return View();
+           
         }
         public ActionResult MisPropuestas()
         {
