@@ -30,20 +30,23 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             };
             if (cd.TipoDonacion== (int)EnumTipoDonacion.Monetaria)
             {
-                ViewBag.Total = _propuestaService.TotalPropuestaMon(id);
-                ViewBag.Faltante = (_propuestaService.TotalPropuestaMon(id) - _propuestaService.CalcularTotalDonadoPropuestaMon(id));
+                cd.TotalMon = _propuestaService.TotalPropuestaMon(id);
+                cd.FaltanteMon = (_propuestaService.TotalPropuestaMon(id) - _propuestaService.CalcularTotalDonadoPropuestaMon(id));
             }
             else if (cd.TipoDonacion == (int)EnumTipoDonacion.Insumo)
             {
-                ViewBag.Total = _propuestaService.TotalPropuestaIns(id);
-                ViewBag.Faltante = (_propuestaService.TotalPropuestaIns(id) - _propuestaService.CalcularTotalDonadoPropuestaIns(id));
-                ViewBag.ListaIns = _propuestaService.GetPorId(id).PropuestasDonacionesInsumos.ToList();
+               
+                foreach (var item in _propuestaService.GetPorId(id).PropuestasDonacionesInsumos.ToList())
+                {
+                   
+                    cd.Faltantes.Add(_propuestaService.TotalPropuestaIns(id) - _propuestaService.CalcularTotalDonadoPropuestaIns(id));
+                }
             }
             else if (cd.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)
             {
-                ViewBag.Total = _propuestaService.TotalPropuestaHrs(id);
-                ViewBag.Profesion = _propuestaService.RetornarProfesionPorIdPropuesta(id);
-                ViewBag.Faltante = (_propuestaService.TotalPropuestaHrs(id) - _propuestaService.CalcularTotalDonadoPropuestaHrs(id));
+                cd.Totalh=_propuestaService.TotalPropuestaHrs(id);
+                cd.Profesion = _propuestaService.RetornarProfesionPorIdPropuesta(id);
+                cd.Faltanteh=(_propuestaService.TotalPropuestaHrs(id) - _propuestaService.CalcularTotalDonadoPropuestaHrs(id));
             }
             return View(cd);
         }
@@ -51,7 +54,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         public ActionResult RealizarDonacion(CrearDonacionAux cd)
         {
             if (!ModelState.IsValid)
-            {
+            {   
                 if (cd.TipoDonacion==(int)EnumTipoDonacion.Insumo)
                 {
                     ViewBag.ListaIns = _propuestaService.GetPorId(cd.IdPropuesta).PropuestasDonacionesInsumos.ToList();

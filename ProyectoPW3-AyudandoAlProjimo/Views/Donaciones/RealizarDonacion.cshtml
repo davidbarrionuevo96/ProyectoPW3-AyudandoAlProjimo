@@ -19,8 +19,8 @@
                 <div class="ml-1">
                     <h6 class="font-weight-bold text-info">
                         Donar Dinero
-                        (Faltante: @ViewBag.Faltante)
-                        (Total: @ViewBag.Total)
+                        (Faltante: @Model.FaltanteMon)
+                        (Total: @Model.TotalMon)
                     </h6>
                 </div>
                 @Html.TextBoxFor(model => model.IdUsuario, new { @class = "d-none", @Value = @HttpContext.Current.Session["usuario"] })
@@ -51,7 +51,7 @@
                         <h6 class="font-weight-bold text-primary">
                             (Insumo Requerido: @item.Nombre)
                             (Cantidad Requerida: @item.Cantidad)
-                            (Cantidad Faltante: @ViewBag.Faltante)
+                            (Cantidad Faltante: @Model.Faltantes.ToList()[c].ToString())
                         </h6>
                     </div>
 
@@ -72,9 +72,9 @@
             {
                 <div class="ml-1">
                     <h6 class="font-weight-bold text-primary">
-                        Donar Horas de Trabajo(Profesion: @ViewBag.Profesion)
-                        (Horas restantes requeridas: @ViewBag.Faltante)
-                        (Total de horas requeridas: @ViewBag.Total)
+                        Donar Horas de Trabajo(Profesion: @Model.Profesion)
+                        (Horas restantes requeridas: @Model.Faltanteh)
+                        (Total de horas requeridas: @Model.Totalh)
                     </h6>
                 </div>
                 @Html.LabelFor(model => model.CantidadHoras, "Cantidad de Horas", htmlAttributes: new { @class = "control-label col-md-4" })

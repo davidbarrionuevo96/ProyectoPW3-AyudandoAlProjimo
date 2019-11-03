@@ -13,6 +13,10 @@ namespace Entidades.Auxiliares
         {
             CantidadHoras = 0;
             Dinero = 0;
+            TotalMon = 0;
+            FaltanteMon = 0;
+            Totales = new List<int>();
+            Faltantes = new List<int>();
         }
         //Horas de Trabajo
         [Required(ErrorMessage = "Cantidad invalida")]
@@ -31,5 +35,12 @@ namespace Entidades.Auxiliares
         public int IdPropuesta { get; set; }
         public int TipoDonacion { get; set; }
         public int IdUsuario { get; set; }
+        public decimal TotalMon { get; set; }
+        public string Profesion { get; set; }
+        public int Faltanteh { get; set; }
+        public int Totalh { get; set; }
+        public decimal FaltanteMon { get; set; }
+        public List<int> Totales { get; set; }
+        public List<int> Faltantes { get; set; }
     }
 }
