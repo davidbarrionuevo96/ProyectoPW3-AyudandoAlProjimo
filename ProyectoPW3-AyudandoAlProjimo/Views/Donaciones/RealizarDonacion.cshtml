@@ -7,8 +7,12 @@
 
 
 <h2>Realizar una Donacion</h2>
-
-@using (Html.BeginForm("RealizarDonacion", "Donaciones", FormMethod.Post))
+<style>
+    .custom-file-input ~ .custom-file-label::after {
+        content: "Buscar";
+    }
+</style>
+@using (Html.BeginForm("RealizarDonacion", "Donaciones", FormMethod.Post,new { enctype = "multipart/form-data" }))
 {
     @Html.TextBoxFor(model => model.IdPropuesta, new { @class = "d-none"})
     @Html.TextBoxFor(model => model.TipoDonacion, new { @class = "d-none"})
@@ -26,14 +30,18 @@
             @Html.TextBoxFor(model => model.FaltanteMon, new { @class = "d-none" })
             @Html.TextBoxFor(model => model.TotalMon, new { @class = "d-none" })
             @Html.TextBoxFor(model => model.IdUsuario, new { @class = "d-none", @Value = @HttpContext.Current.Session["usuario"] })
-            @Html.LabelFor(model => model.ArchivoTransferencia, "Archivo de Transferencia", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ArchivoTransferencia, new { @class = "form-control form-control-user" })
-                <div class="text-danger">
-                    @Html.ValidationMessageFor(model => model.ArchivoTransferencia)
+
+            <div class="form-group  col-md-4 mb-2">
+                <div class="custom-file">
+                    @Html.TextBoxFor(model => model.ArchivoTransferencia, new { @class = "form-control form-control-user",@Type="file"})
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(model => model.ArchivoTransferencia)
+                    </div>
+                    @Html.LabelFor(model => model.ArchivoTransferencia, "Elegir un archivo", htmlAttributes: new { @class = "custom-file-label" })
                 </div>
             </div>
-            @Html.Label("Dinero", "Dinero", htmlAttributes: new { @class = "control-label col-md-4" })
+
+            @Html.Label("Dinero", "Dinero", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBox("Dinero", null, new { @class = "form-control form-control-user", @Value = 0 })
                 <div class="text-danger">

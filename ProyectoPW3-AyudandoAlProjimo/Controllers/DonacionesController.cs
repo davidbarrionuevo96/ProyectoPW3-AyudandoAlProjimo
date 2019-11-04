@@ -55,9 +55,13 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
         {
             if (cd.TipoDonacion==(int)EnumTipoDonacion.Monetaria)
             {
-                if (cd.Dinero>cd.FaltanteMon)
+                if ((cd.Dinero>cd.FaltanteMon))
                 {
                     ModelState.AddModelError("Dinero","El dinero ingresado es mayor al necesitado");
+                }
+                if (cd.ArchivoTransferencia == null)
+                {
+                    ModelState.AddModelError("ArchivoTransferencia", "El archivo de tranferencia es obligatorio");
                 }
             }
             if (cd.TipoDonacion == (int)EnumTipoDonacion.HorasTrabajo)

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Web;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -159,7 +161,12 @@ namespace Servicios
                 DonacionesMonetarias dm = new DonacionesMonetarias();
                 dm.FechaCreacion = DateTime.Today;
                 dm.Dinero = cd.Dinero;
-                dm.ArchivoTransferencia = cd.ArchivoTransferencia;
+
+                var filename = Path.GetFileName(cd.ArchivoTransferencia.FileName);
+                var path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Content/archivostransferencia/"), filename);
+                cd.ArchivoTransferencia.SaveAs(path);
+                dm.ArchivoTransferencia = filename;
+
                 dm.IdPropuestaDonacionMonetaria = _propuestaService.IdPropuestaMonetaria(cd.IdPropuesta);
                 dm.IdUsuario = cd.IdUsuario;
                 GuardarDonacionMonetaria(dm);

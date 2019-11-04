@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Entidades.Auxiliares
 {
@@ -30,7 +31,7 @@ namespace Entidades.Auxiliares
         [Required(ErrorMessage = "Dinero invalido")]
         [Range(1, int.MaxValue)]
         public decimal Dinero { get; set; }
-        public string ArchivoTransferencia { get; set; }
+        public HttpPostedFileBase ArchivoTransferencia { get; set; }
         //Monetaria
         public int IdPropuesta { get; set; }
         public int TipoDonacion { get; set; }

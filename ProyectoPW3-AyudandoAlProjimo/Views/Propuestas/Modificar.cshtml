@@ -30,9 +30,9 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.FechaFin, "Fecha de fin", htmlAttributes: new { @class = "control-label col-md-4", type = "date"})
+        @Html.LabelFor(model => model.FechaFin, "Fecha de fin", htmlAttributes: new { @class = "control-label col-md-4", type = "date" })
         <div class="col-md-10">
-            @Html.TextBoxFor(model => model.FechaFin, new { @class = "form-control form-control-user" ,@Value=Model.FechaFin.ToString("dd/MM/yyyy")})
+            @Html.TextBoxFor(model => model.FechaFin, new { @class = "form-control form-control-user", @Value = Model.FechaFin.ToString("dd/MM/yyyy") })
             <div class="text-danger">
                 @Html.ValidationMessageFor(model => model.FechaFin)
             </div>
@@ -52,7 +52,7 @@
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.Telefono1, new { @class = "form-control form-control-user" })
             <div class="text-danger">
-            @Html.ValidationMessageFor(model => model.Telefono1)
+                @Html.ValidationMessageFor(model => model.Telefono1)
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.NombreRef1, new { @class = "form-control form-control-user" })
             <div class="text-danger">
-            @Html.ValidationMessageFor(model => model.NombreRef1)
+                @Html.ValidationMessageFor(model => model.NombreRef1)
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.Telefono2, new { @class = "form-control form-control-user" })
             <div class="text-danger">
-            @Html.ValidationMessageFor(model => model.Telefono2)
+                @Html.ValidationMessageFor(model => model.Telefono2)
             </div>
         </div>
     </div>
@@ -79,14 +79,15 @@
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.NombreRef2, new { @class = "form-control form-control-user" })
             <div class="text-danger">
-            @Html.ValidationMessageFor(model => model.NombreRef2)
+                @Html.ValidationMessageFor(model => model.NombreRef2)
             </div>
         </div>
     </div>
-    <div class="form-group col-md-4 mb-2">
-        <div>
-            <label class="" for="FotoN">Elegir un archivo</label>
-            <input type="file" name="FotoN" value="" />
+    <div class="form-group  col-md-4 mb-2">
+        <div class="custom-file" lang="es">
+            @Html.TextBox("FotoN", null, new { type = "file", @class = "custom-file-input" })
+            @Html.ValidationMessage("FotoN", "", new { @class = "text-danger" })
+            <label class="custom-file-label" for="Foto">Elegir un archivo</label>
         </div>
     </div>
 
@@ -118,7 +119,7 @@
 
                 @Html.LabelFor(model => model.Dinero, "Dinero", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Dinero, new { @class = "form-control form-control-user", @Value = (int)Model.Dinero})
+                    @Html.TextBoxFor(model => model.Dinero, new { @class = "form-control form-control-user", @Value = (int)Model.Dinero })
                     <div class="text-danger">
                         @Html.ValidationMessageFor(model => model.Dinero)
                     </div>
