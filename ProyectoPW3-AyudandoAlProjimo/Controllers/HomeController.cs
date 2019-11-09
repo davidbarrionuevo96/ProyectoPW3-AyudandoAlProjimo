@@ -22,20 +22,13 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Login");
+                return View("Index", l.BuscarPropuestas());
             }
         }
         [HttpPost]
         public ActionResult Buscador(FormCollection f)
         {
-            if (Session["usuario"] != null)
-            {
-                return View("Index", l.BuscadorDePropuestas(f["buscar"].ToString()));
-            }
-            else
-            {
-                return RedirectToAction("Login", "Login");
-            }
+           return View("Index", l.BuscadorDePropuestas(f["buscar"].ToString()));
         }
         public ActionResult Denuncias()
         {

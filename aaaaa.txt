@@ -1,0 +1,250 @@
+--------------------------
+SERVICO
+--------------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Entidades;
+
+namespace Servicios
+{
+    public class HomeService
+    {
+        practicaParcial1 ctx = new practicaParcial1();
+
+        public void GuardarMaraton (Maraton m)
+        {
+            ctx.Maraton.Add(m);
+            ctx.SaveChanges();
+        }
+
+        public List<Maraton> BuscarMaratones()
+        {
+            List<Maraton>   m = (from p in ctx.Maraton
+                            where p.CantidadDeParticipantes >= 20
+                            select p).ToList();
+            return m;
+        }
+
+        public Maraton BuscarMaratonPorId(int id)
+        {
+            var m = (from p in ctx.Maraton
+                               where p.Id == id
+                               select p).ToList();
+
+            Maraton mar = new Maraton();
+            foreach (var n in m) {
+                mar = n;
+            }
+            return mar;
+        }
+
+        public void ModificarMaraton(Maraton m )
+        {
+            var v = (from p in ctx.Maraton
+                     where p.Id == m.Id
+                     select p).ToList();
+
+            Maraton mar = new Maraton();
+            foreach (var n in v)
+            {
+                mar = n;
+            }
+
+            mar.Nombre = m.Nombre;
+            mar.CantidadDeParticipantes = m.CantidadDeParticipantes;
+            ctx.SaveChanges();
+        }
+    }
+}
+------------------------------------
+CONTROLER
+------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Entidades;
+using Servicios;
+
+namespace Parcial.Controllers
+{
+    public class HomeController : Controller
+    {
+        HomeService hs = new HomeService();
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult CrearMaraton()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmarMaraton(Maraton m)
+        {
+            hs.GuardarMaraton(m);
+            return RedirectToAction("VerListaDeMaratones","Home");
+        }
+
+        public ActionResult VerListaDeMaratones()
+        {
+            
+            return View(hs.BuscarMaratones());
+        }
+
+        public ActionResult Modificar(String id)
+        {
+            return View(hs.BuscarMaratonPorId(Convert.ToInt32(id)));
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmarModificacion(Maraton m)
+        {
+            hs.ModificarMaraton(m);
+            return RedirectToAction("VerListaDeMaratones", "Home");
+        }
+    }
+}
+----------------------------------
+INDEX
+---------------------------------
+<br />
+<br />
+<br />
+<br />
+<div class="container-fluid">
+
+    <div class="row text-center">
+        <div class="col-md-6 text-center">
+            <a href="../Home/CrearMaraton"><button class="btn btn-danger">Crear Maraton</button></a>
+        </div>
+        <div class="col-md-6 text-center">
+            <a href="../Home/VerListaDeMaratones"><button class="btn btn-danger">Ver lista de Maratones</button></a>
+        </div>
+    </div>
+</div>
+----------------------------------
+CREARMARATON
+----------------------------------@model  Entidades.Maraton
+<br /> <br /> <br />
+              <div class="contain">
+                  @using (Html.BeginForm("ConfirmarMaraton", "Home", FormMethod.Post))
+                  {
+                      <div class=" row">
+                          <div class="col-sm-6">
+                              <div class=" offset-sm-6"><strong>Nombre</strong></div>
+                              @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control form-control-sm offset-sm-6", type = "text" })
+                          </div>
+                      </div>
+                      <br />
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class=" offset-sm-6"><strong>Cantidad de Participantes</strong></div>
+                              @Html.TextBoxFor(model => model.CantidadDeParticipantes, new { @class = "form-control form-control-sm offset-sm-6", type = "number" })
+                          </div>
+                      </div>
+                      <br />
+                      <div class=" row">
+                          <div class="col-sm-12">
+                              <input type="submit" class="offset-sm-3 btn btn-primary" value="Aceptar">
+                              <a href="~/Home/index"><input type="button" class="offset-sm-0 btn btn-danger" value="Cancelar"></a>
+                          </div>
+                      </div>
+                  }
+
+--------------------------------
+EDITAR MARATON
+----------------------------------
+@model  Entidades.Maraton
+<br /> <br /> <br />
+              <div class="contain">
+                  @using (Html.BeginForm("ConfirmarModificacion", "Home", FormMethod.Post))
+                  {
+                      <div class=" row">
+                          <div class="col-sm-6">
+                              <div class=" offset-sm-6"><strong>Nombre</strong></div>
+                              @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control form-control-sm offset-sm-6", type = "text", @Value = @Model.Nombre })
+                          </div>
+                      </div>
+                      <br />
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class=" offset-sm-6"><strong>Cantidad de Participantes</strong></div>
+                              @Html.TextBoxFor(model => model.CantidadDeParticipantes, new { @class = "form-control form-control-sm offset-sm-6", type = "number", @Value = @Model.CantidadDeParticipantes })
+                          </div>
+                      </div>
+                      <br />
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class=" offset-sm-6"><strong>Cantidad de Participantes</strong></div>
+                              @Html.TextBoxFor(model => model.Id, new { @class = "form-control form-control-sm offset-sm-6 hidden", type = "number", @Value = @Model.Id})
+                          </div>
+                      </div>
+                      <br />
+                      <div class=" row">
+                          <div class="col-sm-12">
+                              <input type="submit" class="offset-sm-3 btn btn-primary" value="Aceptar">
+                              <a href="~/Home/index"><input type="button" class="offset-sm-0 btn btn-danger" value="Cancelar"></a>
+                          </div>
+                      </div>
+                  }
+---------------------------------
+LISTAR MARATONES
+--------------------------------
+@model List<Entidades.Maraton>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+        </tr>
+    </thead>
+
+
+    @foreach (var p in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@p.Nombre</td>
+                <td>@p.CantidadDeParticipantes</td>
+                <td>
+                    <a href="Modificar/@p.Id"><button class="btn btn-success">Modificar</button></a>
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>
+
+<a href="~/Home/CrearMaraton"><button class="btn btn-primary">Crear Maraton</button></a>
+
+
+-----------------------------
+BASE DE DATOS
+----------------------------
+create database practicaParcial;
+drop database practicaParcial;
+use practicaParcial;
+use master
+
+CREATE TABLE Maraton(
+	Id int IDENTITY(1,1)PRIMARY KEY,
+	Nombre varchar(50) ,
+	CantidadDeParticipantes  int NOT NULL);
+------------------------------
+WEB CONFIG
+-----------------------------
+
+  <entityFramework>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>

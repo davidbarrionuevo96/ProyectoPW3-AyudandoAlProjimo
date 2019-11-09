@@ -25,7 +25,15 @@
                         <div class="progress-bar bg-success" style="width:@a.porcentajeNegativo%;">
                         </div>
                     </div>
-                    <a href="~/Home/DetallePropuesta/@a.idPropuesta" class="mt-2 btn btn-sm btn-primary float-right">Detalle <i class="fas fa-angle-double-right"></i></a>
+                    @if (@HttpContext.Current.Session["usuario"] != null)
+                    {
+                        <a href="~/Home/DetallePropuesta/@a.idPropuesta" class="mt-2 btn btn-sm btn-primary float-right">Detalle <i class="fas fa-angle-double-right"></i></a>
+                    }
+                    else
+
+                    {
+                        <a href="~/Login/Login/@a.idPropuesta" class="mt-2 btn btn-sm btn-primary float-right">Detalle <i class="fas fa-angle-double-right"></i></a>
+                    }
                 </div>
             </div>
         </div>
