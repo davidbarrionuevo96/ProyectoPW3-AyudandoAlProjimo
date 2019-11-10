@@ -138,7 +138,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
             Session["Name"] = u.Nombre;
             Session["Apellido"] = u.Apellido;
             Session["fn"] = u.FechaNacimiento.ToString("MM/dd/yyyy");
-
+            Session["PermitirPropuesta"] = _p.Permitirpropuesta((int)Session["usuario"]);
             return View("MiPerfil");
         }
 
@@ -152,6 +152,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                     String filename = Path.GetFileName(imagen.FileName);
                     l.CargarImagen(imagen);
                     Session["Foto"] = "/Content/img/" + filename;
+                    Session["PermitirPropuesta"] = _p.Permitirpropuesta((int)Session["usuario"]);
                     return View("MiPerfil");
                 }
                 return View("MiPerfil");

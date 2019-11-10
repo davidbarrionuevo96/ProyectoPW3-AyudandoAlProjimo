@@ -38,7 +38,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                 return RedirectToAction("CargarListaInsumos", "Propuestas",p);
             }
             _propuestaService.RegistrarPropuesta(p, Foto);
-            return RedirectToAction("MisPrupuestas", "Propuestas");
+            return RedirectToAction("MisPropuestas", "Propuestas");
         }
 
         [HttpGet]
@@ -63,7 +63,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                     p.pins.Add(item);
                 }
             _propuestaService.RegistrarPropuesta(p,fotofija);
-            return RedirectToAction("MisPrupuestas", "Propuestas");
+            return RedirectToAction("MisPropuestas", "Propuestas");
         }
         [HttpGet]
         public ActionResult Modificar(int id)
@@ -87,7 +87,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
 
             _propuestaService.ModificarPropuesta(p, FotoN);
 
-            return RedirectToAction("MisPrupuestas", "Propuestas");
+            return RedirectToAction("MisPropuestas", "Propuestas");
 
            
         }

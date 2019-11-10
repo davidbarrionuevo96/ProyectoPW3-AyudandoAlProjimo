@@ -23,7 +23,8 @@ namespace Entidades.Auxiliares
         [Required(ErrorMessage = "La cantidad de horas es requerida")]
         public int CantidadHoras { get; set; }
 
-        [Required(ErrorMessage = "La profesion es requerida")]
+        [MaxLength(50)
+       , MinLength(0)]
         public string Profesion { get; set; }
         //Horas de Trabajo
         //Insumos

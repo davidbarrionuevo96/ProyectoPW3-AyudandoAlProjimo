@@ -6,3 +6,15 @@
 
 	width: 90%!important;height:20px !important; color:#ea4335!important;
 }
+.custom-file-input ~ .custom-file-label::after {
+    content: "Buscar";
+}
+#formmon{
+    display:none;
+}
+#formins {
+    display: none;
+}
+#formhor {
+    display: none;
+}

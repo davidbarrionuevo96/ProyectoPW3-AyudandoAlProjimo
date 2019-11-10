@@ -27,239 +27,118 @@
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
+        <!-- Sidebar -->
+        @Html.Partial("~/Views/Shared/_Menu.cshtml")
+        <div id="content-wrapper" class="d-flex flex-column">
 
-        
-            <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <div id="content">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="~/Home/index">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Ayudando Al Prójimo</div>
-            </a>
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-2">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                    <a class="nav-link" href="~/Home/index">
-                        <i class="fas fa-fw fa-home"></i>
-                        <span>HOME</span>
-                    </a>
-            </li>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-2">
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            @{
-                if (@HttpContext.Current.Session["usuario"] != null)
-                {
-                    if (@HttpContext.Current.Session["PermitirPropuesta"].ToString() != "1")
+                    @using (Html.BeginForm("Buscador", "Home", FormMethod.Post, new { @class = "d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" }))
                     {
-                        <li class="nav-item">
-                            <div class="nav-link disabled">
-                                <i class="fas fa-fw fa-plus"></i>
-                                <span>Crear Propuesta(No cumple requisitos)</span>
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." aria-label="Search" name="buscar" aria-describedby="basic-addon2">
+
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
                             </div>
-                        </li>
+                        </div>
                     }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Propuestas/Crear">
-                                <i class="fas fa-fw fa-plus"></i>
-                                <span>Crear Propuesta</span>
-                            </a>
-                        </li>
-                    }
-                }
-                else
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Login/Login">
-                            <i class="fas fa-fw fa-plus"></i>
-                            <span>Crear Propuesta</span>
+
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
                         </a>
-                    </li>
-                }
-            }
 
-
-            <hr class="sidebar-divider my-2">
-            @if (@HttpContext.Current.Session["usuario"] != null)
-            {
-                <li class="nav-item">
-                    <a class="nav-link" href="/Propuestas/MisPropuestas">
-                        <i class="fas fa-fw fa-list-ul"></i>
-                        <span>Mis Propuesta</span>
-                    </a>
-                </li>
-            }
-            else
-            {
-                <li class="nav-item">
-                    <a class="nav-link" href="/Login/Login">
-                        <i class="fas fa-fw fa-list-ul"></i>
-                        <span>Mis Propuesta</span>
-                    </a>
-                </li>
-            }
-            <hr class="sidebar-divider my-2">
-
-            @if (@HttpContext.Current.Session["usuario"] != null)
-            {
-
-                <!-- Nav Item - Utilities Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link" href="~/Home/Denuncias">
-                        <i class="fas fa-fw fa-exclamation-triangle"></i>
-                        <span>Denuncias</span>
-                    </a>
-                </li>
-
-                <hr class="sidebar-divider my-2">
-
-            }
-            else if (Convert.ToInt32(@HttpContext.Current.Session["Tipo"]) == 1)
-            {
-
-                <!-- Nav Item - Utilities Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link" href="~/Home/Denuncias">
-                        <i class="fas fa-fw fa-exclamation-triangle"></i>
-                        <span>Denuncias</span>
-                    </a>
-                </li>
-
-                <hr class="sidebar-divider my-2">
-            }
-            else
-            {
-
-            }
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-info"></i>
-                    <span>Acerca de</span>
-                </a>
-            </li>
-            <hr class="sidebar-divider my-2">
-        </ul>
-                <div id="content-wrapper" class="d-flex flex-column">
-
-                    <div id="content">
-
-                        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                                <i class="fa fa-bars"></i>
-                            </button>
-
-                            @using (Html.BeginForm("Buscador", "Home", FormMethod.Post, new { @class = "d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" }))
-                            {
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                            <form class="form-inline mr-auto w-100 navbar-search">
                                 <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." aria-label="Search" name="buscar" aria-describedby="basic-addon2">
-
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">
+                                        <button class="btn btn-primary" type="button">
                                             <i class="fas fa-search fa-sm"></i>
                                         </button>
                                     </div>
                                 </div>
+                            </form>
+                        </div>
+                    </li>
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+                    @if (@HttpContext.Current.Session["usuario"] != null)
+                    {
+                        if (@HttpContext.Current.Session["PermitirPropuesta"].ToString() == "1")
+                        {
+                            <li class="nav-item m-auto text-danger">
+                                @Html.ActionLink("Completar Perfil","EditarPerfil","Home",new { @class="btn btn-outline-danger btn-sm"})
+                            </li>
+                        }
+                    }
+
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            <span class="mr-2 d-lg-inline text-gray-600 small">
+                                @if (@HttpContext.Current.Session["Nombre"] == null)
+                                {
+                                    @HttpContext.Current.Session["Email"]
+                                }
+                                else
+                                {
+                                    @HttpContext.Current.Session["Nombre"]
+                                }
+                            </span>
+                            @if (@HttpContext.Current.Session["Foto"] != null)
+                            {
+                                <img class="img-profile rounded-circle" src="@HttpContext.Current.Session["Foto"]">
                             }
+                            else if (@HttpContext.Current.Session["usuario"] != null)
+                            {
+                                <img class="img-profile rounded-circle" src="~/Content/img/avatar.png">
+                            }
+                            else
+                            {
 
-                            <ul class="navbar-nav ml-auto">
+                            }
+                        </a>
 
-                                <li class="nav-item dropdown no-arrow d-sm-none">
-                                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-search fa-fw"></i>
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                                        <form class="form-inline mr-auto w-100 navbar-search">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-primary" type="button">
-                                                        <i class="fas fa-search fa-sm"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </li>
-
-                                <div class="topbar-divider d-none d-sm-block"></div>
-
-                                <li class="nav-item dropdown no-arrow">
-                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                                        <span class="mr-2 d-lg-inline text-gray-600 small">
-                                            @if (@HttpContext.Current.Session["Nombre"] == null)
-                                            {
-                                                @HttpContext.Current.Session["Email"]
-                                            }
-                                            else
-                                            {
-                                                @HttpContext.Current.Session["Nombre"]
-                                            }
-                                        </span>
-                                        @if (@HttpContext.Current.Session["Foto"] != null)
-                                        {
-                                            <img class="img-profile rounded-circle" src="@HttpContext.Current.Session["Foto"]">
-                                        }
-                                        else if (@HttpContext.Current.Session["usuario"] != null)
-                                        {
-                                            <img class="img-profile rounded-circle" src="~/Content/img/avatar.png">
-                                        }
-                                        else
-                                        {
-                                         
-                                        }
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                        <a class="dropdown-item" href="~/Home/MiPerfil">
-                                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            Perfil
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            Cerrar Sesion
-                                        </a>
-                                    </div>
-                                </li>
-
-                            </ul>
-
-                        </nav>
-
-                        <div class="container-fluid">
-
-                         @RenderBody()
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="~/Home/MiPerfil">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Perfil
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Cerrar Sesion
+                            </a>
                         </div>
+                    </li>
 
-                    </div>
+                </ul>
 
-                    <footer class="sticky-footer bg-white">
-                        <div class="container my-auto">
-                            <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; Your Website 2019</span>
-                            </div>
-                        </div>
-                    </footer>
+                </nav>
 
+                <div class="container-fluid">
+
+                    @RenderBody()
                 </div>
 
+            </div>
+
+
         </div>
+
+    </div>
 
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -290,6 +169,7 @@
     <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <script src="~/Content/js/sb-admin-2.min.js"></script>
+    <script src="~/Content/js/scripts.js"></script>
 
 </body>
 
