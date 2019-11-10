@@ -1,7 +1,8 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model List<Entidades.Auxiliares.PropuestaUsuario>
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/PropuestasLayout.cshtml";
 }
-@model List<Entidades.Auxiliares.PropuestaUsuario>
 
 <a href="~/Propuestas/Inactivas" class="mt-2  btn btn-sm btn-secondary float-right">Inactivas</a>
 <a href="~/Propuestas/Activas" class="mt-2 mr-2 btn btn-sm btn-secondary float-right">Activas</a>
