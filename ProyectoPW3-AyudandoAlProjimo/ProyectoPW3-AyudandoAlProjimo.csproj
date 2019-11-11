@@ -1990,11 +1990,12 @@
     <Content Include="Views\Shared\PropuestasLayout.cshtml" />
     <Content Include="Views\Shared\pv_footer.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Views\Propuestas\DetallePropuesta.cshtml" />
+    <Content Include="Views\Denuncias\IrADenunciar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Denuncias\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

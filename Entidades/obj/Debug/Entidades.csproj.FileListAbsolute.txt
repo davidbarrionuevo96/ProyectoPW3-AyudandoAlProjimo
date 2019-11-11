@@ -68,3 +68,15 @@ C:\Users\david\Documents\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debu
 C:\Users\david\Documents\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csproj.CopyComplete
 C:\Users\david\Documents\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.dll
 C:\Users\david\Documents\GitHub\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.pdb
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\Entidades.dll.config
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\Entidades.dll
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\Entidades.pdb
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\EntityFramework.dll
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\EntityFramework.xml
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\Entidades\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.csproj.CopyComplete
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.dll
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\Entidades\obj\Debug\Entidades.pdb

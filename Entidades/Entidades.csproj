@@ -90,6 +90,7 @@
     <Compile Include="Partials\Propuestas.cs" />
     <Compile Include="Partials\PropuestasDonacionesInsumos.cs" />
     <Compile Include="Partials\PropuestasDonacionesInsumosMetaData.cs" />
+    <Compile Include="Partials\PropuestaWrapper.cs" />
     <Compile Include="Partials\PropuestasMetaData.cs" />
     <Compile Include="Partials\Usuarios.cs" />
     <Compile Include="Partials\UsuariosMetaData.cs" />

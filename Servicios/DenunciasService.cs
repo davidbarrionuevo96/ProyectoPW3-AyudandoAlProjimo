@@ -65,6 +65,28 @@ namespace Servicios
             }
             asd.SaveChanges();
         }
+
+        public void Denunciar(Denuncias denuncia)
+        {
+
+            using (var ctx = new Entities())
+            {
+                Denuncias den = new Denuncias();
+
+                den.IdUsuario = denuncia.IdUsuario;
+                den.IdPropuesta = denuncia.IdPropuesta;
+                den.FechaCreacion = DateTime.Today;
+                den.IdMotivo = denuncia.IdMotivo;
+                den.Estado = 1;
+                den.Comentarios = denuncia.Comentarios;
+
+                ctx.Denuncias.Add(den);
+                PropuestaService pp = new PropuestaService();
+                pp.VerificarDenuncias(denuncia);
+                ctx.SaveChanges();
+
+            }
+        }
     }
 
 }

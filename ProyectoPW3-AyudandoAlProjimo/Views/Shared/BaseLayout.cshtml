@@ -51,63 +51,65 @@
                         </div>
                     }
 
-                    <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto">
 
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
 
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                            <form class="form-inline mr-auto w-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
                                     </div>
-                                </form>
-                            </div>
-                        </li>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
-                        @if (@HttpContext.Current.Session["usuario"] != null)
+                    <div class="topbar-divider d-none d-sm-block"></div>
+                    @if (@HttpContext.Current.Session["usuario"] != null)
+                    {
+                        if (@HttpContext.Current.Session["PermitirPropuesta"].ToString() == "1")
                         {
-                            if (@HttpContext.Current.Session["PermitirPropuesta"].ToString() == "1")
-                            {
-                                <li class="nav-item m-auto text-danger">
-                                    @Html.ActionLink("Completar Perfil", "EditarPerfil", "Home", new { @class = "btn btn-outline-danger btn-sm" })
-                                </li>
-                            }
+                            <li class="nav-item m-auto text-danger">
+                                @Html.ActionLink("Completar Perfil", "EditarPerfil", "Home", new { @class = "btn btn-outline-danger btn-sm" })
+                            </li>
                         }
+                    }
 
+                    @if (@HttpContext.Current.Session["usuario"] != null)
+                    {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                 <span class="mr-2 d-lg-inline text-gray-600 small">
                                     @if (@HttpContext.Current.Session["Nombre"] == null)
-                                    {
+                    {
                                         @HttpContext.Current.Session["Email"]
-                                    }
-                                    else
-                                    {
+                    }
+                    else
+                    {
                                         @HttpContext.Current.Session["Nombre"]
-                                    }
+                    }
                                 </span>
                                 @if (@HttpContext.Current.Session["Foto"] != null)
-                                {
+                    {
                                     <img class="img-profile rounded-circle" src="@HttpContext.Current.Session["Foto"]">
-                                }
-                                else if (@HttpContext.Current.Session["usuario"] != null)
-                                {
+                    }
+                    else if (@HttpContext.Current.Session["usuario"] != null)
+                    {
                                     <img class="img-profile rounded-circle" src="~/Content/img/avatar.png">
-                                }
-                                else
-                                {
+                    }
+                    else
+                    {
 
-                                }
+                    }
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -122,8 +124,16 @@
                                 </a>
                             </div>
                         </li>
+                    }
+                    else
+                    {
+                <a class="mt-2 text-primary" href="/Login/Login" >
+                    Iniciar Sesion
+                    
+                </a>
+                    }
 
-                    </ul>
+                </ul>
 
                 </nav>
 

@@ -18,16 +18,17 @@
                     <div class=" mb-1 card-text text-primary">@a.usuario</div>
                     <div class=" mb-1 card-text text-danger">@a.fechaFin.ToString("MM/dd/yyyy")</div>
                     <div class="progress">
-                        <div class="progress-bar" style="width: @a.porcentajePositivo%;">
+                        <div class="progress-bar bg-success" style="width: @a.porcentajePositivo%;">
                             @a.porcentajePositivo%
                         </div>
 
-                        <div class="progress-bar bg-success" style="width:@a.porcentajeNegativo%;">
+                        <div class="progress-bar bg-danger" style="width:@a.porcentajeNegativo%;">
+                            @a.porcentajeNegativo%
                         </div>
                     </div>
                     @if (@HttpContext.Current.Session["usuario"] != null)
                     {
-                        <a href="~/Home/DetallePropuesta/@a.idPropuesta" class="mt-2 btn btn-sm btn-primary float-right">Detalle <i class="fas fa-angle-double-right"></i></a>
+                        <a href="~/Propuestas/DetallePropuesta/@a.idPropuesta" class="mt-2 btn btn-sm btn-primary float-right">Detalle <i class="fas fa-angle-double-right"></i></a>
                     }
                     else
 

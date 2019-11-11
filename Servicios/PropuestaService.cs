@@ -541,5 +541,373 @@ namespace Servicios
             }
         }
 
+
+        public Propuestas GetWithFKPorId(int id)
+        {
+            Propuestas p = (from pr in asd.Propuestas
+                            where pr.IdPropuesta == id
+                            select pr).FirstOrDefault();
+            return p;
+        }
+        public int ObtenerIddonacionHorasTrabajo(int id)
+        {
+            int p = (from pr in asd.PropuestasDonacionesHorasTrabajo
+                     where pr.IdPropuesta == id
+                     select pr.IdPropuestaDonacionHorasTrabajo).FirstOrDefault();
+            return p;
+        }
+        public int GetHorasTrabajoByPropuesta(int id)
+        {
+            using (var ctx = new Entities())
+            {
+                int p = (from don in ctx.PropuestasDonacionesHorasTrabajo
+                         where don.IdPropuesta == id
+                         select don.CantidadHoras).FirstOrDefault();
+                return p;
+            }
+
+        }
+        public int GetDonacionesHorasTrabajo(int id)
+        {
+            var p = (from pr in asd.DonacionesHorasTrabajo
+                     where pr.IdPropuestaDonacionHorasTrabajo == id
+                     select pr.Cantidad).Count();
+
+            int p2;
+
+            if (p == 0)
+            {
+                p2 = 0;
+            }
+            else
+            {
+                p2 = (from pr in asd.DonacionesHorasTrabajo
+                         where pr.IdPropuestaDonacionHorasTrabajo == id
+                         select pr.Cantidad).Sum();
+            }
+            return p2;
+        }
+
+
+        public int ObtenerIddonacionMonetaria(int id)
+        {
+            int p = (from pr in asd.PropuestasDonacionesMonetarias
+                     where pr.IdPropuesta == id
+                     select pr.IdPropuestaDonacionMonetaria).FirstOrDefault();
+            return p;
+        }
+        public decimal GetMonetariasByPropuesta(int id)
+        {
+            using (var ctx = new Entities())
+            {
+                decimal p = (from don in ctx.PropuestasDonacionesMonetarias
+                             where don.IdPropuesta == id
+                             select don.Dinero).FirstOrDefault();
+                return p;
+            }
+
+        }
+        public decimal GetDonacionesMonetarias(int id)
+        {
+
+            var p = (from pr in asd.DonacionesMonetarias
+                     where pr.IdPropuestaDonacionMonetaria == id
+                     select pr.Dinero).Count();
+
+            decimal p2;
+
+            if (p == 0)
+            {
+                p2 = 0;
+            }
+            else
+            {
+                p2 = (from pr in asd.DonacionesMonetarias
+                          where pr.IdPropuestaDonacionMonetaria == id
+                          select pr.Dinero).Sum();
+            }
+
+            return p2;
+        }
+
+
+        public List<PropuestasDonacionesInsumos> GetInsumosByPropuesta(int id)
+        {
+            List<PropuestasDonacionesInsumos> p = (from pr in asd.PropuestasDonacionesInsumos
+                                                   where pr.IdPropuesta == id
+                                                   select pr).ToList();
+
+
+            return p;
+        }
+        public List<int> ObtenerIdDonacionesInsumos(int id)
+        {
+            List<int> p = (from d in asd.PropuestasDonacionesInsumos
+                           where d.IdPropuesta == id
+                           select d.IdPropuestaDonacionInsumo).ToList();
+            return p;
+        }
+        public List<int> GetDonacionesInsumos(List<int> id)
+        {
+            List<int> h = new List<int>();
+
+            foreach (var a in id)
+            {
+                int p = (from don in asd.DonacionesInsumos
+                         where don.IdPropuestaDonacionInsumo == a
+                         select don.Cantidad).Count();
+                if (p != 0)
+                {
+                    int p2 = (from don in asd.DonacionesInsumos
+                              where don.IdPropuestaDonacionInsumo == a
+                              select don.Cantidad).Sum();
+
+                    h.Add(p2);
+                }
+                else
+                {
+                    h.Add(0);
+                }
+            }
+
+            return h;
+
+        }
+        public List<int> GetTotalesInsumos(List<PropuestasDonacionesInsumos> prop, List<int> donacion, List<int> id, int idProp)
+        {
+            List<int> total = new List<int>();
+            int i = -1;
+
+            foreach (var a in id)
+            {
+                int p = (from don in asd.DonacionesInsumos
+                         where don.IdPropuestaDonacionInsumo == a
+                         select don.Cantidad).Count();
+
+                if (p != 0)
+                {
+                    i++;
+
+                    int p2 = (from don in asd.DonacionesInsumos
+                              where don.IdPropuestaDonacionInsumo == a
+                              select don.Cantidad).Sum();
+
+               List<int> p3 = (from pepe in asd.PropuestasDonacionesInsumos
+                              where pepe.IdPropuesta == idProp
+                              select pepe.Cantidad).ToList();
+
+
+
+                    total.Add(p3[i] - p2);
+
+                }
+                else
+                {
+                    int p3 = (from pepe in asd.PropuestasDonacionesInsumos
+                              where pepe.IdPropuesta == idProp
+                              select pepe.Cantidad).FirstOrDefault();
+
+                    total.Add(p3);
+                }
+            }
+
+            return total;
+        }
+        public Usuarios GetUsuarioPorPropuesta(int id)
+        {
+            using (var ctx = new Entities())
+            {
+                Usuarios p = (from pr in ctx.Usuarios
+                              join prop in ctx.Propuestas
+                              on pr.IdUsuario equals prop.IdUsuarioCreador
+                              where prop.IdPropuesta == id
+                              select pr).FirstOrDefault();
+
+                return p;
+            }
+        }
+
+        public int ValoracionesPositivas(int id)
+        {
+            using (var ctx = new Entities())
+            {
+                int idval = (from pv in ctx.PropuestasValoraciones
+                             where pv.IdPropuesta == id
+                             && pv.Valoracion == true
+                             select pv.Valoracion).Count();
+                return idval;
+            }
+        }
+        public int ValoracionesNegativas(int id)
+        {
+            using (var ctx = new Entities())
+            {
+                int idval = (from pv in ctx.PropuestasValoraciones
+                             where pv.IdPropuesta == id
+                             && pv.Valoracion == false
+                             select pv.Valoracion).Count();
+                return idval;
+            }
+        }
+        public decimal CalcularPorcentajePositivo(int positivo, int negativo)
+        {
+            if (negativo != 0 && positivo != 0)
+            {
+                var total = positivo + negativo;
+                total = positivo * 100 / total;
+                return total;
+            }
+            else if (negativo == 0 && positivo != 0)
+            {
+                return 100;
+            }
+            else if (negativo != 0 && positivo == 0)
+            {
+                return 200;
+            }
+            else
+            {
+                return 50;
+            }
+        }
+        public void CantidadTotalVotos(int positivo, int negativo, int id)
+        {
+            Propuestas prop = (from p in asd.Propuestas
+                               where p.IdPropuesta == id
+                               select p).FirstOrDefault();
+
+            int total2 = negativo + positivo;
+            int total;
+
+            if (total2 != 0)
+            {
+                total = positivo * 100 / total2;
+            }
+            else
+            {
+                total = 50;
+            }
+
+            prop.Valoracion = total;
+
+            asd.SaveChanges();
+        }
+
+        public void CrearValoracion(int IdUser, int IdPropuesta, int valoracion)
+        {
+            PropuestasValoraciones valor = new PropuestasValoraciones();
+
+            using (var ctx = new Entities())
+            {
+                int verSiVoto = (from vot in ctx.PropuestasValoraciones
+                                 where vot.IdUsuario == IdUser
+                                 && vot.IdPropuesta == IdPropuesta
+                                 select vot.IdUsuario).Count();
+
+                PropuestasValoraciones valorCambio = (from vot in ctx.PropuestasValoraciones
+                                                      where vot.IdUsuario == IdUser
+                                                      && vot.IdPropuesta == IdPropuesta
+                                                      select vot).FirstOrDefault();
+
+                if (verSiVoto != 0)
+                {
+                    if (valoracion == 1)
+                    {
+                        valorCambio.Valoracion = true;
+                    }
+                    else
+                    {
+                        valorCambio.Valoracion = false;
+                    }
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    valor.IdUsuario = IdUser;
+                    valor.IdPropuesta = IdPropuesta;
+                    if (valoracion == 1)
+                    {
+                        valor.Valoracion = true;
+                    }
+                    else
+                    {
+                        valor.Valoracion = false;
+                    }
+                    ctx.PropuestasValoraciones.Add(valor);
+                    ctx.SaveChanges();
+                }
+
+            }
+        }
+        public int PuedeDenunciar(int idPropuesta, string IdUser)
+        {
+
+            using (var ctx = new Entities())
+            {
+                int idInt2 = Convert.ToInt32(IdUser);
+
+                int valor = (from d in ctx.Denuncias
+                             where d.IdUsuario == idInt2
+                             && d.IdPropuesta == idPropuesta
+                             select d.IdUsuario).Count();
+
+                return valor;
+            }
+        }
+        
+
+
+        public void VerificarDenuncias(Denuncias denuncia)
+        {
+            int contador = (from p in asd.Denuncias
+                            where p.IdPropuesta == denuncia.IdPropuesta
+                            && p.Estado == 1
+                            select p).Count();
+
+
+
+
+            Propuestas prop = (from p2 in asd.Propuestas
+                               where p2.IdPropuesta == denuncia.IdPropuesta
+                               select p2).FirstOrDefault();
+
+
+            if (contador >= 5)
+            {
+                prop.Estado = 1;
+                asd.SaveChanges();
+            }
+        }
+        public int GetVotoPorId(String id, int idPropuesta)
+        {
+            int idInt = Convert.ToInt32(id);
+
+            using (var ctx = new Entities())
+            {
+                int valor = (from pv in ctx.PropuestasValoraciones
+                             where pv.IdUsuario == idInt
+                             && pv.IdPropuesta == idPropuesta
+                             select pv.Valoracion).Count();
+
+                Boolean valor2 = (from pv in ctx.PropuestasValoraciones
+                                  where pv.IdUsuario == idInt
+                                  && pv.IdPropuesta == idPropuesta
+                                  select pv.Valoracion).FirstOrDefault();
+
+                if (valor != 0 && valor2 == true)
+                {
+                    return 1;
+                }
+                else if (valor != 0 && valor2 == false)
+                {
+                    return 2;
+                }
+                else
+                {
+                    return 3;
+                }
+            }
+        }
+
     }
 }
