@@ -9,7 +9,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
     public class ErrorController : Controller
     {
         // GET: Error
-        public ActionResult Index(int error = 0)
+        public ActionResult ErrorPage(int error = 0)
         {
             switch (error)
             {
@@ -29,7 +29,7 @@ namespace ProyectoPW3_AyudandoAlProjimo.Controllers
                     break;
             }
 
-            return View("~/views/error/_ErrorPage.cshtml");
+            return View();
         }
     }
 }

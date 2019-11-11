@@ -33,7 +33,7 @@ namespace ProyectoPW3_AyudandoAlProjimo
             int error = httpException != null ? httpException.GetHttpCode() : 0;
 
             Server.ClearError();
-            Response.Redirect(String.Format("~/Error/?error={0}", error, exception.Message));
+            Response.Redirect(String.Format("~/Error/ErrorPage/?error={0}", error, exception.Message));
         }
     }
 }

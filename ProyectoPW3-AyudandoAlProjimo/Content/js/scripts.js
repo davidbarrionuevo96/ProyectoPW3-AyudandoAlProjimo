@@ -1,4 +1,4 @@
 $(document).ready(function(){
-    document.getElementById("Fecha").valueAsDate = new Date();
+    document.getElementById("FechaNacimiento").valueAsDate = new Date();
 });
  

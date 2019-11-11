@@ -132,13 +132,14 @@ namespace Servicios
                 var usu = (from u in ctx.Usuarios
                            where u.IdUsuario==id
                            select u).First();
-                if (cant.Count>=3)
-                {
-                    if (usu.Nombre == null || usu.Apellido == null || usu.FechaNacimiento == null || usu.Foto == null||
+                if (usu.Nombre == null || usu.Apellido == null || usu.FechaNacimiento == null || usu.Foto == null ||
                         usu.Nombre == "" || usu.Apellido == "" || usu.Foto == "")
-                    {
-                        return 1;
-                    }
+                {
+                    return 1;
+                }
+                else if (cant.Count>=3)
+                {
+                    
                     return 2;
                 }
                 else

@@ -21,7 +21,6 @@
     <tbody id="mostrarContenido">
     </tbody>
 </table>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
     $(document).ready(
         function () {
@@ -57,7 +56,7 @@
 
                     cadena += `<td>${item.TotalRecaudado}</td>`
                     cadena += `<td>${item.MiDonacion}</td>`
-                    cadena += `<td> <a href="/Detalle/Propuestas/${item.IdPropuesta}">Ir a Propuesta</a> </td>`
+                    cadena += `<td> <a href="/Propuestas/DetallePropuesta/${item.IdPropuesta}">Ir a Propuesta</a> </td>`
                     cadena+=`</tr>`
 
                 });

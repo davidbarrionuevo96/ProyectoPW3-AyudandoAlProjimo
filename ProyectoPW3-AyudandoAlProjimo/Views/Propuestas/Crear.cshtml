@@ -25,7 +25,7 @@
                 <div class="validacion2">
                     @Html.ValidationMessageFor(model => model.Descripcion)
                 </div>
-                
+
             </div>
         </div>
         <div class="form-group">
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="form-group  ml-2">
-            @Html.LabelFor(model => model.FechaFin, "Fecha de fin", htmlAttributes: new { @class = "font-weight-bold" , type = "date" })
+            @Html.LabelFor(model => model.FechaFin, "Fecha de fin", htmlAttributes: new { @class = "font-weight-bold", type = "date" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.FechaFin, new { @class = "form-control form-control-user" })
                 <div class="validacion2">
@@ -57,11 +57,11 @@
             </div>
         </div>
         <div class="form-group ml-2">
-            @Html.LabelFor(model => model.Telefono1, "Telefono de Referencia 1", htmlAttributes: new { @class = "font-weight-bold col-md-3"})
+            @Html.LabelFor(model => model.Telefono1, "Telefono de Referencia 1", htmlAttributes: new { @class = "font-weight-bold col-md-3" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Telefono1, new { @class = "form-control form-control-user" })
                 <div class="validacion2">
-                    @Html.ValidationMessageFor(model => model.Telefono1 )
+                    @Html.ValidationMessageFor(model => model.Telefono1)
                 </div>
             </div>
         </div>
@@ -133,20 +133,20 @@
             <div class="validacion2">
                 @Html.ValidationMessage("CantidadHoras")
             </div>
-        <div>
             <div>
-                <div class="">
-                    <label class="font-weight-bold" for="Profesion">Profesion:</label>
-                    <select class="form-control" id="Profesion" name="Profesion">
-                        <option value="Sin Especificar">Sin Especificar</option>
-                        <option value="Carpinteria">Carpinteria</option>
-                        <option value="Contador">Contador</option>
-                        <option value="Limpieza">Limpieza</option>
-                        <option value="Cocina">Cocina</option>
-                    </select>
+                <div>
+                    <div class="">
+                        <label class="font-weight-bold" for="Profesion">Profesion:</label>
+                        <select class="form-control" id="Profesion" name="Profesion">
+                            <option value="Sin Especificar">Sin Especificar</option>
+                            <option value="Carpinteria">Carpinteria</option>
+                            <option value="Contador">Contador</option>
+                            <option value="Limpieza">Limpieza</option>
+                            <option value="Cocina">Cocina</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
         <div class=" row">
             <div class="col-sm-12">
@@ -156,5 +156,5 @@
         </div>
     </div>
 }
-<script src="~/Content/js/crearpropuesta.js"></script>
-
+@Scripts.Render("~/bundles/crearpropuesta")
+                   
