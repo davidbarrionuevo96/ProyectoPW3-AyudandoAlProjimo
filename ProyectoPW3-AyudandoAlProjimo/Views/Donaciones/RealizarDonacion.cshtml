@@ -7,11 +7,6 @@
 
 
 <h2>Realizar una Donacion</h2>
-<style>
-    .custom-file-input ~ .custom-file-label::after {
-        content: "Buscar";
-    }
-</style>
 @using (Html.BeginForm("RealizarDonacion", "Donaciones", FormMethod.Post,new { enctype = "multipart/form-data" }))
 {
     @Html.TextBoxFor(model => model.IdPropuesta, new { @class = "d-none"})

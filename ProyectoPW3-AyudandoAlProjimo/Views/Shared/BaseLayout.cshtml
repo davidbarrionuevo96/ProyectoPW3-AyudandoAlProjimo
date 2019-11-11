@@ -15,12 +15,11 @@
     <meta name="author" content="">
 
     <title>Ayudando Al Projimo</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    @Scripts.Render("~/bundles/jquery3.4.1")
     <!-- Custom fonts for this template-->
-    <link href="~/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Content/css")
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="~/Content/css/estilos.css" rel="stylesheet" type="text/css">
+
 </head>
 <!-- Custom styles for this template-->
 
@@ -52,79 +51,79 @@
                         </div>
                     }
 
-                <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto">
 
-                    <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
 
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                    </li>
+                                </form>
+                            </div>
+                        </li>
 
-                    <div class="topbar-divider d-none d-sm-block"></div>
-                    @if (@HttpContext.Current.Session["usuario"] != null)
-                    {
-                        if (@HttpContext.Current.Session["PermitirPropuesta"].ToString() == "1")
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        @if (@HttpContext.Current.Session["usuario"] != null)
                         {
-                            <li class="nav-item m-auto text-danger">
-                                @Html.ActionLink("Completar Perfil","EditarPerfil","Home",new { @class="btn btn-outline-danger btn-sm"})
-                            </li>
+                            if (@HttpContext.Current.Session["PermitirPropuesta"].ToString() == "1")
+                            {
+                                <li class="nav-item m-auto text-danger">
+                                    @Html.ActionLink("Completar Perfil", "EditarPerfil", "Home", new { @class = "btn btn-outline-danger btn-sm" })
+                                </li>
+                            }
                         }
-                    }
 
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                            <span class="mr-2 d-lg-inline text-gray-600 small">
-                                @if (@HttpContext.Current.Session["Nombre"] == null)
+                                <span class="mr-2 d-lg-inline text-gray-600 small">
+                                    @if (@HttpContext.Current.Session["Nombre"] == null)
+                                    {
+                                        @HttpContext.Current.Session["Email"]
+                                    }
+                                    else
+                                    {
+                                        @HttpContext.Current.Session["Nombre"]
+                                    }
+                                </span>
+                                @if (@HttpContext.Current.Session["Foto"] != null)
                                 {
-                                    @HttpContext.Current.Session["Email"]
+                                    <img class="img-profile rounded-circle" src="@HttpContext.Current.Session["Foto"]">
+                                }
+                                else if (@HttpContext.Current.Session["usuario"] != null)
+                                {
+                                    <img class="img-profile rounded-circle" src="~/Content/img/avatar.png">
                                 }
                                 else
                                 {
-                                    @HttpContext.Current.Session["Nombre"]
+
                                 }
-                            </span>
-                            @if (@HttpContext.Current.Session["Foto"] != null)
-                            {
-                                <img class="img-profile rounded-circle" src="@HttpContext.Current.Session["Foto"]">
-                            }
-                            else if (@HttpContext.Current.Session["usuario"] != null)
-                            {
-                                <img class="img-profile rounded-circle" src="~/Content/img/avatar.png">
-                            }
-                            else
-                            {
-
-                            }
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="~/Home/MiPerfil">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Perfil
                             </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Cerrar Sesion
-                            </a>
-                        </div>
-                    </li>
 
-                </ul>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="~/Home/MiPerfil">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cerrar Sesion
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
 
                 </nav>
 
@@ -162,15 +161,8 @@
         </div>
     </div>
 
-    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
 
-    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <script src="~/Content/js/sb-admin-2.min.js"></script>
-    <script src="~/Content/js/scripts.js"></script>
-
+    @Scripts.Render("~/bundles/js")
 </body>
 
 </html>
