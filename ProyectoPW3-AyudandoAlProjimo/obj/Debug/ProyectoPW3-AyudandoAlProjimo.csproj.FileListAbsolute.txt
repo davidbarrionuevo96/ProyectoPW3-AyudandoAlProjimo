@@ -819,7 +819,6 @@ C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW
 C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\es\System.Web.WebPages.resources.dll
 C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csprojAssemblyReference.cache
 C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csproj.CoreCompileInputs.cache
 C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csproj.CopyComplete
 C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.dll

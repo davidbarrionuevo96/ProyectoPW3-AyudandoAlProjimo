@@ -657,6 +657,8 @@ namespace Servicios
                 int p = (from don in asd.DonacionesInsumos
                          where don.IdPropuestaDonacionInsumo == a
                          select don.Cantidad).Count();
+
+
                 if (p != 0)
                 {
                     int p2 = (from don in asd.DonacionesInsumos
@@ -678,6 +680,7 @@ namespace Servicios
         {
             List<int> total = new List<int>();
             int i = -1;
+            int asdd = -1;
 
             foreach (var a in id)
             {
@@ -704,11 +707,13 @@ namespace Servicios
                 }
                 else
                 {
-                    int p3 = (from pepe in asd.PropuestasDonacionesInsumos
-                              where pepe.IdPropuesta == idProp
-                              select pepe.Cantidad).FirstOrDefault();
+                    asdd++;
 
-                    total.Add(p3);
+                    List <int> p3 = (from pepe in asd.PropuestasDonacionesInsumos
+                              where pepe.IdPropuesta == idProp
+                              select pepe.Cantidad).ToList();
+
+                    total.Add(p3[asdd]);
                 }
             }
 

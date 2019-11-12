@@ -23,14 +23,15 @@
                     <div class=" mb-1 card-text text-primary">@a.usuario</div>
                     <div class=" mb-1 card-text text-danger">@a.fechaFin.ToString("dd/MM/yyyy")</div>
                     <div class="progress">
-                        <div class="progress-bar" style="width: @a.porcentajePositivo%;">
+                        <div class="progress-bar bg-success" style="width: @a.porcentajePositivo%;">
                             @a.porcentajePositivo%
                         </div>
 
-                        <div class="progress-bar bg-success" style="width:@a.porcentajeNegativo%;">
+                        <div class="progress-bar bg-danger" style="width:@a.porcentajeNegativo%;">
+                            @a.porcentajeNegativo%
                         </div>
                     </div>
-                    @if (a.fechaFin>DateTime.Now)
+                    @if (a.fechaFin > DateTime.Now)
                     {
                         <a href="~/Propuestas/Modificar/@a.idPropuesta" class="mt-2 btn btn-sm btn-success float-left"><i class="fas fa-angle-double-left"></i> Editar</a>
                     }

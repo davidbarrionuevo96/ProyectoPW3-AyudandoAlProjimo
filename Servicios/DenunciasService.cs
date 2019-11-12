@@ -87,6 +87,23 @@ namespace Servicios
 
             }
         }
+        public void VerificarDenuncias(Denuncias denuncia)
+        {
+            int contador = (from p in asd.Denuncias
+                            where p.IdPropuesta == denuncia.IdPropuesta
+                            && p.Estado == 1
+                            select p).Count();
+
+            Propuestas prop = (from p2 in asd.Propuestas
+                               where p2.IdPropuesta == denuncia.IdPropuesta
+                               select p2).FirstOrDefault();
+
+            if (contador >= 5)
+            {
+                prop.Estado = 1;
+                asd.SaveChanges();
+            }
+        }
     }
 
 }
