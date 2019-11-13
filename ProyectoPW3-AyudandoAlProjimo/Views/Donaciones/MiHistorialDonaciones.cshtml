@@ -31,7 +31,7 @@
                 var p = new Date(item.FechaDonacion);
                 cadena+=`<tr  class="text-center">`
 
-                    cadena += `<td>${p.getDate()}-${p.getMonth()}-${p.getFullYear()}</td>`
+                    cadena += `<td>${p.getDate()}-${p.getMonth()+1}-${p.getFullYear()}</td>`
                     cadena += `<td>${item.Nombre}</td>`
                     if (item.TipoDonacion==1) {
 
