@@ -25,6 +25,28 @@ namespace Servicios
             }
             usu2.Estado = 0;
             asd.SaveChanges();
+
+            var usua3 = (from p in asd.Denuncias
+                        where p.IdPropuesta == usu2.IdPropuesta
+                        && p.Estado==0
+                        select p).ToList();
+
+            int cont = usua3.Count();
+
+            if (cont < 5)
+            {
+                var usua5 = (from p in asd.Propuestas
+                             where p.IdPropuesta == usu2.IdPropuesta
+                             select p).ToList();
+
+                Propuestas usu4 = new Propuestas();
+                foreach (var a in usua5)
+                {
+                    usu4 = a;
+                }
+                usu4.Estado = 0;
+                asd.SaveChanges();
+            }
         }
 
         public void AceptarDenuncia(int u)
@@ -81,9 +103,10 @@ namespace Servicios
                 den.Comentarios = denuncia.Comentarios;
 
                 ctx.Denuncias.Add(den);
-                PropuestaService pp = new PropuestaService();
-                pp.VerificarDenuncias(denuncia);
                 ctx.SaveChanges();
+                DenunciasService pp = new DenunciasService();
+                pp.VerificarDenuncias(denuncia);
+
 
             }
         }

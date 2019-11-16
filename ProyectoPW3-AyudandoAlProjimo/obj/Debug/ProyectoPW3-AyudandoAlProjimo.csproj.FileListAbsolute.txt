@@ -823,3 +823,4 @@ C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW
 C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csproj.CopyComplete
 C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.dll
 C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.pdb
+C:\Users\Nicolas\Desktop\pw3 10-11-2019\ProyectoPW3-AyudandoAlProjimo\ProyectoPW3-AyudandoAlProjimo\obj\Debug\ProyectoPW3-AyudandoAlProjimo.csprojAssemblyReference.cache
